@@ -306,9 +306,10 @@
     </button>
   </div>
   <div class="landing-foot">
-    Фокус v1: <strong>только Ruby (LTV $10K+, ~250 чел)</strong>. Crown / Diamond / Dolphin — в следующих фазах.<br>
-    Pre-Ruby при первом крупном заказе автоназначаются онлайн-менеджеру по очереди.<br>
-    <span style="opacity: 0.6;">Метрики компании (218/250, $34K возврат, 31% GMV share) — реальные из паспорта 2026-05-22. Никнеймы китов — placeholder для демо.</span>
+    🎯 Фокус v1: <strong>Ruby + Diamond (~1,650 чел, ~24% GMV компании)</strong>. Стартуем с Ruby ($10K+, 250 чел), потом Diamond ($3-10K).<br>
+    Crown / Dolphin / Plankton — <strong style="color: var(--accent);">видимы в общей аналитике</strong>, но без персональных менеджеров.<br>
+    Pre-Ruby/Diamond при первом крупном заказе автоназначаются онлайн-менеджеру по очереди.<br>
+    <span style="opacity: 0.6;">Метрики компании (50% GMV у топ-5%, 218/250 Ruby active, $34K возврат) — реальные из паспорта 2026-05-22. Никнеймы — placeholder.</span>
   </div>
 </div>
 
@@ -883,7 +884,7 @@
     <div class="page-header">
       <div>
         <div class="page-title">Whale Health · Май 2026</div>
-        <div class="page-sub">22 мая, пятница · еженедельный обзор · фокус v1: Ruby (топ-250)</div>
+        <div class="page-sub">22 мая, пятница · еженедельный обзор · 🎯 фокус v1: Ruby + Diamond (~1,650 чел) · остальные тиры — visible</div>
       </div>
       <div class="filters">
         <span class="muted small">Период:</span>
@@ -960,12 +961,13 @@
       <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem;">
 
         <!-- Ruby -->
-        <div onclick="alert('Список 250 Ruby — открывается отдельной страницей')" style="background: var(--bg-3); border: 1px solid rgba(227, 74, 111, 0.4); border-left: 4px solid var(--ruby); border-radius: 8px; padding: 1rem; cursor: pointer;">
+        <div onclick="alert('Список 250 Ruby — открывается отдельной страницей')" style="background: var(--bg-3); border: 1px solid rgba(227, 74, 111, 0.4); border-left: 4px solid var(--ruby); border-radius: 8px; padding: 1rem; cursor: pointer; box-shadow: 0 0 0 1px rgba(227, 74, 111, 0.2);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
             <span class="tier-badge tier-ruby">🔴 Ruby</span>
             <span class="muted small">$10K+</span>
           </div>
-          <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 0.5rem;">Суперкиты</div>
+          <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 0.2rem;">Суперкиты</div>
+          <div style="font-size: 0.7rem; color: var(--ruby); font-weight: 600; margin-bottom: 0.4rem;">🎯 MANAGED v1 · старт</div>
           <div style="font-size: 1.7rem; font-weight: 800; line-height: 1;">$163K</div>
           <div class="muted small" style="margin-bottom: 0.6rem;">8% GMV · <span style="color: var(--green);">+$8K</span> vs Q1</div>
           <div style="padding-top: 0.5rem; border-top: 1px solid var(--border); display: grid; gap: 0.25rem; font-size: 0.78rem;">
@@ -978,12 +980,13 @@
         </div>
 
         <!-- Diamond -->
-        <div onclick="alert('Diamond drill-down')" style="background: var(--bg-3); border: 1px solid rgba(78, 205, 196, 0.4); border-left: 4px solid var(--diamond); border-radius: 8px; padding: 1rem; cursor: pointer;">
+        <div onclick="alert('Diamond drill-down')" style="background: var(--bg-3); border: 1px solid rgba(78, 205, 196, 0.4); border-left: 4px solid var(--diamond); border-radius: 8px; padding: 1rem; cursor: pointer; box-shadow: 0 0 0 1px rgba(78, 205, 196, 0.2);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
             <span class="tier-badge tier-diamond">🔷 Diamond</span>
             <span class="muted small">$3–10K</span>
           </div>
-          <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 0.5rem;">Мега-киты</div>
+          <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 0.2rem;">Мега-киты</div>
+          <div style="font-size: 0.7rem; color: var(--diamond); font-weight: 600; margin-bottom: 0.4rem;">🎯 MANAGED v1 · фаза 2</div>
           <div style="font-size: 1.7rem; font-weight: 800; line-height: 1;">$326K</div>
           <div class="muted small" style="margin-bottom: 0.6rem;">16% GMV · <span style="color: var(--green);">+$24K</span> vs Q1</div>
           <div style="padding-top: 0.5rem; border-top: 1px solid var(--border); display: grid; gap: 0.25rem; font-size: 0.78rem;">
@@ -1001,7 +1004,8 @@
             <span class="tier-badge tier-crown">👑 Crown</span>
             <span class="muted small">$1–3K</span>
           </div>
-          <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 0.5rem;">Киты</div>
+          <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 0.2rem;">Киты</div>
+          <div style="font-size: 0.7rem; color: var(--text-3); font-weight: 600; margin-bottom: 0.4rem;">👀 VISIBLE · групповые кампании</div>
           <div style="font-size: 1.7rem; font-weight: 800; line-height: 1;">$531K</div>
           <div class="muted small" style="margin-bottom: 0.6rem;">26% GMV · <span class="muted">=</span> vs Q1</div>
           <div style="padding-top: 0.5rem; border-top: 1px solid var(--border); display: grid; gap: 0.25rem; font-size: 0.78rem;">
@@ -1019,7 +1023,8 @@
             <span class="tier-badge tier-dolphin">🐬 Dolphin</span>
             <span class="muted small">$300–1K</span>
           </div>
-          <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 0.5rem;">Дельфины</div>
+          <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 0.2rem;">Дельфины</div>
+          <div style="font-size: 0.7rem; color: var(--text-3); font-weight: 600; margin-bottom: 0.4rem;">👀 VISIBLE · auto-flows</div>
           <div style="font-size: 1.7rem; font-weight: 800; line-height: 1;">$510K</div>
           <div class="muted small" style="margin-bottom: 0.6rem;">25% GMV · <span style="color: var(--green);">+$12K</span> vs Q1</div>
           <div style="padding-top: 0.5rem; border-top: 1px solid var(--border); display: grid; gap: 0.25rem; font-size: 0.78rem;">
