@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>SkyCoach Whales Console — Mockup v0.1</title>
+<style>
+  :root {
+    --bg: #0f1419;
+    --bg-2: #1a2028;
+    --bg-3: #232b35;
+    --bg-4: #2a3340;
+    --border: #2a3340;
+    --text: #e5e9f0;
+    --text-2: #8b97a8;
+    --text-3: #5d6b7e;
+    --accent: #00d4ff;
+    --accent-2: #0099cc;
+    --ruby: #e34a6f;
+    --diamond: #4ecdc4;
+    --crown: #f4c542;
+    --dolphin: #a3b8d0;
+    --green: #4ade80;
+    --orange: #fb923c;
+    --red: #ef4444;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* Landing */
+  .landing {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; min-height: 100vh; padding: 2rem; text-align: center;
+  }
+  .landing-logo { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
+  .landing-logo span { color: var(--accent); }
+  .landing-tag { color: var(--text-2); margin-bottom: 3rem; font-size: 1.05rem; }
+  .role-buttons { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; justify-content: center; }
+  .role-btn {
+    background: var(--bg-2); border: 2px solid var(--border); color: var(--text);
+    padding: 2rem 2.5rem; border-radius: 16px; cursor: pointer; font-family: inherit;
+    transition: all 0.2s; min-width: 280px; text-align: center;
+  }
+  .role-btn:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0, 212, 255, 0.18); }
+  .role-btn-icon { font-size: 3rem; margin-bottom: 0.75rem; }
+  .role-btn-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .role-btn-sub { color: var(--text-2); font-size: 0.85rem; line-height: 1.5; }
+  .landing-foot { color: var(--text-3); font-size: 0.85rem; max-width: 600px; line-height: 1.6; }
+  .landing-foot strong { color: var(--ruby); }
+
+  /* App */
+  .app { display: none; min-height: 100vh; }
+  .app.active { display: flex; }
+  .sidebar { width: 240px; background: var(--bg-2); border-right: 1px solid var(--border); padding: 1.5rem 1rem; display: flex; flex-direction: column; }
+  .sidebar-logo { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.4rem; }
+  .sidebar-logo span { color: var(--accent); }
+  .sidebar-role { color: var(--text-2); font-size: 0.8rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
+  .role-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); display: inline-block; }
+  .nav-item { padding: 0.55rem 0.75rem; border-radius: 6px; cursor: pointer; margin-bottom: 0.2rem; color: var(--text-2); display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; }
+  .nav-item:hover { background: var(--bg-3); color: var(--text); }
+  .nav-item.active { background: var(--bg-3); color: var(--accent); }
+  .nav-item .count { margin-left: auto; background: var(--bg-3); padding: 0.1rem 0.45rem; border-radius: 10px; font-size: 0.72rem; color: var(--text-2); min-width: 24px; text-align: center; }
+  .nav-item.active .count { background: var(--accent); color: var(--bg); font-weight: 600; }
+  .nav-item .count.red { background: var(--red); color: white; font-weight: 600; }
+  .nav-section { color: var(--text-3); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; margin: 1.5rem 0 0.5rem 0.5rem; }
+  .switch-role { margin-top: auto; border-top: 1px solid var(--border); padding-top: 1rem; }
+  .switch-btn { background: transparent; border: 1px solid var(--border); color: var(--text-2); padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; width: 100%; font-family: inherit; font-size: 0.82rem; }
+  .switch-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .main { flex: 1; padding: 1.75rem 2.25rem; overflow-y: auto; max-height: 100vh; }
+  .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; }
+  .page-title { font-size: 1.4rem; font-weight: 600; }
+  .page-sub { color: var(--text-2); font-size: 0.85rem; margin-top: 0.15rem; }
+  .filters { display: flex; gap: 0.5rem; }
+  .filter-chip { background: var(--bg-2); border: 1px solid var(--border); padding: 0.4rem 0.85rem; border-radius: 6px; font-size: 0.8rem; cursor: pointer; color: var(--text-2); }
+  .filter-chip.active { border-color: var(--accent); color: var(--accent); background: rgba(0, 212, 255, 0.08); }
+
+  /* KPI */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.25rem; }
+  .kpi { background: var(--bg-2); border: 1px solid var(--border); padding: 1rem 1.25rem; border-radius: 10px; }
+  .kpi-label { color: var(--text-2); font-size: 0.78rem; margin-bottom: 0.4rem; }
+  .kpi-value { font-size: 1.7rem; font-weight: 700; line-height: 1.1; }
+  .kpi-delta { font-size: 0.78rem; margin-top: 0.3rem; }
+  .kpi-delta.up { color: var(--green); }
+  .kpi-delta.down { color: var(--orange); }
+  .kpi-delta.bad { color: var(--red); }
+
+  /* Section */
+  .section { background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; margin-bottom: 1.25rem; }
+  .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; gap: 1rem; }
+  .section-title { font-size: 1rem; font-weight: 600; }
+  .section-sub { color: var(--text-2); font-size: 0.8rem; margin-top: 0.1rem; }
+  .section-action { color: var(--accent); cursor: pointer; font-size: 0.85rem; }
+  .section-action:hover { text-decoration: underline; }
+
+  /* Alert banner */
+  .alert-banner {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(78, 205, 196, 0.08));
+    border: 1px solid var(--accent); border-radius: 10px; padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem; display: flex; align-items: center; gap: 1rem;
+  }
+  .alert-icon { background: var(--accent); color: var(--bg); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; flex-shrink: 0; }
+  .alert-text { flex: 1; }
+  .alert-title { font-weight: 600; margin-bottom: 0.2rem; font-size: 0.95rem; }
+  .alert-sub { color: var(--text-2); font-size: 0.85rem; }
+
+  /* Task cards */
+  .task-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; }
+  .task-card {
+    background: var(--bg-3); border: 1px solid var(--border); border-radius: 8px;
+    padding: 1rem; cursor: pointer; transition: all 0.15s;
+    border-left: 3px solid var(--ruby);
+  }
+  .task-card.urgent { border-left-color: var(--red); }
+  .task-card.warn { border-left-color: var(--orange); }
+  .task-card:hover { background: var(--bg-4); border-color: var(--accent); }
+  .task-card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.6rem; gap: 0.5rem; }
+  .task-whale { font-weight: 600; display: flex; align-items: center; gap: 0.4rem; font-size: 0.95rem; flex-wrap: wrap; }
+  .tier-badge { display: inline-block; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+  .tier-ruby { background: rgba(227, 74, 111, 0.2); color: var(--ruby); }
+  .tier-diamond { background: rgba(78, 205, 196, 0.2); color: var(--diamond); }
+  .tier-crown { background: rgba(244, 197, 66, 0.2); color: var(--crown); }
+  .tier-dolphin { background: rgba(163, 184, 208, 0.2); color: var(--dolphin); }
+  .task-trigger { color: var(--text-2); font-size: 0.83rem; margin-bottom: 0.6rem; }
+  .task-action { background: var(--bg); padding: 0.55rem 0.7rem; border-radius: 5px; font-size: 0.8rem; color: var(--text); border-left: 2px solid var(--accent); margin-bottom: 0.75rem; line-height: 1.4; }
+  .task-buttons { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+  /* Buttons */
+  .btn { background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 0.4rem 0.7rem; border-radius: 5px; cursor: pointer; font-size: 0.78rem; font-family: inherit; transition: border-color 0.15s; }
+  .btn:hover { border-color: var(--accent); }
+  .btn-primary { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
+  .btn-primary:hover { background: var(--accent-2); border-color: var(--accent-2); }
+  .btn-lg { padding: 0.55rem 1.1rem; font-size: 0.88rem; }
+
+  /* Table */
+  .table { width: 100%; border-collapse: collapse; }
+  .table th { text-align: left; color: var(--text-2); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.55rem 0.7rem; border-bottom: 1px solid var(--border); font-weight: 600; }
+  .table td { padding: 0.7rem; border-bottom: 1px solid var(--border); font-size: 0.86rem; }
+  .table tbody tr { cursor: pointer; transition: background 0.1s; }
+  .table tbody tr:hover td { background: var(--bg-3); }
+  .table tbody tr:last-child td { border-bottom: none; }
+
+  .status-pill { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.15rem 0.55rem; border-radius: 10px; font-size: 0.72rem; font-weight: 600; }
+  .status-active { background: rgba(74, 222, 128, 0.15); color: var(--green); }
+  .status-risk { background: rgba(251, 146, 60, 0.18); color: var(--orange); }
+  .status-hibernate { background: rgba(163, 184, 208, 0.15); color: var(--dolphin); }
+  .status-lost { background: rgba(239, 68, 68, 0.15); color: var(--red); }
+  .status-new { background: rgba(0, 212, 255, 0.15); color: var(--accent); }
+
+  .discord-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 0.3rem; flex-shrink: 0; }
+  .discord-connected { background: var(--green); box-shadow: 0 0 6px rgba(74, 222, 128, 0.6); }
+  .discord-invited { background: var(--orange); }
+  .discord-none { background: var(--text-3); }
+
+  .avatar { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--ruby)); color: var(--bg); font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+  /* Progress */
+  .progress-row { display: flex; align-items: center; gap: 0.75rem; }
+  .progress-bar { flex: 1; height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width 0.3s; }
+  .progress-fill.under { background: var(--orange); }
+  .progress-fill.over { background: var(--accent); }
+  .progress-text { font-size: 0.78rem; color: var(--text-2); min-width: 90px; text-align: right; }
+
+  /* Modal */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75);
+    display: none; align-items: center; justify-content: center; z-index: 100;
+    backdrop-filter: blur(6px); padding: 2rem;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: var(--bg-2); border: 1px solid var(--border); border-radius: 12px;
+    max-width: 920px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem;
+  }
+  .modal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); gap: 1rem; }
+  .modal-whale-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+  .modal-whale-name { font-size: 1.5rem; font-weight: 700; }
+  .modal-personal { color: var(--text-2); font-size: 0.88rem; }
+  .modal-close { background: transparent; border: 1px solid var(--border); color: var(--text-2); width: 32px; height: 32px; border-radius: 6px; cursor: pointer; font-size: 1.2rem; flex-shrink: 0; }
+  .modal-close:hover { color: var(--text); border-color: var(--accent); }
+  .modal-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; }
+  .modal-stat { background: var(--bg-3); padding: 0.75rem 1rem; border-radius: 8px; }
+  .modal-stat-label { color: var(--text-2); font-size: 0.74rem; margin-bottom: 0.25rem; }
+  .modal-stat-value { font-size: 1.25rem; font-weight: 700; }
+  .modal-section { margin-bottom: 1.5rem; }
+  .modal-section-title { font-weight: 600; margin-bottom: 0.75rem; color: var(--text); font-size: 0.95rem; }
+  .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+  .info-list { display: grid; gap: 0.1rem; }
+  .info-row { display: flex; justify-content: space-between; font-size: 0.86rem; padding: 0.4rem 0; border-bottom: 1px solid var(--border); }
+  .info-row:last-child { border-bottom: none; }
+  .info-label { color: var(--text-2); }
+  .recommendation {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(78, 205, 196, 0.04));
+    border-left: 3px solid var(--accent); padding: 0.75rem 1rem; border-radius: 6px;
+    margin-bottom: 0.5rem; font-size: 0.86rem; line-height: 1.5;
+  }
+  .recommendation strong { color: var(--accent); }
+  .modal-actions { display: flex; gap: 0.5rem; padding-top: 1rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 2rem; right: 2rem; background: var(--bg-2);
+    border: 1px solid var(--accent); border-radius: 10px; padding: 1rem 1.25rem;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5); display: none; align-items: center;
+    gap: 0.85rem; z-index: 200; max-width: 420px;
+  }
+  .toast.show { display: flex; animation: slideIn 0.3s ease; }
+  @keyframes slideIn { from { transform: translateX(30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+  .toast-icon { width: 42px; height: 42px; background: var(--accent); color: var(--bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.3rem; flex-shrink: 0; }
+  .toast-text strong { display: block; margin-bottom: 0.15rem; }
+  .toast-text small { color: var(--text-2); font-size: 0.78rem; line-height: 1.4; }
+
+  /* Manager card (leader view) */
+  .manager-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.85rem; }
+  .manager-card { background: var(--bg-3); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; cursor: pointer; transition: all 0.15s; }
+  .manager-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .manager-card-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; gap: 0.5rem; }
+  .manager-card-name { display: flex; align-items: center; gap: 0.6rem; font-weight: 600; font-size: 0.95rem; }
+  .manager-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; font-size: 0.78rem; margin-bottom: 0.75rem; }
+  .manager-stat-label { color: var(--text-2); margin-bottom: 0.15rem; font-size: 0.72rem; }
+  .manager-stat-value { font-weight: 700; font-size: 0.9rem; }
+  .star { color: var(--crown); }
+
+  .two-col { display: grid; grid-template-columns: 2fr 1fr; gap: 1.25rem; }
+  .two-col-eq { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+
+  .activity-item { background: var(--bg-3); padding: 0.7rem; border-radius: 6px; }
+  .activity-item.unread { border-left: 3px solid var(--accent); }
+  .activity-item-head { display: flex; justify-content: space-between; margin-bottom: 0.25rem; }
+  .activity-list { display: flex; flex-direction: column; gap: 0.6rem; }
+  .muted { color: var(--text-2); }
+  .small { font-size: 0.83rem; }
+
+  .note-box { background: var(--bg-3); padding: 0.85rem 1rem; border-radius: 6px; font-size: 0.86rem; line-height: 1.5; }
+  .note-box p { margin-bottom: 0.5rem; }
+  .note-box p:last-child { margin-bottom: 0; }
+
+  .assign-row {
+    background: var(--bg-3); padding: 0.75rem; border-radius: 6px;
+    display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;
+  }
+
+  @media (max-width: 1100px) {
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .task-grid { grid-template-columns: 1fr; }
+    .manager-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col, .two-col-eq { grid-template-columns: 1fr; }
+    .modal-stats, .modal-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LANDING -->
+<div class="landing" id="landing">
+  <div class="landing-logo">SkyCoach <span>Whales Console</span></div>
+  <div class="landing-tag">Кликабельный мокап · v0.1 · 22 мая 2026</div>
+  <div class="role-buttons">
+    <button class="role-btn" onclick="enterApp('manager')">
+      <div class="role-btn-icon">🎯</div>
+      <div class="role-btn-title">Менеджер</div>
+      <div class="role-btn-sub">Сергей · 24 закреплённых Ruby<br>Свои киты, задачи на день, Discord</div>
+    </button>
+    <button class="role-btn" onclick="enterApp('leader')">
+      <div class="role-btn-icon">👑</div>
+      <div class="role-btn-title">Руководитель</div>
+      <div class="role-btn-sub">Семён · Whale Initiative Lead<br>Команда, очередь подхвата, риски</div>
+    </button>
+  </div>
+  <div class="landing-foot">
+    Фокус v1: <strong>только Ruby (LTV $10K+, ~250 чел)</strong>. Crown / Diamond / Dolphin — в следующих фазах.<br>
+    Pre-Ruby при первом крупном заказе автоназначаются онлайн-менеджеру по очереди.
+  </div>
+</div>
+
+<!-- ==================== MANAGER APP ==================== -->
+<div class="app" id="app-manager">
+  <aside class="sidebar">
+    <div class="sidebar-logo">SkyCoach <span>Whales</span></div>
+    <div class="sidebar-role"><span class="role-dot"></span>Менеджер · Сергей</div>
+    <div class="nav-section">Работа</div>
+    <div class="nav-item active">🔥 <span>Сегодня</span><span class="count">8</span></div>
+    <div class="nav-item">🐋 <span>Мои Ruby</span><span class="count">24</span></div>
+    <div class="nav-item">🆕 <span>Подхват</span><span class="count red">2</span></div>
+    <div class="nav-item">🟡 <span>В зоне риска</span><span class="count">5</span></div>
+    <div class="nav-item">💬 <span>Discord</span><span class="count">3</span></div>
+    <div class="nav-section">Аналитика</div>
+    <div class="nav-item">📊 <span>Мой план</span></div>
+    <div class="nav-item">🏆 <span>Лидерборд</span></div>
+    <div class="nav-item">📅 <span>Календарь</span></div>
+    <div class="switch-role">
+      <button class="switch-btn" onclick="goLanding()">← Стартовый экран</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="page-header">
+      <div>
+        <div class="page-title">Доброе утро, Сергей 👋</div>
+        <div class="page-sub">Пятница, 22 мая 2026 · 8 задач, 3 срочных</div>
+      </div>
+      <div class="filters">
+        <div class="filter-chip active">Все</div>
+        <div class="filter-chip">Срочные</div>
+        <div class="filter-chip">Discord</div>
+        <div class="filter-chip">WoW</div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-label">Мои Ruby active</div>
+        <div class="kpi-value">22 / 24</div>
+        <div class="kpi-delta up">+1 на этой неделе</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">GMV закреплённых, май</div>
+        <div class="kpi-value">$48,200</div>
+        <div class="kpi-delta up">80% плана ($60K)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Возвратов / неделя ⭐</div>
+        <div class="kpi-value">2</div>
+        <div class="kpi-delta up">$8,400 GMV</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Без касания 30+</div>
+        <div class="kpi-value">3</div>
+        <div class="kpi-delta down">внимание</div>
+      </div>
+    </div>
+
+    <!-- AUTO-ASSIGN BANNER -->
+    <div class="alert-banner">
+      <div class="alert-icon">!</div>
+      <div class="alert-text">
+        <div class="alert-title">🆕 Новый потенциальный Ruby — закреплён за тобой автоматически</div>
+        <div class="alert-sub">5 минут назад <strong>DragonSlayer_99</strong> сделал первый заказ <strong>$840</strong> в WoW Classic. Score 75/100. Свяжись через Intercom в течение 48 часов, обменяйся корпоративным Discord.</div>
+      </div>
+      <button class="btn btn-primary btn-lg" onclick="openWhale('dragon')">Открыть карточку →</button>
+    </div>
+
+    <!-- URGENT TODAY -->
+    <div class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-title">🔥 Срочные на сегодня</div>
+          <div class="section-sub">Эти 3 кита требуют действия сейчас · правила в Настройках</div>
+        </div>
+        <div class="section-action">Показать все 8 →</div>
+      </div>
+      <div class="task-grid">
+        <div class="task-card urgent" onclick="openWhale('grimm')">
+          <div class="task-card-head">
+            <div class="task-whale">
+              <span class="discord-dot discord-connected"></span>
+              GrimmRaider
+              <span class="tier-badge tier-ruby">Ruby</span>
+            </div>
+            <span class="status-pill status-risk">at-risk</span>
+          </div>
+          <div class="task-trigger">Не покупал 48 дней при цикле 28. В WoW Classic Season 4 уже 12 дней.</div>
+          <div class="task-action">💬 «Привет! Видел вышел S4 — будешь идти за рейтингом? Если что — есть пакет под старт».</div>
+          <div class="task-buttons">
+            <button class="btn btn-primary" onclick="event.stopPropagation();">✓ Сделано</button>
+            <button class="btn" onclick="event.stopPropagation();">⏰ Отложить</button>
+            <button class="btn" onclick="event.stopPropagation(); openWhale('grimm')">Открыть →</button>
+          </div>
+        </div>
+
+        <div class="task-card urgent" onclick="openWhale('phoenix')">
+          <div class="task-card-head">
+            <div class="task-whale">
+              <span class="discord-dot discord-connected"></span>
+              Phoenix_Hunter
+              <span class="tier-badge tier-ruby">Ruby</span>
+            </div>
+            <span class="status-pill status-risk">at-risk</span>
+          </div>
+          <div class="task-trigger">Mega-кит без контакта 32 дня. Обычно отвечает в течение часа. Тишина непривычная.</div>
+          <div class="task-action">💬 Touch-base без оффера: «Привет, давно не виделись. Как дела по игре?»</div>
+          <div class="task-buttons">
+            <button class="btn btn-primary" onclick="event.stopPropagation();">✓ Сделано</button>
+            <button class="btn" onclick="event.stopPropagation();">⏰ Отложить</button>
+            <button class="btn" onclick="event.stopPropagation(); openWhale('phoenix')">Открыть →</button>
+          </div>
+        </div>
+
+        <div class="task-card warn" onclick="openWhale('nyx')">
+          <div class="task-card-head">
+            <div class="task-whale">
+              <span class="discord-dot discord-invited"></span>
+              Nyx_Shadow
+              <span class="tier-badge tier-ruby">Ruby</span>
+            </div>
+            <span class="status-pill status-active">active</span>
+          </div>
+          <div class="task-trigger">Cross-game: вчера первый заказ в Diablo IV ($420). Раньше только Destiny 2.</div>
+          <div class="task-action">💬 «Видел ты в Diablo зашёл. Есть стартовый бундл под D4 S5 — покажу?»</div>
+          <div class="task-buttons">
+            <button class="btn btn-primary" onclick="event.stopPropagation();">✓ Сделано</button>
+            <button class="btn" onclick="event.stopPropagation();">⏰ Отложить</button>
+            <button class="btn" onclick="event.stopPropagation(); openWhale('nyx')">Открыть →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MY RUBIES + DISCORD -->
+    <div class="two-col">
+      <div class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-title">🐋 Мои Ruby — по приоритету риска</div>
+            <div class="section-sub">24 закреплённых · клик — карточка</div>
+          </div>
+          <div class="section-action">Полный список →</div>
+        </div>
+        <table class="table">
+          <thead>
+            <tr><th>Кит</th><th>Игра</th><th>LTV</th><th>Last order</th><th>Статус</th><th>Discord</th></tr>
+          </thead>
+          <tbody>
+            <tr onclick="openWhale('grimm')">
+              <td><strong>GrimmRaider</strong></td><td>WoW Classic</td><td>$24,300</td><td>48 дн</td>
+              <td><span class="status-pill status-risk">at-risk</span></td>
+              <td><span class="discord-dot discord-connected"></span>online</td>
+            </tr>
+            <tr onclick="openWhale('phoenix')">
+              <td><strong>Phoenix_Hunter</strong></td><td>Destiny 2</td><td>$18,650</td><td>32 дн</td>
+              <td><span class="status-pill status-risk">at-risk</span></td>
+              <td><span class="discord-dot discord-connected"></span>online</td>
+            </tr>
+            <tr onclick="openWhale('nyx')">
+              <td><strong>Nyx_Shadow</strong></td><td>Destiny / Diablo</td><td>$15,200</td><td>1 дн</td>
+              <td><span class="status-pill status-active">active</span></td>
+              <td><span class="discord-dot discord-invited"></span>invited</td>
+            </tr>
+            <tr onclick="openWhale('vex')">
+              <td><strong>VexMachina</strong></td><td>WoW Retail</td><td>$12,800</td><td>6 дн</td>
+              <td><span class="status-pill status-active">active</span></td>
+              <td><span class="discord-dot discord-connected"></span>online</td>
+            </tr>
+            <tr onclick="openWhale('iron')">
+              <td><strong>IronWolfPL</strong></td><td>Diablo IV</td><td>$11,400</td><td>14 дн</td>
+              <td><span class="status-pill status-active">active</span></td>
+              <td><span class="discord-dot discord-connected"></span>online</td>
+            </tr>
+            <tr onclick="openWhale('thorin')">
+              <td><strong>ThorinBeast</strong></td><td>WoW Classic</td><td>$10,750</td><td>96 дн</td>
+              <td><span class="status-pill status-hibernate">hibernating</span></td>
+              <td><span class="discord-dot discord-none"></span>none</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-title">💬 Discord — непрочитанные</div>
+            <div class="section-sub">3 от твоих китов</div>
+          </div>
+        </div>
+        <div class="activity-list">
+          <div class="activity-item unread">
+            <div class="activity-item-head">
+              <strong>VexMachina</strong><span class="muted small">3 мин</span>
+            </div>
+            <div class="small muted">«Привет, есть варианты под нового бога M+?»</div>
+          </div>
+          <div class="activity-item unread">
+            <div class="activity-item-head">
+              <strong>IronWolfPL</strong><span class="muted small">25 мин</span>
+            </div>
+            <div class="small muted">«Сергей, спасибо за бундл, идеально зашёл!»</div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-item-head">
+              <strong>Nyx_Shadow</strong><span class="muted small">2ч</span>
+            </div>
+            <div class="small muted">«Видел приглашение, приму вечером»</div>
+          </div>
+          <div class="small muted" style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border);">
+            <strong style="color: var(--text);">3</strong> кита из 24 не в Discord — <span style="color: var(--accent); cursor: pointer;">запустить onboarding →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== LEADER APP ==================== -->
+<div class="app" id="app-leader">
+  <aside class="sidebar">
+    <div class="sidebar-logo">SkyCoach <span>Whales</span></div>
+    <div class="sidebar-role"><span class="role-dot"></span>Руководитель · Семён</div>
+    <div class="nav-section">Обзор</div>
+    <div class="nav-item active">📊 <span>Whale Health</span></div>
+    <div class="nav-item">👥 <span>Менеджеры</span><span class="count">4</span></div>
+    <div class="nav-item">🐋 <span>Все Ruby</span><span class="count">250</span></div>
+    <div class="nav-item">🟡 <span>В зоне риска</span><span class="count">18</span></div>
+    <div class="nav-item">🔄 <span>Reactivation</span><span class="count">47</span></div>
+    <div class="nav-section">Разбор</div>
+    <div class="nav-item">🆕 <span>Очередь подхвата</span></div>
+    <div class="nav-item">📈 <span>Tier movements</span></div>
+    <div class="nav-item">🏆 <span>Лидерборд</span></div>
+    <div class="nav-item">⚙️ <span>Правила NBA</span></div>
+    <div class="switch-role">
+      <button class="switch-btn" onclick="goLanding()">← Стартовый экран</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="page-header">
+      <div>
+        <div class="page-title">Whale Health · Май 2026</div>
+        <div class="page-sub">22 мая, пятница · еженедельный обзор</div>
+      </div>
+      <div class="filters">
+        <div class="filter-chip">Неделя</div>
+        <div class="filter-chip active">Месяц</div>
+        <div class="filter-chip">Квартал</div>
+        <div class="filter-chip">Год</div>
+      </div>
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-label">Ruby active / total</div>
+        <div class="kpi-value">218 / 250</div>
+        <div class="kpi-delta up">87% · +2 за неделю</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Ruby GMV share, MTD</div>
+        <div class="kpi-value">31%</div>
+        <div class="kpi-delta up">+3pp к прошлому месяцу</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Возвращено за неделю</div>
+        <div class="kpi-value">12 китов</div>
+        <div class="kpi-delta up">$34,200 GMV</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">В зоне риска</div>
+        <div class="kpi-value">18</div>
+        <div class="kpi-delta bad">+3 за неделю</div>
+      </div>
+    </div>
+
+    <!-- MANAGER PERFORMANCE -->
+    <div class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-title">👥 Команда — performance этой недели</div>
+          <div class="section-sub">Клик по карточке → разбор китов конкретного менеджера</div>
+        </div>
+        <div class="section-action">Полный лидерборд →</div>
+      </div>
+      <div class="manager-grid">
+        <div class="manager-card" onclick="alert('Drill-down по Сергею: 24 закреплённых, 5 at-risk, $48K GMV май')">
+          <div class="manager-card-head">
+            <div class="manager-card-name">
+              <div class="avatar">С</div>
+              Сергей <span class="star">⭐</span>
+            </div>
+            <span class="status-pill status-active">online</span>
+          </div>
+          <div class="manager-stats">
+            <div><div class="manager-stat-label">Закр. Ruby</div><div class="manager-stat-value">24</div></div>
+            <div><div class="manager-stat-label">GMV май</div><div class="manager-stat-value">$48K</div></div>
+            <div><div class="manager-stat-label">Возврат</div><div class="manager-stat-value">2 ⭐</div></div>
+          </div>
+          <div class="progress-row">
+            <div class="progress-bar"><div class="progress-fill" style="width: 80%"></div></div>
+            <div class="progress-text">80% плана</div>
+          </div>
+        </div>
+
+        <div class="manager-card" onclick="alert('Drill-down по Анне')">
+          <div class="manager-card-head">
+            <div class="manager-card-name">
+              <div class="avatar" style="background: linear-gradient(135deg, var(--crown), var(--orange));">А</div>
+              Анна <span class="star">⭐⭐</span>
+            </div>
+            <span class="status-pill status-active">online</span>
+          </div>
+          <div class="manager-stats">
+            <div><div class="manager-stat-label">Закр. Ruby</div><div class="manager-stat-value">22</div></div>
+            <div><div class="manager-stat-label">GMV май</div><div class="manager-stat-value">$52K</div></div>
+            <div><div class="manager-stat-label">Возврат</div><div class="manager-stat-value">3 ⭐</div></div>
+          </div>
+          <div class="progress-row">
+            <div class="progress-bar"><div class="progress-fill over" style="width: 95%"></div></div>
+            <div class="progress-text">95% плана</div>
+          </div>
+        </div>
+
+        <div class="manager-card" onclick="alert('Drill-down по Михаилу: 7 at-risk, 5 без касания — критическая нагрузка')">
+          <div class="manager-card-head">
+            <div class="manager-card-name">
+              <div class="avatar" style="background: linear-gradient(135deg, var(--diamond), var(--accent));">M</div>
+              Михаил
+            </div>
+            <span class="status-pill status-hibernate">offline</span>
+          </div>
+          <div class="manager-stats">
+            <div><div class="manager-stat-label">Закр. Ruby</div><div class="manager-stat-value">19</div></div>
+            <div><div class="manager-stat-label">GMV май</div><div class="manager-stat-value">$28K</div></div>
+            <div><div class="manager-stat-label">Возврат</div><div class="manager-stat-value">0</div></div>
+          </div>
+          <div class="progress-row">
+            <div class="progress-bar"><div class="progress-fill under" style="width: 47%"></div></div>
+            <div class="progress-text">47% — ⚠️</div>
+          </div>
+        </div>
+
+        <div class="manager-card" onclick="alert('Drill-down по Елене')">
+          <div class="manager-card-head">
+            <div class="manager-card-name">
+              <div class="avatar" style="background: linear-gradient(135deg, var(--ruby), var(--crown));">Е</div>
+              Елена
+            </div>
+            <span class="status-pill status-active">online</span>
+          </div>
+          <div class="manager-stats">
+            <div><div class="manager-stat-label">Закр. Ruby</div><div class="manager-stat-value">21</div></div>
+            <div><div class="manager-stat-label">GMV май</div><div class="manager-stat-value">$41K</div></div>
+            <div><div class="manager-stat-label">Возврат</div><div class="manager-stat-value">1</div></div>
+          </div>
+          <div class="progress-row">
+            <div class="progress-bar"><div class="progress-fill" style="width: 70%"></div></div>
+            <div class="progress-text">70% плана</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AT-RISK BY MANAGER + AUTO-ASSIGN QUEUE -->
+    <div class="two-col-eq">
+      <div class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-title">🟡 Ruby в зоне риска — по менеджерам</div>
+            <div class="section-sub">Куда направить внимание команды на планёрке</div>
+          </div>
+        </div>
+        <table class="table">
+          <thead>
+            <tr><th>Менеджер</th><th>At-risk</th><th>Без касания 30+</th><th>Lost (180+)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Сергей</td><td><strong>5</strong></td><td>3</td><td>1</td></tr>
+            <tr><td>Анна <span class="star">⭐</span></td><td>3</td><td>1</td><td>0</td></tr>
+            <tr><td style="color: var(--orange);"><strong>Михаил ⚠️</strong></td><td><strong style="color: var(--red);">7</strong></td><td><strong style="color: var(--red);">5</strong></td><td>2</td></tr>
+            <tr><td>Елена</td><td>3</td><td>2</td><td>1</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top: 0.75rem;" class="small muted">⚠️ Михаил перегружен. Обсудить на планёрке во вторник: либо перераспределить часть, либо разобраться почему контакт не идёт.</div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-title">🆕 Автораспределение — 24 часа</div>
+            <div class="section-sub">Pre-Ruby → онлайн-менеджеру по очереди</div>
+          </div>
+        </div>
+        <div class="activity-list">
+          <div class="assign-row">
+            <div>
+              <strong>DragonSlayer_99</strong> · WoW Classic
+              <div class="small muted">Первый заказ $840 · score 75/100</div>
+            </div>
+            <div style="text-align: right;" class="small">
+              → <strong>Сергей</strong><br>
+              <span class="muted">5 мин назад</span>
+            </div>
+          </div>
+          <div class="assign-row">
+            <div>
+              <strong>VoidStrider</strong> · Destiny 2
+              <div class="small muted">2-й заказ за 8 дней, total $1,200</div>
+            </div>
+            <div style="text-align: right;" class="small">
+              → <strong>Анна</strong><br>
+              <span class="muted">2 часа</span>
+            </div>
+          </div>
+          <div class="assign-row">
+            <div>
+              <strong>FrostBorn_X</strong> · WoW Retail
+              <div class="small muted">Первый заказ $640 · score 65/100</div>
+            </div>
+            <div style="text-align: right;" class="small">
+              → <strong>Елена</strong><br>
+              <span class="muted">вчера</span>
+            </div>
+          </div>
+          <div class="small muted" style="margin-top: 0.5rem; padding-top: 0.75rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between;">
+            <span>Очередь сейчас пустая</span>
+            <span style="color: var(--accent); cursor: pointer;">Настроить правила →</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- REACTIVATION TRACKER -->
+    <div class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-title">🔄 Reactivation Tracker</div>
+          <div class="section-sub">17% базовый возврат · цель квартала 25%</div>
+        </div>
+        <div class="section-action">Cohorts →</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;">
+        <div>
+          <div class="kpi-label">В кампании сейчас</div>
+          <div class="kpi-value" style="font-size: 1.4rem;">47 китов</div>
+          <div class="small muted">из них 18 Ruby</div>
+        </div>
+        <div>
+          <div class="kpi-label">Recovered MTD</div>
+          <div class="kpi-value" style="font-size: 1.4rem; color: var(--green);">+19</div>
+          <div class="small muted">$58,400 GMV</div>
+        </div>
+        <div>
+          <div class="kpi-label">Open / Click rate</div>
+          <div class="kpi-value" style="font-size: 1.4rem;">62% / 24%</div>
+          <div class="small muted">по последней рассылке</div>
+        </div>
+        <div>
+          <div class="kpi-label">Лучшая когорта</div>
+          <div class="kpi-value" style="font-size: 1.1rem; color: var(--accent);">WoW Classic S4</div>
+          <div class="small muted">28% возврат</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== WHALE CARD MODAL ==================== -->
+<div class="modal-overlay" id="whaleModal" onclick="if(event.target===this) closeWhale()">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-whale-meta">
+          <span class="discord-dot discord-connected" id="m-disc" style="width:12px;height:12px;"></span>
+          <div class="modal-whale-name" id="m-name">GrimmRaider</div>
+          <span class="tier-badge tier-ruby" id="m-tier">Ruby</span>
+          <span class="status-pill status-risk" id="m-status">at-risk</span>
+        </div>
+        <div class="modal-personal" id="m-personal">Marcus K. · 🇩🇪 Германия · DE/EN · UTC+1 · 34 года · ДР 12.08</div>
+      </div>
+      <button class="modal-close" onclick="closeWhale()">×</button>
+    </div>
+
+    <div class="modal-stats">
+      <div class="modal-stat"><div class="modal-stat-label">LTV (total)</div><div class="modal-stat-value" id="m-ltv">$24,300</div></div>
+      <div class="modal-stat"><div class="modal-stat-label">Spend 90 дней</div><div class="modal-stat-value" id="m-90d">$1,840</div></div>
+      <div class="modal-stat"><div class="modal-stat-label">Средний чек</div><div class="modal-stat-value" id="m-avg">$340</div></div>
+      <div class="modal-stat"><div class="modal-stat-label">Last order</div><div class="modal-stat-value" id="m-last">48 дней</div></div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">💡 Рекомендации системы</div>
+      <div class="recommendation"><strong>Сейчас:</strong> Не покупал 48 дней при обычном цикле 28. В WoW Classic Season 4 вышел 12 дней назад. <strong>Действие:</strong> личное сообщение в Discord — «попробуешь S4?». Если есть пакет под рейтинг — приложи.</div>
+      <div class="recommendation"><strong>Долгосрочно:</strong> Cross-game candidate — играет только WoW Classic. На следующей паузе сезона мягко предложить Diablo IV (через 30 дней Season 5).</div>
+      <div class="recommendation"><strong>Календарь:</strong> 12 августа день рождения — отметь, поздравь без оффера.</div>
+    </div>
+
+    <div class="modal-grid">
+      <div>
+        <div class="modal-section-title">🎮 Игровой профиль</div>
+        <div class="info-list">
+          <div class="info-row"><span class="info-label">Main game</span><span><strong>WoW Classic</strong> (96%)</span></div>
+          <div class="info-row"><span class="info-label">Класс / роль</span><span>Rogue · M+ Tank</span></div>
+          <div class="info-row"><span class="info-label">Обычный цикл</span><span>28 дней ±5</span></div>
+          <div class="info-row"><span class="info-label">Любимый сервис</span><span>Mythic+ Boost</span></div>
+          <div class="info-row"><span class="info-label">Cross-game</span><span class="muted">нет</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="modal-section-title">👤 Личное</div>
+        <div class="info-list">
+          <div class="info-row"><span class="info-label">Имя</span><span>Marcus K.</span></div>
+          <div class="info-row"><span class="info-label">Страна</span><span>🇩🇪 Германия</span></div>
+          <div class="info-row"><span class="info-label">Языки</span><span>DE (основной), EN</span></div>
+          <div class="info-row"><span class="info-label">Часовой пояс</span><span>UTC+1</span></div>
+          <div class="info-row"><span class="info-label">День рождения</span><span>12 августа</span></div>
+          <div class="info-row"><span class="info-label">Семейный статус</span><span>Женат, играет с женой</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">🛒 История заказов (последние 6 из 72)</div>
+      <table class="table">
+        <thead><tr><th>Дата</th><th>Услуга</th><th>Игра</th><th>Сумма</th><th>Исполнитель</th></tr></thead>
+        <tbody>
+          <tr><td>4 апр 2026</td><td>Mythic+ 20 Boost</td><td>WoW Classic</td><td><strong>$420</strong></td><td>Kostya_GG</td></tr>
+          <tr><td>10 мар 2026</td><td>Glory of the Raider</td><td>WoW Classic</td><td><strong>$780</strong></td><td>Pavel_BST</td></tr>
+          <tr><td>8 фев 2026</td><td>PvP Arena 2400</td><td>WoW Classic</td><td><strong>$340</strong></td><td>Kostya_GG</td></tr>
+          <tr><td>11 янв 2026</td><td>Coaching 5h</td><td>WoW Classic</td><td><strong>$280</strong></td><td>Maxim_Pro</td></tr>
+          <tr><td>15 дек 2025</td><td>Раидер мифик 9/9</td><td>WoW Classic</td><td><strong>$650</strong></td><td>Pavel_BST</td></tr>
+          <tr><td>18 ноя 2025</td><td>Season Pack S3</td><td>WoW Classic</td><td><strong>$1,200</strong></td><td>команда</td></tr>
+        </tbody>
+      </table>
+      <div class="small muted" style="margin-top: 0.5rem;">Всего 72 заказа за 19 месяцев. Любимый исполнитель: <strong>Kostya_GG</strong> (24 заказа).</div>
+    </div>
+
+    <div class="modal-section">
+      <div class="modal-section-title">📝 Заметки менеджера</div>
+      <div class="note-box">
+        <p>Marcus любит ранние утра (онлайн 7-9 UTC+1 в выходные). Жена — Sabine, иногда сидит рядом во время заказов.</p>
+        <p>Просил всегда Kostya_GG как исполнителя по M+. Если Kostya занят — предупреждать заранее.</p>
+        <p>Был чуть напряжён на прошлом заказе (ждал исполнителя 40 мин). Извинились, дали +1 час coaching бесплатно — снял напряжение.</p>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-primary btn-lg">💬 Открыть Discord</button>
+      <button class="btn btn-lg">📞 Лог контакта</button>
+      <button class="btn btn-lg">📋 Создать задачу</button>
+      <button class="btn btn-lg">🔄 Запустить reactivation</button>
+      <button class="btn btn-lg">🔁 Переназначить</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <div class="toast-icon">!</div>
+  <div class="toast-text">
+    <strong>Новый Ruby-кандидат закреплён за тобой</strong>
+    <small>DragonSlayer_99 · WoW Classic · $840 первый заказ · score 75/100</small>
+  </div>
+</div>
+
+<script>
+function enterApp(role) {
+  document.getElementById('landing').style.display = 'none';
+  document.getElementById('app-manager').classList.remove('active');
+  document.getElementById('app-leader').classList.remove('active');
+  document.getElementById('app-' + role).classList.add('active');
+  if (role === 'manager') setTimeout(showToast, 1500);
+}
+function goLanding() {
+  document.getElementById('landing').style.display = 'flex';
+  document.getElementById('app-manager').classList.remove('active');
+  document.getElementById('app-leader').classList.remove('active');
+  hideToast();
+  closeWhale();
+}
+
+const whaleData = {
+  dragon: { name: 'DragonSlayer_99', personal: 'Новый клиент · 🇺🇸 USA · EN · UTC-5', ltv: '$840', d90: '$840', avg: '$840', last: '5 мин', status: 'pre-whale', statusClass: 'status-new', tier: 'Pre-Ruby', tierClass: 'tier-prewhale' },
+  grimm: { name: 'GrimmRaider', personal: 'Marcus K. · 🇩🇪 Германия · DE/EN · UTC+1 · 34 года · ДР 12.08', ltv: '$24,300', d90: '$1,840', avg: '$340', last: '48 дней', status: 'at-risk', statusClass: 'status-risk', tier: 'Ruby', tierClass: 'tier-ruby' },
+  phoenix: { name: 'Phoenix_Hunter', personal: 'Daniel R. · 🇬🇧 UK · EN · UTC+0 · 29 лет', ltv: '$18,650', d90: '$2,200', avg: '$420', last: '32 дня', status: 'at-risk', statusClass: 'status-risk', tier: 'Ruby', tierClass: 'tier-ruby' },
+  nyx: { name: 'Nyx_Shadow', personal: 'Anonymous · 🇨🇦 Canada · EN · UTC-8', ltv: '$15,200', d90: '$1,640', avg: '$280', last: '1 день', status: 'active', statusClass: 'status-active', tier: 'Ruby', tierClass: 'tier-ruby' },
+  vex: { name: 'VexMachina', personal: 'Pierre L. · 🇫🇷 Франция · FR/EN · UTC+1', ltv: '$12,800', d90: '$1,420', avg: '$310', last: '6 дней', status: 'active', statusClass: 'status-active', tier: 'Ruby', tierClass: 'tier-ruby' },
+  iron: { name: 'IronWolfPL', personal: 'Tomasz K. · 🇵🇱 Польша · PL/EN · UTC+1', ltv: '$11,400', d90: '$1,200', avg: '$260', last: '14 дней', status: 'active', statusClass: 'status-active', tier: 'Ruby', tierClass: 'tier-ruby' },
+  thorin: { name: 'ThorinBeast', personal: 'Erik S. · 🇸🇪 Швеция · SE/EN · UTC+1', ltv: '$10,750', d90: '$0', avg: '$290', last: '96 дней', status: 'hibernating', statusClass: 'status-hibernate', tier: 'Ruby', tierClass: 'tier-ruby' }
+};
+
+function openWhale(id) {
+  const w = whaleData[id] || whaleData.grimm;
+  document.getElementById('m-name').textContent = w.name;
+  document.getElementById('m-personal').textContent = w.personal;
+  document.getElementById('m-ltv').textContent = w.ltv;
+  document.getElementById('m-90d').textContent = w.d90;
+  document.getElementById('m-avg').textContent = w.avg;
+  document.getElementById('m-last').textContent = w.last;
+  const tier = document.getElementById('m-tier');
+  tier.textContent = w.tier;
+  tier.className = 'tier-badge ' + w.tierClass;
+  const stat = document.getElementById('m-status');
+  stat.textContent = w.status;
+  stat.className = 'status-pill ' + w.statusClass;
+  document.getElementById('whaleModal').classList.add('active');
+}
+function closeWhale() {
+  document.getElementById('whaleModal').classList.remove('active');
+}
+function showToast() {
+  document.getElementById('toast').classList.add('show');
+  setTimeout(hideToast, 6000);
+}
+function hideToast() {
+  document.getElementById('toast').classList.remove('show');
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (document.getElementById('whaleModal').classList.contains('active')) closeWhale();
+  }
+});
+</script>
+
+</body>
+</html>
