@@ -2,67 +2,42 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>SkyCoach Whales Console — Mockup v0.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkyCoach Whales Console — Mockup v0.2</title>
 <style>
   :root {
-    --bg: #0f1419;
-    --bg-2: #1a2028;
-    --bg-3: #232b35;
-    --bg-4: #2a3340;
-    --border: #2a3340;
-    --text: #e5e9f0;
-    --text-2: #8b97a8;
-    --text-3: #5d6b7e;
-    --accent: #00d4ff;
-    --accent-2: #0099cc;
-    --ruby: #e34a6f;
-    --diamond: #4ecdc4;
-    --crown: #f4c542;
-    --dolphin: #a3b8d0;
-    --green: #4ade80;
-    --orange: #fb923c;
-    --red: #ef4444;
+    --bg: #0f1419; --bg-2: #1a2028; --bg-3: #232b35; --bg-4: #2a3340;
+    --border: #2a3340; --text: #e5e9f0; --text-2: #8b97a8; --text-3: #5d6b7e;
+    --accent: #00d4ff; --accent-2: #0099cc;
+    --ruby: #e34a6f; --diamond: #4ecdc4; --crown: #f4c542; --dolphin: #a3b8d0;
+    --green: #4ade80; --orange: #fb923c; --red: #ef4444; --purple: #a78bfa;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    font-size: 14px;
-    line-height: 1.5;
-  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; line-height: 1.5; }
 
   /* Landing */
-  .landing {
-    display: flex; flex-direction: column; align-items: center;
-    justify-content: center; min-height: 100vh; padding: 2rem; text-align: center;
-  }
+  .landing { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; text-align: center; }
   .landing-logo { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; letter-spacing: -0.02em; }
   .landing-logo span { color: var(--accent); }
   .landing-tag { color: var(--text-2); margin-bottom: 3rem; font-size: 1.05rem; }
   .role-buttons { display: flex; gap: 1.5rem; margin-bottom: 2.5rem; flex-wrap: wrap; justify-content: center; }
-  .role-btn {
-    background: var(--bg-2); border: 2px solid var(--border); color: var(--text);
-    padding: 2rem 2.5rem; border-radius: 16px; cursor: pointer; font-family: inherit;
-    transition: all 0.2s; min-width: 280px; text-align: center;
-  }
+  .role-btn { background: var(--bg-2); border: 2px solid var(--border); color: var(--text); padding: 2rem 2.5rem; border-radius: 16px; cursor: pointer; font-family: inherit; transition: all 0.2s; min-width: 280px; text-align: center; }
   .role-btn:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0, 212, 255, 0.18); }
   .role-btn-icon { font-size: 3rem; margin-bottom: 0.75rem; }
   .role-btn-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; }
   .role-btn-sub { color: var(--text-2); font-size: 0.85rem; line-height: 1.5; }
-  .landing-foot { color: var(--text-3); font-size: 0.85rem; max-width: 600px; line-height: 1.6; }
+  .landing-foot { color: var(--text-3); font-size: 0.85rem; max-width: 700px; line-height: 1.6; }
   .landing-foot strong { color: var(--ruby); }
 
   /* App */
   .app { display: none; min-height: 100vh; }
   .app.active { display: flex; }
-  .sidebar { width: 240px; background: var(--bg-2); border-right: 1px solid var(--border); padding: 1.5rem 1rem; display: flex; flex-direction: column; }
+  .sidebar { width: 240px; background: var(--bg-2); border-right: 1px solid var(--border); padding: 1.5rem 1rem; display: flex; flex-direction: column; flex-shrink: 0; }
   .sidebar-logo { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.4rem; }
   .sidebar-logo span { color: var(--accent); }
   .sidebar-role { color: var(--text-2); font-size: 0.8rem; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
   .role-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); display: inline-block; }
-  .nav-item { padding: 0.55rem 0.75rem; border-radius: 6px; cursor: pointer; margin-bottom: 0.2rem; color: var(--text-2); display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; }
+  .nav-item { padding: 0.55rem 0.75rem; border-radius: 6px; cursor: pointer; margin-bottom: 0.2rem; color: var(--text-2); display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; user-select: none; }
   .nav-item:hover { background: var(--bg-3); color: var(--text); }
   .nav-item.active { background: var(--bg-3); color: var(--accent); }
   .nav-item .count { margin-left: auto; background: var(--bg-3); padding: 0.1rem 0.45rem; border-radius: 10px; font-size: 0.72rem; color: var(--text-2); min-width: 24px; text-align: center; }
@@ -74,17 +49,20 @@
   .switch-btn:hover { border-color: var(--accent); color: var(--accent); }
 
   .main { flex: 1; padding: 1.75rem 2.25rem; overflow-y: auto; max-height: 100vh; }
-  .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; }
+  .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap; }
   .page-title { font-size: 1.4rem; font-weight: 600; }
   .page-sub { color: var(--text-2); font-size: 0.85rem; margin-top: 0.15rem; }
-  .filters { display: flex; gap: 0.5rem; }
-  .filter-chip { background: var(--bg-2); border: 1px solid var(--border); padding: 0.4rem 0.85rem; border-radius: 6px; font-size: 0.8rem; cursor: pointer; color: var(--text-2); }
+  .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .filter-chip { background: var(--bg-2); border: 1px solid var(--border); padding: 0.4rem 0.85rem; border-radius: 6px; font-size: 0.8rem; cursor: pointer; color: var(--text-2); user-select: none; }
   .filter-chip.active { border-color: var(--accent); color: var(--accent); background: rgba(0, 212, 255, 0.08); }
 
   /* KPI */
   .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 1.25rem; }
-  .kpi { background: var(--bg-2); border: 1px solid var(--border); padding: 1rem 1.25rem; border-radius: 10px; }
-  .kpi-label { color: var(--text-2); font-size: 0.78rem; margin-bottom: 0.4rem; }
+  .kpi { background: var(--bg-2); border: 1px solid var(--border); padding: 1rem 1.25rem; border-radius: 10px; position: relative; }
+  .kpi-label { color: var(--text-2); font-size: 0.78rem; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.3rem; }
+  .kpi-help { display: inline-flex; width: 14px; height: 14px; border-radius: 50%; background: var(--bg-3); color: var(--text-3); font-size: 0.65rem; align-items: center; justify-content: center; cursor: help; }
+  .kpi-help:hover + .kpi-tooltip, .kpi-tooltip:hover { opacity: 1; pointer-events: auto; }
+  .kpi-tooltip { position: absolute; top: 100%; left: 0; right: 0; z-index: 50; background: var(--bg-4); border: 1px solid var(--accent); border-radius: 6px; padding: 0.6rem 0.75rem; font-size: 0.78rem; color: var(--text); opacity: 0; pointer-events: none; transition: opacity 0.15s; margin-top: 0.25rem; line-height: 1.45; }
   .kpi-value { font-size: 1.7rem; font-weight: 700; line-height: 1.1; }
   .kpi-delta { font-size: 0.78rem; margin-top: 0.3rem; }
   .kpi-delta.up { color: var(--green); }
@@ -93,49 +71,48 @@
 
   /* Section */
   .section { background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; margin-bottom: 1.25rem; }
-  .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; gap: 1rem; }
+  .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; gap: 1rem; flex-wrap: wrap; }
   .section-title { font-size: 1rem; font-weight: 600; }
   .section-sub { color: var(--text-2); font-size: 0.8rem; margin-top: 0.1rem; }
   .section-action { color: var(--accent); cursor: pointer; font-size: 0.85rem; }
   .section-action:hover { text-decoration: underline; }
 
   /* Alert banner */
-  .alert-banner {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(78, 205, 196, 0.08));
-    border: 1px solid var(--accent); border-radius: 10px; padding: 1rem 1.25rem;
-    margin-bottom: 1.25rem; display: flex; align-items: center; gap: 1rem;
-  }
+  .alert-banner { background: linear-gradient(135deg, rgba(0, 212, 255, 0.15), rgba(78, 205, 196, 0.08)); border: 1px solid var(--accent); border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
   .alert-icon { background: var(--accent); color: var(--bg); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; flex-shrink: 0; }
-  .alert-text { flex: 1; }
+  .alert-text { flex: 1; min-width: 200px; }
   .alert-title { font-weight: 600; margin-bottom: 0.2rem; font-size: 0.95rem; }
   .alert-sub { color: var(--text-2); font-size: 0.85rem; }
 
   /* Task cards */
   .task-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; }
-  .task-card {
-    background: var(--bg-3); border: 1px solid var(--border); border-radius: 8px;
-    padding: 1rem; cursor: pointer; transition: all 0.15s;
-    border-left: 3px solid var(--ruby);
-  }
+  .task-card { background: var(--bg-3); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem; cursor: pointer; transition: all 0.15s; border-left: 3px solid var(--ruby); position: relative; }
   .task-card.urgent { border-left-color: var(--red); }
   .task-card.warn { border-left-color: var(--orange); }
+  .task-card.new-prewhale { border-left-color: var(--purple); }
+  .task-card.success { border-left-color: var(--green); }
+  .task-card.celebrate { border-left-color: var(--crown); }
   .task-card:hover { background: var(--bg-4); border-color: var(--accent); }
-  .task-card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.6rem; gap: 0.5rem; }
-  .task-whale { font-weight: 600; display: flex; align-items: center; gap: 0.4rem; font-size: 0.95rem; flex-wrap: wrap; }
-  .tier-badge { display: inline-block; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+  .task-card.closed { opacity: 0.55; pointer-events: none; background: transparent; }
+  .task-card.closed::after { content: '✅ Закрыто'; position: absolute; top: 0.5rem; right: 0.5rem; background: var(--green); color: var(--bg); padding: 0.15rem 0.45rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+  .task-card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.55rem; gap: 0.5rem; }
+  .task-whale { font-weight: 600; display: flex; align-items: center; gap: 0.35rem; font-size: 0.92rem; flex-wrap: wrap; }
+  .tier-badge { display: inline-block; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
   .tier-ruby { background: rgba(227, 74, 111, 0.2); color: var(--ruby); }
   .tier-diamond { background: rgba(78, 205, 196, 0.2); color: var(--diamond); }
   .tier-crown { background: rgba(244, 197, 66, 0.2); color: var(--crown); }
   .tier-dolphin { background: rgba(163, 184, 208, 0.2); color: var(--dolphin); }
-  .task-trigger { color: var(--text-2); font-size: 0.83rem; margin-bottom: 0.6rem; }
-  .task-action { background: var(--bg); padding: 0.55rem 0.7rem; border-radius: 5px; font-size: 0.8rem; color: var(--text); border-left: 2px solid var(--accent); margin-bottom: 0.75rem; line-height: 1.4; }
-  .task-buttons { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .tier-prewhale { background: rgba(167, 139, 250, 0.2); color: var(--purple); }
+  .task-trigger { color: var(--text-2); font-size: 0.81rem; margin-bottom: 0.55rem; line-height: 1.4; }
+  .task-action { background: var(--bg); padding: 0.5rem 0.65rem; border-radius: 5px; font-size: 0.78rem; color: var(--text); border-left: 2px solid var(--accent); margin-bottom: 0.65rem; line-height: 1.4; }
+  .task-buttons { display: flex; gap: 0.35rem; flex-wrap: wrap; }
 
   /* Buttons */
-  .btn { background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 0.4rem 0.7rem; border-radius: 5px; cursor: pointer; font-size: 0.78rem; font-family: inherit; transition: border-color 0.15s; }
+  .btn { background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 0.4rem 0.7rem; border-radius: 5px; cursor: pointer; font-size: 0.76rem; font-family: inherit; transition: border-color 0.15s; user-select: none; }
   .btn:hover { border-color: var(--accent); }
   .btn-primary { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
   .btn-primary:hover { background: var(--accent-2); border-color: var(--accent-2); }
+  .btn-success { background: var(--green); color: var(--bg); border-color: var(--green); font-weight: 600; }
   .btn-lg { padding: 0.55rem 1.1rem; font-size: 0.88rem; }
 
   /* Table */
@@ -151,16 +128,14 @@
   .status-risk { background: rgba(251, 146, 60, 0.18); color: var(--orange); }
   .status-hibernate { background: rgba(163, 184, 208, 0.15); color: var(--dolphin); }
   .status-lost { background: rgba(239, 68, 68, 0.15); color: var(--red); }
-  .status-new { background: rgba(0, 212, 255, 0.15); color: var(--accent); }
+  .status-new { background: rgba(167, 139, 250, 0.15); color: var(--purple); }
 
   .discord-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 0.3rem; flex-shrink: 0; }
   .discord-connected { background: var(--green); box-shadow: 0 0 6px rgba(74, 222, 128, 0.6); }
   .discord-invited { background: var(--orange); }
   .discord-none { background: var(--text-3); }
-
   .avatar { width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--ruby)); color: var(--bg); font-weight: 700; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
-  /* Progress */
   .progress-row { display: flex; align-items: center; gap: 0.75rem; }
   .progress-bar { flex: 1; height: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; }
   .progress-fill { height: 100%; background: var(--green); border-radius: 3px; transition: width 0.3s; }
@@ -169,16 +144,9 @@
   .progress-text { font-size: 0.78rem; color: var(--text-2); min-width: 90px; text-align: right; }
 
   /* Modal */
-  .modal-overlay {
-    position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75);
-    display: none; align-items: center; justify-content: center; z-index: 100;
-    backdrop-filter: blur(6px); padding: 2rem;
-  }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.78); display: none; align-items: center; justify-content: center; z-index: 100; backdrop-filter: blur(6px); padding: 2rem; }
   .modal-overlay.active { display: flex; }
-  .modal {
-    background: var(--bg-2); border: 1px solid var(--border); border-radius: 12px;
-    max-width: 920px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem;
-  }
+  .modal { background: var(--bg-2); border: 1px solid var(--border); border-radius: 12px; max-width: 960px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 2rem; }
   .modal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); gap: 1rem; }
   .modal-whale-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
   .modal-whale-name { font-size: 1.5rem; font-weight: 700; }
@@ -196,24 +164,41 @@
   .info-row { display: flex; justify-content: space-between; font-size: 0.86rem; padding: 0.4rem 0; border-bottom: 1px solid var(--border); }
   .info-row:last-child { border-bottom: none; }
   .info-label { color: var(--text-2); }
-  .recommendation {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(78, 205, 196, 0.04));
-    border-left: 3px solid var(--accent); padding: 0.75rem 1rem; border-radius: 6px;
-    margin-bottom: 0.5rem; font-size: 0.86rem; line-height: 1.5;
-  }
+  .recommendation { background: linear-gradient(135deg, rgba(0, 212, 255, 0.08), rgba(78, 205, 196, 0.04)); border-left: 3px solid var(--accent); padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 0.5rem; font-size: 0.86rem; line-height: 1.5; }
   .recommendation strong { color: var(--accent); }
   .modal-actions { display: flex; gap: 0.5rem; padding-top: 1rem; border-top: 1px solid var(--border); flex-wrap: wrap; }
 
+  /* WoW Integration block */
+  .wow-block { background: linear-gradient(135deg, rgba(244, 197, 66, 0.08), rgba(227, 74, 111, 0.04)); border: 1px solid rgba(244, 197, 66, 0.3); border-radius: 10px; padding: 1.1rem 1.25rem; margin-bottom: 1.5rem; }
+  .wow-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem; }
+  .wow-title { font-weight: 700; font-size: 0.98rem; color: var(--crown); display: flex; align-items: center; gap: 0.5rem; }
+  .wow-sync { color: var(--text-3); font-size: 0.75rem; }
+  .wow-char-line { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .wow-char-portrait { width: 48px; height: 48px; border-radius: 50%; background: linear-gradient(135deg, var(--crown), var(--ruby)); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+  .wow-char-name { font-weight: 700; }
+  .wow-char-sub { color: var(--text-2); font-size: 0.82rem; }
+  .wow-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.65rem; margin-bottom: 1rem; }
+  .wow-stat { background: rgba(0, 0, 0, 0.25); padding: 0.6rem 0.75rem; border-radius: 6px; border: 1px solid var(--border); }
+  .wow-stat-label { color: var(--text-2); font-size: 0.72rem; margin-bottom: 0.2rem; }
+  .wow-stat-value { font-size: 1.05rem; font-weight: 700; }
+  .wow-stat-sub { font-size: 0.72rem; color: var(--text-3); margin-top: 0.15rem; }
+  .wow-progress { height: 4px; background: rgba(0, 0, 0, 0.3); border-radius: 2px; overflow: hidden; margin-top: 0.4rem; }
+  .wow-progress-fill { height: 100%; background: var(--crown); border-radius: 2px; }
+  .ach-list { display: grid; gap: 0.3rem; font-size: 0.82rem; }
+  .ach-row { display: flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.5rem; background: rgba(0, 0, 0, 0.2); border-radius: 4px; }
+  .ach-icon { width: 18px; flex-shrink: 0; text-align: center; }
+  .ach-done { color: var(--green); }
+  .ach-gap { color: var(--orange); }
+  .wow-cta { background: rgba(0, 212, 255, 0.1); border: 1px solid var(--accent); border-radius: 6px; padding: 0.65rem 0.85rem; margin-top: 0.8rem; font-size: 0.85rem; line-height: 1.5; }
+  .wow-cta strong { color: var(--accent); }
+
   /* Toast */
-  .toast {
-    position: fixed; bottom: 2rem; right: 2rem; background: var(--bg-2);
-    border: 1px solid var(--accent); border-radius: 10px; padding: 1rem 1.25rem;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5); display: none; align-items: center;
-    gap: 0.85rem; z-index: 200; max-width: 420px;
-  }
+  .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--bg-2); border: 1px solid var(--accent); border-radius: 10px; padding: 1rem 1.25rem; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5); display: none; align-items: center; gap: 0.85rem; z-index: 200; max-width: 420px; }
   .toast.show { display: flex; animation: slideIn 0.3s ease; }
   @keyframes slideIn { from { transform: translateX(30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
   .toast-icon { width: 42px; height: 42px; background: var(--accent); color: var(--bg); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.3rem; flex-shrink: 0; }
+  .toast.success { border-color: var(--green); }
+  .toast.success .toast-icon { background: var(--green); }
   .toast-text strong { display: block; margin-bottom: 0.15rem; }
   .toast-text small { color: var(--text-2); font-size: 0.78rem; line-height: 1.4; }
 
@@ -237,21 +222,67 @@
   .activity-list { display: flex; flex-direction: column; gap: 0.6rem; }
   .muted { color: var(--text-2); }
   .small { font-size: 0.83rem; }
-
   .note-box { background: var(--bg-3); padding: 0.85rem 1rem; border-radius: 6px; font-size: 0.86rem; line-height: 1.5; }
   .note-box p { margin-bottom: 0.5rem; }
   .note-box p:last-child { margin-bottom: 0; }
 
-  .assign-row {
-    background: var(--bg-3); padding: 0.75rem; border-radius: 6px;
-    display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;
-  }
+  .assign-row { background: var(--bg-3); padding: 0.75rem; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; }
+
+  /* View switcher */
+  .view { display: none; }
+  .view.active { display: block; }
+
+  /* Analytics view */
+  .analytics-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+  .plan-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; }
+  .plan-title { font-size: 0.85rem; color: var(--text-2); margin-bottom: 0.5rem; }
+  .plan-big { font-size: 2.4rem; font-weight: 800; line-height: 1.1; }
+  .plan-target { color: var(--text-2); font-size: 0.95rem; margin-bottom: 1.25rem; }
+  .plan-target strong { color: var(--text); }
+  .plan-progress-big { height: 12px; background: var(--bg); border-radius: 6px; overflow: hidden; margin-bottom: 0.6rem; }
+  .plan-progress-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--accent)); border-radius: 6px; }
+  .plan-progress-text { color: var(--text-2); font-size: 0.82rem; display: flex; justify-content: space-between; }
+  .metric-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; margin-bottom: 1.25rem; }
+  .metric-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; }
+  .metric-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
+  .metric-label { color: var(--text-2); font-size: 0.78rem; margin-bottom: 0.3rem; }
+  .metric-value { font-size: 1.4rem; font-weight: 700; }
+  .metric-sub { color: var(--text-2); font-size: 0.78rem; margin-top: 0.2rem; }
+  .gauge { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 1rem 0; }
+  .gauge-svg { width: 160px; height: 90px; }
+  .gauge-value { font-size: 2.2rem; font-weight: 800; margin-top: -2.2rem; }
+  .gauge-sub { color: var(--text-2); font-size: 0.82rem; margin-top: 0.4rem; text-align: center; }
+
+  .history-bar { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.5rem; align-items: end; height: 140px; padding-top: 0.5rem; }
+  .history-col { background: rgba(0, 212, 255, 0.15); border: 1px solid rgba(0, 212, 255, 0.4); border-radius: 4px 4px 0 0; position: relative; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding-bottom: 0.4rem; min-height: 30px; }
+  .history-col.current { background: var(--accent); color: var(--bg); }
+  .history-val { font-weight: 700; font-size: 0.82rem; }
+  .history-month { color: var(--text-2); font-size: 0.72rem; text-align: center; margin-top: 0.4rem; }
+
+  /* Tasks view */
+  .task-group { margin-bottom: 1.5rem; }
+  .task-group-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+  .task-group-count { background: var(--bg-3); color: var(--text-2); padding: 0.15rem 0.55rem; border-radius: 10px; font-size: 0.75rem; }
+  .tasks-summary { background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1.25rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .tasks-stat-label { color: var(--text-2); font-size: 0.78rem; }
+  .tasks-stat-value { font-size: 1.5rem; font-weight: 700; margin-top: 0.2rem; }
+
+  /* Close task modal */
+  .small-modal { max-width: 460px; }
+  .form-label { font-size: 0.86rem; color: var(--text-2); margin-bottom: 0.4rem; display: block; }
+  .form-input, .form-textarea { width: 100%; background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 0.55rem 0.7rem; border-radius: 6px; font-family: inherit; font-size: 0.88rem; }
+  .form-input:focus, .form-textarea:focus { outline: none; border-color: var(--accent); }
+  .form-textarea { min-height: 80px; resize: vertical; }
+  .form-options { display: grid; gap: 0.4rem; margin-bottom: 1rem; }
+  .form-option { display: flex; align-items: center; gap: 0.5rem; padding: 0.5rem 0.7rem; background: var(--bg-3); border-radius: 6px; cursor: pointer; border: 1px solid var(--border); }
+  .form-option:hover, .form-option.selected { border-color: var(--accent); background: rgba(0, 212, 255, 0.08); }
+  .form-option input { accent-color: var(--accent); }
 
   @media (max-width: 1100px) {
-    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .kpi-row, .tasks-summary { grid-template-columns: repeat(2, 1fr); }
     .task-grid { grid-template-columns: 1fr; }
     .manager-grid { grid-template-columns: repeat(2, 1fr); }
-    .two-col, .two-col-eq { grid-template-columns: 1fr; }
+    .two-col, .two-col-eq, .analytics-grid, .metric-row, .wow-grid { grid-template-columns: 1fr; }
     .modal-stats, .modal-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
@@ -261,12 +292,12 @@
 <!-- LANDING -->
 <div class="landing" id="landing">
   <div class="landing-logo">SkyCoach <span>Whales Console</span></div>
-  <div class="landing-tag">Кликабельный мокап · v0.1 · 22 мая 2026</div>
+  <div class="landing-tag">Кликабельный мокап · v0.2 · 22 мая 2026</div>
   <div class="role-buttons">
     <button class="role-btn" onclick="enterApp('manager')">
       <div class="role-btn-icon">🎯</div>
       <div class="role-btn-title">Менеджер</div>
-      <div class="role-btn-sub">Сергей · 24 закреплённых Ruby<br>Свои киты, задачи на день, Discord</div>
+      <div class="role-btn-sub">Сергей · 24 закреплённых Ruby<br>Свои киты, задачи, аналитика, Discord</div>
     </button>
     <button class="role-btn" onclick="enterApp('leader')">
       <div class="role-btn-icon">👑</div>
@@ -276,7 +307,8 @@
   </div>
   <div class="landing-foot">
     Фокус v1: <strong>только Ruby (LTV $10K+, ~250 чел)</strong>. Crown / Diamond / Dolphin — в следующих фазах.<br>
-    Pre-Ruby при первом крупном заказе автоназначаются онлайн-менеджеру по очереди.
+    Pre-Ruby при первом крупном заказе автоназначаются онлайн-менеджеру по очереди.<br>
+    <span style="opacity: 0.6;">Метрики компании (218/250, $34K возврат, 31% GMV share) — реальные из паспорта 2026-05-22. Никнеймы китов — placeholder для демо.</span>
   </div>
 </div>
 
@@ -286,212 +318,541 @@
     <div class="sidebar-logo">SkyCoach <span>Whales</span></div>
     <div class="sidebar-role"><span class="role-dot"></span>Менеджер · Сергей</div>
     <div class="nav-section">Работа</div>
-    <div class="nav-item active">🔥 <span>Сегодня</span><span class="count">8</span></div>
-    <div class="nav-item">🐋 <span>Мои Ruby</span><span class="count">24</span></div>
+    <div class="nav-item active" onclick="switchView(this, 'today')">🔥 <span>Сегодня</span><span class="count">14</span></div>
+    <div class="nav-item" onclick="switchView(this, 'rubies')">🐋 <span>Мои Ruby</span><span class="count">24</span></div>
+    <div class="nav-item" onclick="switchView(this, 'tasks')">📋 <span>Задачи</span><span class="count red">12</span></div>
+    <div class="nav-item" onclick="switchView(this, 'analytics')">📊 <span>Моя аналитика</span></div>
+    <div class="nav-section">Связь</div>
     <div class="nav-item">🆕 <span>Подхват</span><span class="count red">2</span></div>
-    <div class="nav-item">🟡 <span>В зоне риска</span><span class="count">5</span></div>
     <div class="nav-item">💬 <span>Discord</span><span class="count">3</span></div>
-    <div class="nav-section">Аналитика</div>
-    <div class="nav-item">📊 <span>Мой план</span></div>
+    <div class="nav-item">🟡 <span>В зоне риска</span><span class="count">5</span></div>
+    <div class="nav-section">Прочее</div>
     <div class="nav-item">🏆 <span>Лидерборд</span></div>
     <div class="nav-item">📅 <span>Календарь</span></div>
+    <div class="nav-item">⚙️ <span>Настройки</span></div>
     <div class="switch-role">
       <button class="switch-btn" onclick="goLanding()">← Стартовый экран</button>
     </div>
   </aside>
 
   <div class="main">
-    <div class="page-header">
-      <div>
-        <div class="page-title">Доброе утро, Сергей 👋</div>
-        <div class="page-sub">Пятница, 22 мая 2026 · 8 задач, 3 срочных</div>
-      </div>
-      <div class="filters">
-        <div class="filter-chip active">Все</div>
-        <div class="filter-chip">Срочные</div>
-        <div class="filter-chip">Discord</div>
-        <div class="filter-chip">WoW</div>
-      </div>
-    </div>
 
-    <div class="kpi-row">
-      <div class="kpi">
-        <div class="kpi-label">Мои Ruby active</div>
-        <div class="kpi-value">22 / 24</div>
-        <div class="kpi-delta up">+1 на этой неделе</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-label">GMV закреплённых, май</div>
-        <div class="kpi-value">$48,200</div>
-        <div class="kpi-delta up">80% плана ($60K)</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-label">Возвратов / неделя ⭐</div>
-        <div class="kpi-value">2</div>
-        <div class="kpi-delta up">$8,400 GMV</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-label">Без касания 30+</div>
-        <div class="kpi-value">3</div>
-        <div class="kpi-delta down">внимание</div>
-      </div>
-    </div>
-
-    <!-- AUTO-ASSIGN BANNER -->
-    <div class="alert-banner">
-      <div class="alert-icon">!</div>
-      <div class="alert-text">
-        <div class="alert-title">🆕 Новый потенциальный Ruby — закреплён за тобой автоматически</div>
-        <div class="alert-sub">5 минут назад <strong>DragonSlayer_99</strong> сделал первый заказ <strong>$840</strong> в WoW Classic. Score 75/100. Свяжись через Intercom в течение 48 часов, обменяйся корпоративным Discord.</div>
-      </div>
-      <button class="btn btn-primary btn-lg" onclick="openWhale('dragon')">Открыть карточку →</button>
-    </div>
-
-    <!-- URGENT TODAY -->
-    <div class="section">
-      <div class="section-header">
+    <!-- VIEW: TODAY -->
+    <div class="view active" data-view="today">
+      <div class="page-header">
         <div>
-          <div class="section-title">🔥 Срочные на сегодня</div>
-          <div class="section-sub">Эти 3 кита требуют действия сейчас · правила в Настройках</div>
+          <div class="page-title">Доброе утро, Сергей 👋</div>
+          <div class="page-sub">Пятница, 22 мая 2026 · 14 задач, 6 срочных</div>
         </div>
-        <div class="section-action">Показать все 8 →</div>
-      </div>
-      <div class="task-grid">
-        <div class="task-card urgent" onclick="openWhale('grimm')">
-          <div class="task-card-head">
-            <div class="task-whale">
-              <span class="discord-dot discord-connected"></span>
-              GrimmRaider
-              <span class="tier-badge tier-ruby">Ruby</span>
-            </div>
-            <span class="status-pill status-risk">at-risk</span>
-          </div>
-          <div class="task-trigger">Не покупал 48 дней при цикле 28. В WoW Classic Season 4 уже 12 дней.</div>
-          <div class="task-action">💬 «Привет! Видел вышел S4 — будешь идти за рейтингом? Если что — есть пакет под старт».</div>
-          <div class="task-buttons">
-            <button class="btn btn-primary" onclick="event.stopPropagation();">✓ Сделано</button>
-            <button class="btn" onclick="event.stopPropagation();">⏰ Отложить</button>
-            <button class="btn" onclick="event.stopPropagation(); openWhale('grimm')">Открыть →</button>
-          </div>
-        </div>
-
-        <div class="task-card urgent" onclick="openWhale('phoenix')">
-          <div class="task-card-head">
-            <div class="task-whale">
-              <span class="discord-dot discord-connected"></span>
-              Phoenix_Hunter
-              <span class="tier-badge tier-ruby">Ruby</span>
-            </div>
-            <span class="status-pill status-risk">at-risk</span>
-          </div>
-          <div class="task-trigger">Mega-кит без контакта 32 дня. Обычно отвечает в течение часа. Тишина непривычная.</div>
-          <div class="task-action">💬 Touch-base без оффера: «Привет, давно не виделись. Как дела по игре?»</div>
-          <div class="task-buttons">
-            <button class="btn btn-primary" onclick="event.stopPropagation();">✓ Сделано</button>
-            <button class="btn" onclick="event.stopPropagation();">⏰ Отложить</button>
-            <button class="btn" onclick="event.stopPropagation(); openWhale('phoenix')">Открыть →</button>
-          </div>
-        </div>
-
-        <div class="task-card warn" onclick="openWhale('nyx')">
-          <div class="task-card-head">
-            <div class="task-whale">
-              <span class="discord-dot discord-invited"></span>
-              Nyx_Shadow
-              <span class="tier-badge tier-ruby">Ruby</span>
-            </div>
-            <span class="status-pill status-active">active</span>
-          </div>
-          <div class="task-trigger">Cross-game: вчера первый заказ в Diablo IV ($420). Раньше только Destiny 2.</div>
-          <div class="task-action">💬 «Видел ты в Diablo зашёл. Есть стартовый бундл под D4 S5 — покажу?»</div>
-          <div class="task-buttons">
-            <button class="btn btn-primary" onclick="event.stopPropagation();">✓ Сделано</button>
-            <button class="btn" onclick="event.stopPropagation();">⏰ Отложить</button>
-            <button class="btn" onclick="event.stopPropagation(); openWhale('nyx')">Открыть →</button>
-          </div>
+        <div class="filters">
+          <span class="muted small">Период:</span>
+          <div class="filter-chip">Сегодня</div>
+          <div class="filter-chip">Неделя</div>
+          <div class="filter-chip active">Май 2026</div>
+          <div class="filter-chip">Квартал</div>
         </div>
       </div>
-    </div>
 
-    <!-- MY RUBIES + DISCORD -->
-    <div class="two-col">
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-label">Мои Ruby active в мае <span class="kpi-help">?</span></div>
+          <div class="kpi-tooltip">"Active" = сделал заказ хотя бы раз в выбранном периоде (май 2026). 22 из 24 твоих закреплённых клиентов в мае что-то купили. 2 — пока тишина.</div>
+          <div class="kpi-value">22 / 24</div>
+          <div class="kpi-delta up">+1 на этой неделе</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">GMV закреплённых, май</div>
+          <div class="kpi-value">$48,200</div>
+          <div class="kpi-delta up">80% плана ($60K)</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Возвратов / неделя ⭐</div>
+          <div class="kpi-value">2</div>
+          <div class="kpi-delta up">$8,400 GMV</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-label">Без касания 30+ <span class="kpi-help">?</span></div>
+          <div class="kpi-tooltip">Сколько твоих Ruby не получили никакого contact (Discord, Intercom, email) в последние 30 дней. Цель: ноль.</div>
+          <div class="kpi-value">3</div>
+          <div class="kpi-delta down">внимание</div>
+        </div>
+      </div>
+
+      <div class="alert-banner">
+        <div class="alert-icon">!</div>
+        <div class="alert-text">
+          <div class="alert-title">🆕 Новый потенциальный Ruby — закреплён за тобой</div>
+          <div class="alert-sub">5 минут назад <strong>DragonSlayer_99</strong> сделал первый заказ <strong>$840</strong> в WoW Classic. Score 75/100. Свяжись через Intercom в течение 48 часов, обменяйся корпоративным Discord.</div>
+        </div>
+        <button class="btn btn-primary btn-lg" onclick="openWhale('dragon')">Открыть карточку →</button>
+      </div>
+
       <div class="section">
         <div class="section-header">
           <div>
-            <div class="section-title">🐋 Мои Ruby — по приоритету риска</div>
-            <div class="section-sub">24 закреплённых · клик — карточка</div>
+            <div class="section-title">🔥 Срочные на сегодня · <span class="muted small">6 из 14 задач</span></div>
+            <div class="section-sub">Действовать сейчас. Закрывай задачи кнопкой ✓ — статус сразу видит руководитель</div>
           </div>
-          <div class="section-action">Полный список →</div>
+          <div class="section-action" onclick="document.querySelector('[onclick*=\\'tasks\\']').click()">Все задачи →</div>
         </div>
+        <div class="task-grid" id="urgent-tasks-grid">
+          <!-- Card 1: at-risk Ruby + new content -->
+          <div class="task-card urgent" id="task-1" onclick="openWhale('grimm')">
+            <div class="task-card-head">
+              <div class="task-whale"><span class="discord-dot discord-connected"></span>GrimmRaider<span class="tier-badge tier-ruby">Ruby</span></div>
+              <span class="status-pill status-risk">at-risk</span>
+            </div>
+            <div class="task-trigger">Не покупал 48 дней при цикле 28. WoW Classic Season 4 — 12 дней назад.</div>
+            <div class="task-action">💬 «Привет! Видел вышел S4 — будешь идти за рейтингом? Есть пакет под старт».</div>
+            <div class="task-buttons">
+              <button class="btn btn-primary" onclick="event.stopPropagation(); openCloseTask(1, 'GrimmRaider')">✓ Закрыть</button>
+              <button class="btn" onclick="event.stopPropagation();">⏰ Отложить</button>
+            </div>
+          </div>
+
+          <!-- Card 2: silence -->
+          <div class="task-card urgent" id="task-2" onclick="openWhale('phoenix')">
+            <div class="task-card-head">
+              <div class="task-whale"><span class="discord-dot discord-connected"></span>Phoenix_Hunter<span class="tier-badge tier-ruby">Ruby</span></div>
+              <span class="status-pill status-risk">at-risk</span>
+            </div>
+            <div class="task-trigger">Mega-кит без контакта 32 дня. Обычно отвечает за час. Тишина непривычная.</div>
+            <div class="task-action">💬 Touch-base без оффера: «Привет, давно не виделись. Как дела по игре?»</div>
+            <div class="task-buttons">
+              <button class="btn btn-primary" onclick="event.stopPropagation(); openCloseTask(2, 'Phoenix_Hunter')">✓ Закрыть</button>
+              <button class="btn" onclick="event.stopPropagation();">⏰ Отложить</button>
+            </div>
+          </div>
+
+          <!-- Card 3: cross-game -->
+          <div class="task-card warn" id="task-3" onclick="openWhale('nyx')">
+            <div class="task-card-head">
+              <div class="task-whale"><span class="discord-dot discord-invited"></span>Nyx_Shadow<span class="tier-badge tier-ruby">Ruby</span></div>
+              <span class="status-pill status-active">active</span>
+            </div>
+            <div class="task-trigger">Cross-game: вчера первый заказ в Diablo IV ($420). Раньше только Destiny 2.</div>
+            <div class="task-action">💬 «Видел ты в Diablo зашёл. Стартовый бундл под D4 S5 — покажу?»</div>
+            <div class="task-buttons">
+              <button class="btn btn-primary" onclick="event.stopPropagation(); openCloseTask(3, 'Nyx_Shadow')">✓ Закрыть</button>
+              <button class="btn" onclick="event.stopPropagation();">⏰ Отложить</button>
+            </div>
+          </div>
+
+          <!-- Card 4: new pre-whale -->
+          <div class="task-card new-prewhale" id="task-4" onclick="openWhale('dragon')">
+            <div class="task-card-head">
+              <div class="task-whale"><span class="discord-dot discord-none"></span>DragonSlayer_99<span class="tier-badge tier-prewhale">Pre-Ruby</span></div>
+              <span class="status-pill status-new">new</span>
+            </div>
+            <div class="task-trigger">Автоназначен 5 мин назад. Первый заказ $840 в WoW Classic. Score 75/100.</div>
+            <div class="task-action">💬 «Привет! Спасибо за заказ. Меня зовут Сергей — буду на связи лично, если что нужно».</div>
+            <div class="task-buttons">
+              <button class="btn btn-primary" onclick="event.stopPropagation(); openCloseTask(4, 'DragonSlayer_99')">✓ Закрыть</button>
+              <button class="btn" onclick="event.stopPropagation();">⏰ Отложить</button>
+            </div>
+          </div>
+
+          <!-- Card 5: post-purchase -->
+          <div class="task-card success" id="task-5" onclick="openWhale('iron')">
+            <div class="task-card-head">
+              <div class="task-whale"><span class="discord-dot discord-connected"></span>IronWolfPL<span class="tier-badge tier-ruby">Ruby</span></div>
+              <span class="status-pill status-active">active</span>
+            </div>
+            <div class="task-trigger">Заказ доставлен 5 дней назад ($380, Diablo IV Pit 130). Доволен по Discord.</div>
+            <div class="task-action">💬 «Как впечатления? И отдельно — у нас вышел S5 starter, посмотришь?»</div>
+            <div class="task-buttons">
+              <button class="btn btn-primary" onclick="event.stopPropagation(); openCloseTask(5, 'IronWolfPL')">✓ Закрыть</button>
+              <button class="btn" onclick="event.stopPropagation();">⏰ Отложить</button>
+            </div>
+          </div>
+
+          <!-- Card 6: birthday -->
+          <div class="task-card celebrate" id="task-6" onclick="openWhale('wraith')">
+            <div class="task-card-head">
+              <div class="task-whale"><span class="discord-dot discord-connected"></span>Wraith_Lord<span class="tier-badge tier-ruby">Ruby</span></div>
+              <span class="status-pill status-active">ДР через 3 дня</span>
+            </div>
+            <div class="task-trigger">25 мая — день рождения. Подготовь поздравление + лёгкий бонус (free coaching 1h).</div>
+            <div class="task-action">📝 Запланируй сообщение на 9:00 UTC 25 мая. Без апсейла — только поздравление.</div>
+            <div class="task-buttons">
+              <button class="btn btn-primary" onclick="event.stopPropagation(); openCloseTask(6, 'Wraith_Lord')">✓ Закрыть</button>
+              <button class="btn" onclick="event.stopPropagation();">⏰ Отложить</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="section">
+          <div class="section-header">
+            <div>
+              <div class="section-title">🐋 Мои Ruby — по приоритету риска</div>
+              <div class="section-sub">24 закреплённых · клик — карточка</div>
+            </div>
+            <div class="section-action" onclick="document.querySelector('[onclick*=\\'rubies\\']').click()">Полный список →</div>
+          </div>
+          <table class="table">
+            <thead><tr><th>Кит</th><th>Игра</th><th>LTV</th><th>Last order</th><th>Статус</th><th>Discord</th></tr></thead>
+            <tbody>
+              <tr onclick="openWhale('grimm')"><td><strong>GrimmRaider</strong></td><td>WoW Classic</td><td>$24,300</td><td>48 дн</td><td><span class="status-pill status-risk">at-risk</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+              <tr onclick="openWhale('phoenix')"><td><strong>Phoenix_Hunter</strong></td><td>Destiny 2</td><td>$18,650</td><td>32 дн</td><td><span class="status-pill status-risk">at-risk</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+              <tr onclick="openWhale('nyx')"><td><strong>Nyx_Shadow</strong></td><td>Destiny/Diablo</td><td>$15,200</td><td>1 дн</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-invited"></span>inv</td></tr>
+              <tr onclick="openWhale('vex')"><td><strong>VexMachina</strong></td><td>WoW Retail</td><td>$12,800</td><td>6 дн</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+              <tr onclick="openWhale('iron')"><td><strong>IronWolfPL</strong></td><td>Diablo IV</td><td>$11,400</td><td>5 дн</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+              <tr onclick="openWhale('thorin')"><td><strong>ThorinBeast</strong></td><td>WoW Classic</td><td>$10,750</td><td>96 дн</td><td><span class="status-pill status-hibernate">hibernate</span></td><td><span class="discord-dot discord-none"></span>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="section">
+          <div class="section-header">
+            <div>
+              <div class="section-title">💬 Discord — непрочитанные</div>
+              <div class="section-sub">3 от твоих китов</div>
+            </div>
+          </div>
+          <div class="activity-list">
+            <div class="activity-item unread">
+              <div class="activity-item-head"><strong>VexMachina</strong><span class="muted small">3 мин</span></div>
+              <div class="small muted">«Привет, есть варианты под нового бога M+?»</div>
+            </div>
+            <div class="activity-item unread">
+              <div class="activity-item-head"><strong>IronWolfPL</strong><span class="muted small">25 мин</span></div>
+              <div class="small muted">«Сергей, спасибо за бундл, идеально зашёл!»</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-item-head"><strong>Nyx_Shadow</strong><span class="muted small">2ч</span></div>
+              <div class="small muted">«Видел приглашение, приму вечером»</div>
+            </div>
+            <div class="small muted" style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border);">
+              <strong style="color: var(--text);">3</strong> кита из 24 не в Discord — <span style="color: var(--accent); cursor: pointer;">запустить onboarding →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW: TASKS -->
+    <div class="view" data-view="tasks">
+      <div class="page-header">
+        <div>
+          <div class="page-title">📋 Все мои задачи</div>
+          <div class="page-sub">Закрывай задачи — статус сразу попадает руководителю</div>
+        </div>
+        <div class="filters">
+          <div class="filter-chip active">Открытые</div>
+          <div class="filter-chip">Закрытые сегодня</div>
+          <div class="filter-chip">Все</div>
+        </div>
+      </div>
+
+      <div class="tasks-summary">
+        <div><div class="tasks-stat-label">Открыто</div><div class="tasks-stat-value" id="tasks-open-count">12</div></div>
+        <div><div class="tasks-stat-label">Закрыто сегодня</div><div class="tasks-stat-value" id="tasks-closed-count" style="color: var(--green);">4</div></div>
+        <div><div class="tasks-stat-label">Просрочено</div><div class="tasks-stat-value" style="color: var(--red);">2</div></div>
+        <div><div class="tasks-stat-label">Завтра</div><div class="tasks-stat-value muted">7</div></div>
+      </div>
+
+      <div class="task-group">
+        <div class="task-group-title">🔥 Срочные на сегодня <span class="task-group-count" id="urgent-count">6</span></div>
+        <div class="task-grid" id="full-urgent-grid">
+          <!-- Будут добавлены те же 6 карточек что и в Today — но более компактные -->
+        </div>
+      </div>
+
+      <div class="task-group">
+        <div class="task-group-title">🟡 На этой неделе <span class="task-group-count">5</span></div>
+        <div class="task-grid">
+          <div class="task-card" onclick="openWhale('vex')">
+            <div class="task-card-head">
+              <div class="task-whale"><span class="discord-dot discord-connected"></span>VexMachina<span class="tier-badge tier-ruby">Ruby</span></div>
+              <span class="status-pill status-active">active</span>
+            </div>
+            <div class="task-trigger">Touch-base без повода — последний касание 12 дней назад.</div>
+            <div class="task-buttons">
+              <button class="btn btn-primary" onclick="event.stopPropagation(); openCloseTask(7, 'VexMachina')">✓ Закрыть</button>
+            </div>
+          </div>
+          <div class="task-card" onclick="openWhale('thorin')">
+            <div class="task-card-head">
+              <div class="task-whale"><span class="discord-dot discord-none"></span>ThorinBeast<span class="tier-badge tier-ruby">Ruby</span></div>
+              <span class="status-pill status-hibernate">hibernating</span>
+            </div>
+            <div class="task-trigger">96 дней без заказа. WoW Classic Season 5 — через 14 дней. Готовим pre-release контакт.</div>
+            <div class="task-buttons">
+              <button class="btn btn-primary" onclick="event.stopPropagation(); openCloseTask(8, 'ThorinBeast')">✓ Закрыть</button>
+            </div>
+          </div>
+          <div class="task-card" onclick="openWhale('iron')">
+            <div class="task-card-head">
+              <div class="task-whale"><span class="discord-dot discord-connected"></span>IronWolfPL<span class="tier-badge tier-ruby">Ruby</span></div>
+              <span class="status-pill status-active">active</span>
+            </div>
+            <div class="task-trigger">Discord onboarding — добавить роль VIP-Player, познакомить с привилегиями.</div>
+            <div class="task-buttons">
+              <button class="btn btn-primary" onclick="event.stopPropagation(); openCloseTask(9, 'IronWolfPL')">✓ Закрыть</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-group">
+        <div class="task-group-title">⚠️ Просроченные <span class="task-group-count" style="background: rgba(239, 68, 68, 0.2); color: var(--red);">2</span></div>
+        <div class="task-grid">
+          <div class="task-card urgent">
+            <div class="task-card-head">
+              <div class="task-whale"><span class="discord-dot discord-connected"></span>SilverStorm_K<span class="tier-badge tier-ruby">Ruby</span></div>
+              <span class="status-pill status-risk">3 дня назад</span>
+            </div>
+            <div class="task-trigger">Должен был связаться вторник. Не сделал. LTV $13,200 — высокий приоритет.</div>
+            <div class="task-buttons">
+              <button class="btn btn-primary" onclick="event.stopPropagation(); openCloseTask(10, 'SilverStorm_K')">✓ Закрыть сейчас</button>
+            </div>
+          </div>
+          <div class="task-card urgent">
+            <div class="task-card-head">
+              <div class="task-whale"><span class="discord-dot discord-invited"></span>MoonWalker99<span class="tier-badge tier-ruby">Ruby</span></div>
+              <span class="status-pill status-risk">2 дня назад</span>
+            </div>
+            <div class="task-trigger">Discord-приглашение отправлено 5 дней назад — кит не принял. Push в Intercom.</div>
+            <div class="task-buttons">
+              <button class="btn btn-primary" onclick="event.stopPropagation(); openCloseTask(11, 'MoonWalker99')">✓ Закрыть</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="task-group">
+        <div class="task-group-title" style="color: var(--green);">✅ Закрыто сегодня <span class="task-group-count" id="closed-today-count" style="background: rgba(74, 222, 128, 0.15); color: var(--green);">4</span></div>
+        <div class="task-grid" id="closed-grid">
+          <div class="task-card success closed">
+            <div class="task-card-head">
+              <div class="task-whale"><span class="discord-dot discord-connected"></span>Crimson_Tide<span class="tier-badge tier-ruby">Ruby</span></div>
+            </div>
+            <div class="task-trigger">Touch-base сделан, ответил — заказал M+ Boost $280.</div>
+            <div class="muted small" style="margin-top: 0.4rem;">Закрыто 09:24 · «Договорились о заказе»</div>
+          </div>
+          <div class="task-card success closed">
+            <div class="task-card-head">
+              <div class="task-whale"><span class="discord-dot discord-connected"></span>BlackHawk_42<span class="tier-badge tier-ruby">Ruby</span></div>
+            </div>
+            <div class="task-trigger">Discord onboarding завершён, добавлен в #vip-wow.</div>
+            <div class="muted small" style="margin-top: 0.4rem;">Закрыто 10:15 · «Принял приглашение»</div>
+          </div>
+          <div class="task-card success closed">
+            <div class="task-card-head">
+              <div class="task-whale"><span class="discord-dot discord-connected"></span>Vesper_X<span class="tier-badge tier-ruby">Ruby</span></div>
+            </div>
+            <div class="task-trigger">Поздравление с возвращением (был hibernating 4 мес).</div>
+            <div class="muted small" style="margin-top: 0.4rem;">Закрыто 11:02 · «Отписал, благодарил»</div>
+          </div>
+          <div class="task-card success closed">
+            <div class="task-card-head">
+              <div class="task-whale"><span class="discord-dot discord-connected"></span>NeonRider_88<span class="tier-badge tier-ruby">Ruby</span></div>
+            </div>
+            <div class="task-trigger">Запрос feedback по Season Pack — положительный.</div>
+            <div class="muted small" style="margin-top: 0.4rem;">Закрыто 11:48 · «5/5, рекомендует»</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW: ANALYTICS -->
+    <div class="view" data-view="analytics">
+      <div class="page-header">
+        <div>
+          <div class="page-title">📊 Моя аналитика</div>
+          <div class="page-sub">План, заработок, активность твоих закреплённых китов</div>
+        </div>
+        <div class="filters">
+          <div class="filter-chip">Апрель</div>
+          <div class="filter-chip active">Май 2026</div>
+          <div class="filter-chip">YTD</div>
+        </div>
+      </div>
+
+      <div class="analytics-grid">
+        <div class="plan-card">
+          <div class="plan-title">📈 Мой план мая</div>
+          <div class="plan-big">$48,200</div>
+          <div class="plan-target">из <strong>$60,000</strong> · осталось 9 дней до закрытия месяца</div>
+          <div class="plan-progress-big">
+            <div class="plan-progress-fill" style="width: 80%;"></div>
+          </div>
+          <div class="plan-progress-text">
+            <span>Выполнено: <strong style="color: var(--green);">80%</strong></span>
+            <span>До цели: <strong>$11,800</strong></span>
+          </div>
+          <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+            <div>
+              <div class="muted small">Прогноз на конец мая</div>
+              <div style="font-size: 1.2rem; font-weight: 700; color: var(--accent);">$58,400</div>
+              <div class="muted small">97% плана — почти попадаешь</div>
+            </div>
+            <div>
+              <div class="muted small">Заработано в мае (комиссия 10%)</div>
+              <div style="font-size: 1.2rem; font-weight: 700; color: var(--green);">$4,820</div>
+              <div class="muted small">+ возможный бонус $1,200 за 2 возврата</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="plan-card">
+          <div class="plan-title">🐋 Активность моих Ruby</div>
+          <div class="gauge">
+            <svg class="gauge-svg" viewBox="0 0 160 90">
+              <path d="M 15 80 A 65 65 0 0 1 145 80" fill="none" stroke="var(--bg-3)" stroke-width="14" stroke-linecap="round"/>
+              <path d="M 15 80 A 65 65 0 0 1 138 60" fill="none" stroke="var(--green)" stroke-width="14" stroke-linecap="round"/>
+            </svg>
+            <div class="gauge-value">22<span style="font-size: 1rem; color: var(--text-2);">/24</span></div>
+            <div class="gauge-sub">Active в мае · 92%</div>
+          </div>
+          <div style="display: grid; gap: 0.4rem; padding-top: 0.75rem; border-top: 1px solid var(--border); font-size: 0.86rem;">
+            <div style="display: flex; justify-content: space-between;"><span class="muted">Active (купил в мае)</span><strong style="color: var(--green);">22</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">Hibernating</span><strong style="color: var(--dolphin);">1</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">At-risk</span><strong style="color: var(--orange);">1</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">Lost</span><strong style="color: var(--red);">0</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="metric-row">
+        <div class="metric-card">
+          <div class="metric-icon">⭐</div>
+          <div class="metric-label">Возвращений в этом месяце</div>
+          <div class="metric-value">2</div>
+          <div class="metric-sub">$8,400 GMV · бонус $1,200</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">🌱</div>
+          <div class="metric-label">Pre-whale → Ruby конверсия</div>
+          <div class="metric-value">1 / 3</div>
+          <div class="metric-sub">33% · команда avg 28%</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-icon">💬</div>
+          <div class="metric-label">Discord-сообщений</div>
+          <div class="metric-value">147</div>
+          <div class="metric-sub">за май · 6.1/день</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-title">📈 GMV последние 6 месяцев</div>
+            <div class="section-sub">Динамика твоего performance</div>
+          </div>
+        </div>
+        <div class="history-bar">
+          <div class="history-col" style="height: 60%;"><div class="history-val">$42K</div></div>
+          <div class="history-col" style="height: 73%;"><div class="history-val">$51K</div></div>
+          <div class="history-col" style="height: 65%;"><div class="history-val">$45K</div></div>
+          <div class="history-col" style="height: 80%;"><div class="history-val">$56K</div></div>
+          <div class="history-col" style="height: 78%;"><div class="history-val">$54K</div></div>
+          <div class="history-col current" style="height: 70%;"><div class="history-val">$48K</div></div>
+        </div>
+        <div class="history-bar" style="height: auto; margin-top: 0.5rem;">
+          <div class="history-month">Дек</div>
+          <div class="history-month">Янв</div>
+          <div class="history-month">Фев</div>
+          <div class="history-month">Мар</div>
+          <div class="history-month">Апр</div>
+          <div class="history-month"><strong style="color: var(--accent);">Май*</strong></div>
+        </div>
+        <div class="muted small" style="margin-top: 0.5rem;">* май — 21 день из 31, прогноз $58K</div>
+      </div>
+
+      <div class="two-col">
+        <div class="section">
+          <div class="section-header">
+            <div>
+              <div class="section-title">🏆 Топ-5 моих китов · май</div>
+              <div class="section-sub">По объёму заказов в этом месяце</div>
+            </div>
+          </div>
+          <table class="table">
+            <thead><tr><th>Кит</th><th>Игра</th><th>GMV май</th><th>Заказов</th></tr></thead>
+            <tbody>
+              <tr onclick="openWhale('iron')"><td><strong>IronWolfPL</strong></td><td>Diablo IV</td><td><strong>$4,800</strong></td><td>6</td></tr>
+              <tr onclick="openWhale('vex')"><td><strong>VexMachina</strong></td><td>WoW Retail</td><td><strong>$3,920</strong></td><td>9</td></tr>
+              <tr onclick="openWhale('nyx')"><td><strong>Nyx_Shadow</strong></td><td>Destiny / D4</td><td><strong>$3,600</strong></td><td>11</td></tr>
+              <tr><td><strong>Crimson_Tide</strong></td><td>WoW Classic</td><td><strong>$2,800</strong></td><td>5</td></tr>
+              <tr><td><strong>BlackHawk_42</strong></td><td>WoW Classic</td><td><strong>$2,640</strong></td><td>4</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="section">
+          <div class="section-header">
+            <div>
+              <div class="section-title">📊 Я vs команда</div>
+              <div class="section-sub">Май, средние 4 менеджеров</div>
+            </div>
+          </div>
+          <div style="display: grid; gap: 0.85rem;">
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.84rem; margin-bottom: 0.25rem;">
+                <span class="muted">GMV (план vs факт)</span><span><strong>80%</strong> vs avg 72%</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.84rem; margin-bottom: 0.25rem;">
+                <span class="muted">Active rate</span><span><strong>92%</strong> vs avg 85%</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill over" style="width: 92%;"></div></div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.84rem; margin-bottom: 0.25rem;">
+                <span class="muted">Возвратов / месяц</span><span><strong>2</strong> vs avg 1.5 ⭐</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div>
+            </div>
+            <div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.84rem; margin-bottom: 0.25rem;">
+                <span class="muted">Discord coverage</span><span><strong>87%</strong> vs avg 78%</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill" style="width: 87%;"></div></div>
+            </div>
+            <div style="padding-top: 0.5rem; border-top: 1px solid var(--border); font-size: 0.82rem; color: var(--text-2);">
+              Ты в топ-2 команды ⭐ — Анна впереди только по абсолютному GMV ($52K).
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW: MY RUBIES (placeholder) -->
+    <div class="view" data-view="rubies">
+      <div class="page-header">
+        <div>
+          <div class="page-title">🐋 Все мои Ruby · 24</div>
+          <div class="page-sub">Закреплённые за тобой · отсортировано по риску</div>
+        </div>
+        <div class="filters">
+          <div class="filter-chip active">Все</div>
+          <div class="filter-chip">Active</div>
+          <div class="filter-chip">At-risk</div>
+          <div class="filter-chip">Hibernating</div>
+        </div>
+      </div>
+      <div class="section">
         <table class="table">
-          <thead>
-            <tr><th>Кит</th><th>Игра</th><th>LTV</th><th>Last order</th><th>Статус</th><th>Discord</th></tr>
-          </thead>
+          <thead><tr><th>Кит</th><th>Игра</th><th>LTV</th><th>Spend май</th><th>Last order</th><th>Цикл</th><th>Статус</th><th>Discord</th></tr></thead>
           <tbody>
-            <tr onclick="openWhale('grimm')">
-              <td><strong>GrimmRaider</strong></td><td>WoW Classic</td><td>$24,300</td><td>48 дн</td>
-              <td><span class="status-pill status-risk">at-risk</span></td>
-              <td><span class="discord-dot discord-connected"></span>online</td>
-            </tr>
-            <tr onclick="openWhale('phoenix')">
-              <td><strong>Phoenix_Hunter</strong></td><td>Destiny 2</td><td>$18,650</td><td>32 дн</td>
-              <td><span class="status-pill status-risk">at-risk</span></td>
-              <td><span class="discord-dot discord-connected"></span>online</td>
-            </tr>
-            <tr onclick="openWhale('nyx')">
-              <td><strong>Nyx_Shadow</strong></td><td>Destiny / Diablo</td><td>$15,200</td><td>1 дн</td>
-              <td><span class="status-pill status-active">active</span></td>
-              <td><span class="discord-dot discord-invited"></span>invited</td>
-            </tr>
-            <tr onclick="openWhale('vex')">
-              <td><strong>VexMachina</strong></td><td>WoW Retail</td><td>$12,800</td><td>6 дн</td>
-              <td><span class="status-pill status-active">active</span></td>
-              <td><span class="discord-dot discord-connected"></span>online</td>
-            </tr>
-            <tr onclick="openWhale('iron')">
-              <td><strong>IronWolfPL</strong></td><td>Diablo IV</td><td>$11,400</td><td>14 дн</td>
-              <td><span class="status-pill status-active">active</span></td>
-              <td><span class="discord-dot discord-connected"></span>online</td>
-            </tr>
-            <tr onclick="openWhale('thorin')">
-              <td><strong>ThorinBeast</strong></td><td>WoW Classic</td><td>$10,750</td><td>96 дн</td>
-              <td><span class="status-pill status-hibernate">hibernating</span></td>
-              <td><span class="discord-dot discord-none"></span>none</td>
-            </tr>
+            <tr onclick="openWhale('grimm')"><td><strong>GrimmRaider</strong></td><td>WoW Classic</td><td>$24,300</td><td>$0</td><td>48 дн</td><td>28±5</td><td><span class="status-pill status-risk">at-risk</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+            <tr onclick="openWhale('phoenix')"><td><strong>Phoenix_Hunter</strong></td><td>Destiny 2</td><td>$18,650</td><td>$0</td><td>32 дн</td><td>21±4</td><td><span class="status-pill status-risk">at-risk</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+            <tr onclick="openWhale('nyx')"><td><strong>Nyx_Shadow</strong></td><td>Destiny / D4</td><td>$15,200</td><td>$3,600</td><td>1 дн</td><td>14±3</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-invited"></span>inv</td></tr>
+            <tr onclick="openWhale('vex')"><td><strong>VexMachina</strong></td><td>WoW Retail</td><td>$12,800</td><td>$3,920</td><td>6 дн</td><td>18±4</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+            <tr onclick="openWhale('iron')"><td><strong>IronWolfPL</strong></td><td>Diablo IV</td><td>$11,400</td><td>$4,800</td><td>5 дн</td><td>22±5</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+            <tr onclick="openWhale('thorin')"><td><strong>ThorinBeast</strong></td><td>WoW Classic</td><td>$10,750</td><td>$0</td><td>96 дн</td><td>45±10</td><td><span class="status-pill status-hibernate">hibernate</span></td><td><span class="discord-dot discord-none"></span>—</td></tr>
+            <tr><td><strong>SilverStorm_K</strong></td><td>WoW Retail</td><td>$13,200</td><td>$1,840</td><td>18 дн</td><td>30±6</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+            <tr><td><strong>MoonWalker99</strong></td><td>Diablo IV</td><td>$10,800</td><td>$2,200</td><td>12 дн</td><td>20±5</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-invited"></span>inv</td></tr>
+            <tr><td><strong>Wraith_Lord</strong></td><td>WoW Classic</td><td>$22,400</td><td>$1,420</td><td>9 дн</td><td>15±4</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+            <tr><td><strong>Crimson_Tide</strong></td><td>WoW Classic</td><td>$13,800</td><td>$2,800</td><td>2 дн</td><td>14±3</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
           </tbody>
         </table>
-      </div>
-
-      <div class="section">
-        <div class="section-header">
-          <div>
-            <div class="section-title">💬 Discord — непрочитанные</div>
-            <div class="section-sub">3 от твоих китов</div>
-          </div>
-        </div>
-        <div class="activity-list">
-          <div class="activity-item unread">
-            <div class="activity-item-head">
-              <strong>VexMachina</strong><span class="muted small">3 мин</span>
-            </div>
-            <div class="small muted">«Привет, есть варианты под нового бога M+?»</div>
-          </div>
-          <div class="activity-item unread">
-            <div class="activity-item-head">
-              <strong>IronWolfPL</strong><span class="muted small">25 мин</span>
-            </div>
-            <div class="small muted">«Сергей, спасибо за бундл, идеально зашёл!»</div>
-          </div>
-          <div class="activity-item">
-            <div class="activity-item-head">
-              <strong>Nyx_Shadow</strong><span class="muted small">2ч</span>
-            </div>
-            <div class="small muted">«Видел приглашение, приму вечером»</div>
-          </div>
-          <div class="small muted" style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--border);">
-            <strong style="color: var(--text);">3</strong> кита из 24 не в Discord — <span style="color: var(--accent); cursor: pointer;">запустить onboarding →</span>
-          </div>
-        </div>
+        <div class="muted small" style="text-align: center; padding-top: 1rem;">+ ещё 14 закреплённых китов</div>
       </div>
     </div>
   </div>
@@ -533,129 +894,62 @@
     </div>
 
     <div class="kpi-row">
-      <div class="kpi">
-        <div class="kpi-label">Ruby active / total</div>
-        <div class="kpi-value">218 / 250</div>
-        <div class="kpi-delta up">87% · +2 за неделю</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-label">Ruby GMV share, MTD</div>
-        <div class="kpi-value">31%</div>
-        <div class="kpi-delta up">+3pp к прошлому месяцу</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-label">Возвращено за неделю</div>
-        <div class="kpi-value">12 китов</div>
-        <div class="kpi-delta up">$34,200 GMV</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-label">В зоне риска</div>
-        <div class="kpi-value">18</div>
-        <div class="kpi-delta bad">+3 за неделю</div>
-      </div>
+      <div class="kpi"><div class="kpi-label">Ruby active / total</div><div class="kpi-value">218 / 250</div><div class="kpi-delta up">87% · +2 за неделю</div></div>
+      <div class="kpi"><div class="kpi-label">Ruby GMV share, MTD</div><div class="kpi-value">31%</div><div class="kpi-delta up">+3pp к ЛП</div></div>
+      <div class="kpi"><div class="kpi-label">Возвращено за неделю</div><div class="kpi-value">12 китов</div><div class="kpi-delta up">$34,200 GMV</div></div>
+      <div class="kpi"><div class="kpi-label">В зоне риска</div><div class="kpi-value">18</div><div class="kpi-delta bad">+3 за неделю</div></div>
     </div>
 
-    <!-- MANAGER PERFORMANCE -->
     <div class="section">
       <div class="section-header">
-        <div>
-          <div class="section-title">👥 Команда — performance этой недели</div>
-          <div class="section-sub">Клик по карточке → разбор китов конкретного менеджера</div>
-        </div>
+        <div><div class="section-title">👥 Команда — performance этой недели</div><div class="section-sub">Клик — разбор китов конкретного менеджера</div></div>
         <div class="section-action">Полный лидерборд →</div>
       </div>
       <div class="manager-grid">
-        <div class="manager-card" onclick="alert('Drill-down по Сергею: 24 закреплённых, 5 at-risk, $48K GMV май')">
-          <div class="manager-card-head">
-            <div class="manager-card-name">
-              <div class="avatar">С</div>
-              Сергей <span class="star">⭐</span>
-            </div>
-            <span class="status-pill status-active">online</span>
-          </div>
+        <div class="manager-card" onclick="alert('Drill-down по Сергею: 24 закреплённых, 5 at-risk, $48K GMV май, 12/18 задач закрыто сегодня')">
+          <div class="manager-card-head"><div class="manager-card-name"><div class="avatar">С</div>Сергей <span class="star">⭐</span></div><span class="status-pill status-active">online</span></div>
           <div class="manager-stats">
             <div><div class="manager-stat-label">Закр. Ruby</div><div class="manager-stat-value">24</div></div>
             <div><div class="manager-stat-label">GMV май</div><div class="manager-stat-value">$48K</div></div>
             <div><div class="manager-stat-label">Возврат</div><div class="manager-stat-value">2 ⭐</div></div>
           </div>
-          <div class="progress-row">
-            <div class="progress-bar"><div class="progress-fill" style="width: 80%"></div></div>
-            <div class="progress-text">80% плана</div>
-          </div>
+          <div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div><div class="progress-text">80% плана</div></div>
         </div>
-
-        <div class="manager-card" onclick="alert('Drill-down по Анне')">
-          <div class="manager-card-head">
-            <div class="manager-card-name">
-              <div class="avatar" style="background: linear-gradient(135deg, var(--crown), var(--orange));">А</div>
-              Анна <span class="star">⭐⭐</span>
-            </div>
-            <span class="status-pill status-active">online</span>
-          </div>
+        <div class="manager-card">
+          <div class="manager-card-head"><div class="manager-card-name"><div class="avatar" style="background: linear-gradient(135deg, var(--crown), var(--orange));">А</div>Анна <span class="star">⭐⭐</span></div><span class="status-pill status-active">online</span></div>
           <div class="manager-stats">
             <div><div class="manager-stat-label">Закр. Ruby</div><div class="manager-stat-value">22</div></div>
             <div><div class="manager-stat-label">GMV май</div><div class="manager-stat-value">$52K</div></div>
             <div><div class="manager-stat-label">Возврат</div><div class="manager-stat-value">3 ⭐</div></div>
           </div>
-          <div class="progress-row">
-            <div class="progress-bar"><div class="progress-fill over" style="width: 95%"></div></div>
-            <div class="progress-text">95% плана</div>
-          </div>
+          <div class="progress-row"><div class="progress-bar"><div class="progress-fill over" style="width: 95%;"></div></div><div class="progress-text">95% плана</div></div>
         </div>
-
-        <div class="manager-card" onclick="alert('Drill-down по Михаилу: 7 at-risk, 5 без касания — критическая нагрузка')">
-          <div class="manager-card-head">
-            <div class="manager-card-name">
-              <div class="avatar" style="background: linear-gradient(135deg, var(--diamond), var(--accent));">M</div>
-              Михаил
-            </div>
-            <span class="status-pill status-hibernate">offline</span>
-          </div>
+        <div class="manager-card">
+          <div class="manager-card-head"><div class="manager-card-name"><div class="avatar" style="background: linear-gradient(135deg, var(--diamond), var(--accent));">M</div>Михаил</div><span class="status-pill status-hibernate">offline</span></div>
           <div class="manager-stats">
             <div><div class="manager-stat-label">Закр. Ruby</div><div class="manager-stat-value">19</div></div>
             <div><div class="manager-stat-label">GMV май</div><div class="manager-stat-value">$28K</div></div>
             <div><div class="manager-stat-label">Возврат</div><div class="manager-stat-value">0</div></div>
           </div>
-          <div class="progress-row">
-            <div class="progress-bar"><div class="progress-fill under" style="width: 47%"></div></div>
-            <div class="progress-text">47% — ⚠️</div>
-          </div>
+          <div class="progress-row"><div class="progress-bar"><div class="progress-fill under" style="width: 47%;"></div></div><div class="progress-text">47% — ⚠️</div></div>
         </div>
-
-        <div class="manager-card" onclick="alert('Drill-down по Елене')">
-          <div class="manager-card-head">
-            <div class="manager-card-name">
-              <div class="avatar" style="background: linear-gradient(135deg, var(--ruby), var(--crown));">Е</div>
-              Елена
-            </div>
-            <span class="status-pill status-active">online</span>
-          </div>
+        <div class="manager-card">
+          <div class="manager-card-head"><div class="manager-card-name"><div class="avatar" style="background: linear-gradient(135deg, var(--ruby), var(--crown));">Е</div>Елена</div><span class="status-pill status-active">online</span></div>
           <div class="manager-stats">
             <div><div class="manager-stat-label">Закр. Ruby</div><div class="manager-stat-value">21</div></div>
             <div><div class="manager-stat-label">GMV май</div><div class="manager-stat-value">$41K</div></div>
             <div><div class="manager-stat-label">Возврат</div><div class="manager-stat-value">1</div></div>
           </div>
-          <div class="progress-row">
-            <div class="progress-bar"><div class="progress-fill" style="width: 70%"></div></div>
-            <div class="progress-text">70% плана</div>
-          </div>
+          <div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width: 70%;"></div></div><div class="progress-text">70% плана</div></div>
         </div>
       </div>
     </div>
 
-    <!-- AT-RISK BY MANAGER + AUTO-ASSIGN QUEUE -->
     <div class="two-col-eq">
       <div class="section">
-        <div class="section-header">
-          <div>
-            <div class="section-title">🟡 Ruby в зоне риска — по менеджерам</div>
-            <div class="section-sub">Куда направить внимание команды на планёрке</div>
-          </div>
-        </div>
+        <div class="section-header"><div><div class="section-title">🟡 Ruby в зоне риска — по менеджерам</div><div class="section-sub">Куда направить внимание команды</div></div></div>
         <table class="table">
-          <thead>
-            <tr><th>Менеджер</th><th>At-risk</th><th>Без касания 30+</th><th>Lost (180+)</th></tr>
-          </thead>
+          <thead><tr><th>Менеджер</th><th>At-risk</th><th>Без касания 30+</th><th>Lost</th></tr></thead>
           <tbody>
             <tr><td>Сергей</td><td><strong>5</strong></td><td>3</td><td>1</td></tr>
             <tr><td>Анна <span class="star">⭐</span></td><td>3</td><td>1</td><td>0</td></tr>
@@ -663,85 +957,27 @@
             <tr><td>Елена</td><td>3</td><td>2</td><td>1</td></tr>
           </tbody>
         </table>
-        <div style="margin-top: 0.75rem;" class="small muted">⚠️ Михаил перегружен. Обсудить на планёрке во вторник: либо перераспределить часть, либо разобраться почему контакт не идёт.</div>
+        <div style="margin-top: 0.75rem;" class="small muted">⚠️ Михаил перегружен. На планёрке во вторник — обсудить перераспределение.</div>
       </div>
 
       <div class="section">
-        <div class="section-header">
-          <div>
-            <div class="section-title">🆕 Автораспределение — 24 часа</div>
-            <div class="section-sub">Pre-Ruby → онлайн-менеджеру по очереди</div>
-          </div>
-        </div>
+        <div class="section-header"><div><div class="section-title">🆕 Автораспределение — 24 часа</div><div class="section-sub">Pre-Ruby → онлайн-менеджеру по очереди</div></div></div>
         <div class="activity-list">
-          <div class="assign-row">
-            <div>
-              <strong>DragonSlayer_99</strong> · WoW Classic
-              <div class="small muted">Первый заказ $840 · score 75/100</div>
-            </div>
-            <div style="text-align: right;" class="small">
-              → <strong>Сергей</strong><br>
-              <span class="muted">5 мин назад</span>
-            </div>
-          </div>
-          <div class="assign-row">
-            <div>
-              <strong>VoidStrider</strong> · Destiny 2
-              <div class="small muted">2-й заказ за 8 дней, total $1,200</div>
-            </div>
-            <div style="text-align: right;" class="small">
-              → <strong>Анна</strong><br>
-              <span class="muted">2 часа</span>
-            </div>
-          </div>
-          <div class="assign-row">
-            <div>
-              <strong>FrostBorn_X</strong> · WoW Retail
-              <div class="small muted">Первый заказ $640 · score 65/100</div>
-            </div>
-            <div style="text-align: right;" class="small">
-              → <strong>Елена</strong><br>
-              <span class="muted">вчера</span>
-            </div>
-          </div>
-          <div class="small muted" style="margin-top: 0.5rem; padding-top: 0.75rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between;">
-            <span>Очередь сейчас пустая</span>
-            <span style="color: var(--accent); cursor: pointer;">Настроить правила →</span>
-          </div>
+          <div class="assign-row"><div><strong>DragonSlayer_99</strong> · WoW Classic<div class="small muted">Первый заказ $840 · score 75/100</div></div><div style="text-align: right;" class="small">→ <strong>Сергей</strong><br><span class="muted">5 мин</span></div></div>
+          <div class="assign-row"><div><strong>VoidStrider</strong> · Destiny 2<div class="small muted">2-й заказ за 8 дней, total $1,200</div></div><div style="text-align: right;" class="small">→ <strong>Анна</strong><br><span class="muted">2 часа</span></div></div>
+          <div class="assign-row"><div><strong>FrostBorn_X</strong> · WoW Retail<div class="small muted">Первый заказ $640 · score 65/100</div></div><div style="text-align: right;" class="small">→ <strong>Елена</strong><br><span class="muted">вчера</span></div></div>
+          <div class="small muted" style="margin-top: 0.5rem; padding-top: 0.75rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between;"><span>Очередь сейчас пустая</span><span style="color: var(--accent); cursor: pointer;">Настроить правила →</span></div>
         </div>
       </div>
     </div>
 
-    <!-- REACTIVATION TRACKER -->
     <div class="section">
-      <div class="section-header">
-        <div>
-          <div class="section-title">🔄 Reactivation Tracker</div>
-          <div class="section-sub">17% базовый возврат · цель квартала 25%</div>
-        </div>
-        <div class="section-action">Cohorts →</div>
-      </div>
+      <div class="section-header"><div><div class="section-title">🔄 Reactivation Tracker</div><div class="section-sub">17% базовый возврат · цель квартала 25%</div></div><div class="section-action">Cohorts →</div></div>
       <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;">
-        <div>
-          <div class="kpi-label">В кампании сейчас</div>
-          <div class="kpi-value" style="font-size: 1.4rem;">47 китов</div>
-          <div class="small muted">из них 18 Ruby</div>
-        </div>
-        <div>
-          <div class="kpi-label">Recovered MTD</div>
-          <div class="kpi-value" style="font-size: 1.4rem; color: var(--green);">+19</div>
-          <div class="small muted">$58,400 GMV</div>
-        </div>
-        <div>
-          <div class="kpi-label">Open / Click rate</div>
-          <div class="kpi-value" style="font-size: 1.4rem;">62% / 24%</div>
-          <div class="small muted">по последней рассылке</div>
-        </div>
-        <div>
-          <div class="kpi-label">Лучшая когорта</div>
-          <div class="kpi-value" style="font-size: 1.1rem; color: var(--accent);">WoW Classic S4</div>
-          <div class="small muted">28% возврат</div>
-        </div>
+        <div><div class="kpi-label">В кампании сейчас</div><div class="kpi-value" style="font-size: 1.4rem;">47 китов</div><div class="small muted">из них 18 Ruby</div></div>
+        <div><div class="kpi-label">Recovered MTD</div><div class="kpi-value" style="font-size: 1.4rem; color: var(--green);">+19</div><div class="small muted">$58,400 GMV</div></div>
+        <div><div class="kpi-label">Open / Click rate</div><div class="kpi-value" style="font-size: 1.4rem;">62% / 24%</div><div class="small muted">по последней рассылке</div></div>
+        <div><div class="kpi-label">Лучшая когорта</div><div class="kpi-value" style="font-size: 1.1rem; color: var(--accent);">WoW Classic S4</div><div class="small muted">28% возврат</div></div>
       </div>
     </div>
   </div>
@@ -770,6 +1006,62 @@
       <div class="modal-stat"><div class="modal-stat-label">Last order</div><div class="modal-stat-value" id="m-last">48 дней</div></div>
     </div>
 
+    <!-- WoW INTEGRATION BLOCK -->
+    <div class="wow-block">
+      <div class="wow-header">
+        <div class="wow-title">🎮 WoW Classic — данные из Battle.net аккаунта</div>
+        <div class="wow-sync">🟢 Синхронизировано 14 мин назад · OAuth подключён</div>
+      </div>
+      <div class="wow-char-line">
+        <div class="wow-char-portrait">🗡️</div>
+        <div>
+          <div class="wow-char-name">Marcus-Outland (Bloodfang)</div>
+          <div class="wow-char-sub">Human Rogue · Assassination · 80 lvl · Guild: «Иммануил Кант»</div>
+        </div>
+      </div>
+      <div class="wow-grid">
+        <div class="wow-stat">
+          <div class="wow-stat-label">Item Level</div>
+          <div class="wow-stat-value">489</div>
+          <div class="wow-stat-sub">Heroic gear cap 502</div>
+          <div class="wow-progress"><div class="wow-progress-fill" style="width: 78%;"></div></div>
+        </div>
+        <div class="wow-stat">
+          <div class="wow-stat-label">Mythic+ Score</div>
+          <div class="wow-stat-value">2,847</div>
+          <div class="wow-stat-sub">Title cutoff 3,100 · −253</div>
+          <div class="wow-progress"><div class="wow-progress-fill" style="width: 92%;"></div></div>
+        </div>
+        <div class="wow-stat">
+          <div class="wow-stat-label">PvP Rating</div>
+          <div class="wow-stat-value">2,310</div>
+          <div class="wow-stat-sub">Gladiator cutoff 2,350</div>
+          <div class="wow-progress"><div class="wow-progress-fill" style="width: 98%;"></div></div>
+        </div>
+        <div class="wow-stat">
+          <div class="wow-stat-label">Mounts</div>
+          <div class="wow-stat-value">487 / 872</div>
+          <div class="wow-stat-sub">56% коллекции</div>
+          <div class="wow-progress"><div class="wow-progress-fill" style="width: 56%;"></div></div>
+        </div>
+      </div>
+      <div class="ach-list">
+        <div class="ach-row"><span class="ach-icon ach-done">✅</span><span><strong>Glory of the Aberrus Raider</strong> · получено 14 марта 2026 (mount «Aberrus Stormcaller»)</span></div>
+        <div class="ach-row"><span class="ach-icon ach-done">✅</span><span><strong>Ahead of the Curve: S4</strong> · 6/9 Mythic boss kills</span></div>
+        <div class="ach-row"><span class="ach-icon ach-gap">❌</span><span><strong>Glory of the Vault Raider</strong> · 8/12 completed · <em style="color: var(--text-3);">кандидат на boost ~$720</em></span></div>
+        <div class="ach-row"><span class="ach-icon ach-gap">❌</span><span><strong>Cutting Edge: Tindral</strong> · 0/1 — финальный Mythic босс · <em style="color: var(--text-3);">кандидат на full-clear ~$1,400</em></span></div>
+        <div class="ach-row"><span class="ach-icon ach-gap">❌</span><span><strong>2400 Arena Rating</strong> · сейчас 2,310 — нужно ещё 90 points · <em style="color: var(--text-3);">PvP push ~$380</em></span></div>
+      </div>
+      <div class="wow-cta">
+        <strong>💎 Что можно предложить (на основе его реального аккаунта):</strong>
+        <ol style="margin: 0.5rem 0 0 1.5rem; line-height: 1.7;">
+          <li>Glory of the Vault Raider — недостающие 4 ачивки → <strong>$720</strong></li>
+          <li>Mythic+ push 2847 → 3000+ (для title): <strong>$420</strong></li>
+          <li>PvP 2310 → 2400 — он почти Gladiator: <strong>$380</strong></li>
+        </ol>
+      </div>
+    </div>
+
     <div class="modal-section">
       <div class="modal-section-title">💡 Рекомендации системы</div>
       <div class="recommendation"><strong>Сейчас:</strong> Не покупал 48 дней при обычном цикле 28. В WoW Classic Season 4 вышел 12 дней назад. <strong>Действие:</strong> личное сообщение в Discord — «попробуешь S4?». Если есть пакет под рейтинг — приложи.</div>
@@ -779,12 +1071,12 @@
 
     <div class="modal-grid">
       <div>
-        <div class="modal-section-title">🎮 Игровой профиль</div>
+        <div class="modal-section-title">🎮 Игровой профиль (из наших заказов)</div>
         <div class="info-list">
           <div class="info-row"><span class="info-label">Main game</span><span><strong>WoW Classic</strong> (96%)</span></div>
-          <div class="info-row"><span class="info-label">Класс / роль</span><span>Rogue · M+ Tank</span></div>
-          <div class="info-row"><span class="info-label">Обычный цикл</span><span>28 дней ±5</span></div>
           <div class="info-row"><span class="info-label">Любимый сервис</span><span>Mythic+ Boost</span></div>
+          <div class="info-row"><span class="info-label">Обычный цикл</span><span>28 дней ±5</span></div>
+          <div class="info-row"><span class="info-label">Любимый исполнитель</span><span>Kostya_GG (24 заказа)</span></div>
           <div class="info-row"><span class="info-label">Cross-game</span><span class="muted">нет</span></div>
         </div>
       </div>
@@ -836,12 +1128,43 @@
   </div>
 </div>
 
+<!-- ==================== CLOSE TASK MODAL ==================== -->
+<div class="modal-overlay" id="closeTaskModal" onclick="if(event.target===this) closeCloseTask()">
+  <div class="modal small-modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-whale-name" id="ct-title">✓ Закрыть задачу</div>
+        <div class="modal-personal" id="ct-sub">с GrimmRaider</div>
+      </div>
+      <button class="modal-close" onclick="closeCloseTask()">×</button>
+    </div>
+    <div class="modal-section">
+      <label class="form-label">Что сделал?</label>
+      <div class="form-options">
+        <label class="form-option"><input type="radio" name="ct-action" value="written" checked> Написал в Discord, получил ответ</label>
+        <label class="form-option"><input type="radio" name="ct-action" value="written-noreply"> Написал, ответа пока нет</label>
+        <label class="form-option"><input type="radio" name="ct-action" value="order"> Кит сделал заказ</label>
+        <label class="form-option"><input type="radio" name="ct-action" value="postpone"> Отложил по просьбе клиента</label>
+        <label class="form-option"><input type="radio" name="ct-action" value="lost"> Потерял (не отвечает / отказался)</label>
+      </div>
+    </div>
+    <div class="modal-section">
+      <label class="form-label">Комментарий (опционально)</label>
+      <textarea class="form-textarea" id="ct-note" placeholder="Например: договорились о Mythic+ boost на $420, заказ оформит вечером..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-success btn-lg" onclick="confirmCloseTask()">✓ Закрыть задачу</button>
+      <button class="btn btn-lg" onclick="closeCloseTask()">Отмена</button>
+    </div>
+  </div>
+</div>
+
 <!-- Toast -->
 <div class="toast" id="toast">
   <div class="toast-icon">!</div>
   <div class="toast-text">
-    <strong>Новый Ruby-кандидат закреплён за тобой</strong>
-    <small>DragonSlayer_99 · WoW Classic · $840 первый заказ · score 75/100</small>
+    <strong id="toast-title">Новый Ruby-кандидат закреплён за тобой</strong>
+    <small id="toast-sub">DragonSlayer_99 · WoW Classic · $840 первый заказ · score 75/100</small>
   </div>
 </div>
 
@@ -851,7 +1174,7 @@ function enterApp(role) {
   document.getElementById('app-manager').classList.remove('active');
   document.getElementById('app-leader').classList.remove('active');
   document.getElementById('app-' + role).classList.add('active');
-  if (role === 'manager') setTimeout(showToast, 1500);
+  if (role === 'manager') setTimeout(showAutoAssignToast, 1500);
 }
 function goLanding() {
   document.getElementById('landing').style.display = 'flex';
@@ -859,6 +1182,15 @@ function goLanding() {
   document.getElementById('app-leader').classList.remove('active');
   hideToast();
   closeWhale();
+  closeCloseTask();
+}
+
+function switchView(navEl, viewName) {
+  document.querySelectorAll('#app-manager .nav-item').forEach(n => n.classList.remove('active'));
+  navEl.classList.add('active');
+  document.querySelectorAll('#app-manager .view').forEach(v => v.classList.remove('active'));
+  document.querySelector(`#app-manager .view[data-view="${viewName}"]`).classList.add('active');
+  document.querySelector('#app-manager .main').scrollTop = 0;
 }
 
 const whaleData = {
@@ -867,8 +1199,9 @@ const whaleData = {
   phoenix: { name: 'Phoenix_Hunter', personal: 'Daniel R. · 🇬🇧 UK · EN · UTC+0 · 29 лет', ltv: '$18,650', d90: '$2,200', avg: '$420', last: '32 дня', status: 'at-risk', statusClass: 'status-risk', tier: 'Ruby', tierClass: 'tier-ruby' },
   nyx: { name: 'Nyx_Shadow', personal: 'Anonymous · 🇨🇦 Canada · EN · UTC-8', ltv: '$15,200', d90: '$1,640', avg: '$280', last: '1 день', status: 'active', statusClass: 'status-active', tier: 'Ruby', tierClass: 'tier-ruby' },
   vex: { name: 'VexMachina', personal: 'Pierre L. · 🇫🇷 Франция · FR/EN · UTC+1', ltv: '$12,800', d90: '$1,420', avg: '$310', last: '6 дней', status: 'active', statusClass: 'status-active', tier: 'Ruby', tierClass: 'tier-ruby' },
-  iron: { name: 'IronWolfPL', personal: 'Tomasz K. · 🇵🇱 Польша · PL/EN · UTC+1', ltv: '$11,400', d90: '$1,200', avg: '$260', last: '14 дней', status: 'active', statusClass: 'status-active', tier: 'Ruby', tierClass: 'tier-ruby' },
-  thorin: { name: 'ThorinBeast', personal: 'Erik S. · 🇸🇪 Швеция · SE/EN · UTC+1', ltv: '$10,750', d90: '$0', avg: '$290', last: '96 дней', status: 'hibernating', statusClass: 'status-hibernate', tier: 'Ruby', tierClass: 'tier-ruby' }
+  iron: { name: 'IronWolfPL', personal: 'Tomasz K. · 🇵🇱 Польша · PL/EN · UTC+1', ltv: '$11,400', d90: '$1,200', avg: '$260', last: '5 дней', status: 'active', statusClass: 'status-active', tier: 'Ruby', tierClass: 'tier-ruby' },
+  thorin: { name: 'ThorinBeast', personal: 'Erik S. · 🇸🇪 Швеция · SE/EN · UTC+1', ltv: '$10,750', d90: '$0', avg: '$290', last: '96 дней', status: 'hibernating', statusClass: 'status-hibernate', tier: 'Ruby', tierClass: 'tier-ruby' },
+  wraith: { name: 'Wraith_Lord', personal: 'James W. · 🇦🇺 Австралия · EN · UTC+10 · ДР 25.05', ltv: '$22,400', d90: '$2,840', avg: '$390', last: '9 дней', status: 'active', statusClass: 'status-active', tier: 'Ruby', tierClass: 'tier-ruby' }
 };
 
 function openWhale(id) {
@@ -887,21 +1220,64 @@ function openWhale(id) {
   stat.className = 'status-pill ' + w.statusClass;
   document.getElementById('whaleModal').classList.add('active');
 }
-function closeWhale() {
-  document.getElementById('whaleModal').classList.remove('active');
+function closeWhale() { document.getElementById('whaleModal').classList.remove('active'); }
+
+let currentCloseTaskId = null;
+let currentCloseWhale = '';
+function openCloseTask(taskId, whaleName) {
+  currentCloseTaskId = taskId;
+  currentCloseWhale = whaleName;
+  document.getElementById('ct-sub').textContent = 'с ' + whaleName;
+  document.getElementById('ct-note').value = '';
+  document.getElementById('closeTaskModal').classList.add('active');
 }
-function showToast() {
-  document.getElementById('toast').classList.add('show');
-  setTimeout(hideToast, 6000);
+function closeCloseTask() { document.getElementById('closeTaskModal').classList.remove('active'); }
+
+function confirmCloseTask() {
+  const card = document.getElementById('task-' + currentCloseTaskId);
+  if (card) {
+    card.classList.add('closed');
+    const buttons = card.querySelectorAll('.task-buttons');
+    buttons.forEach(b => b.style.display = 'none');
+  }
+  // Update counters
+  const openEl = document.getElementById('tasks-open-count');
+  const closedEl = document.getElementById('tasks-closed-count');
+  if (openEl) openEl.textContent = Math.max(0, parseInt(openEl.textContent) - 1);
+  if (closedEl) closedEl.textContent = parseInt(closedEl.textContent) + 1;
+
+  closeCloseTask();
+  showToast('success', '✓ Задача закрыта', currentCloseWhale + ' · статус виден руководителю');
 }
-function hideToast() {
-  document.getElementById('toast').classList.remove('show');
+
+function showAutoAssignToast() {
+  showToast('default', 'Новый Ruby-кандидат закреплён за тобой', 'DragonSlayer_99 · WoW Classic · $840 первый заказ · score 75/100');
 }
+
+function showToast(type, title, sub) {
+  const t = document.getElementById('toast');
+  t.classList.remove('success');
+  if (type === 'success') t.classList.add('success');
+  document.getElementById('toast-title').textContent = title;
+  document.getElementById('toast-sub').textContent = sub;
+  t.classList.add('show');
+  setTimeout(hideToast, 5500);
+}
+function hideToast() { document.getElementById('toast').classList.remove('show'); }
 
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
-    if (document.getElementById('whaleModal').classList.contains('active')) closeWhale();
+    if (document.getElementById('closeTaskModal').classList.contains('active')) closeCloseTask();
+    else if (document.getElementById('whaleModal').classList.contains('active')) closeWhale();
   }
+});
+
+// Form option selection styling
+document.querySelectorAll('.form-option').forEach(opt => {
+  opt.addEventListener('click', () => {
+    document.querySelectorAll('.form-option').forEach(o => o.classList.remove('selected'));
+    opt.classList.add('selected');
+  });
 });
 </script>
 
