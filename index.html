@@ -249,14 +249,19 @@
   .donut-center-label { color: var(--text-2); font-size: 0.78rem; margin-bottom: 0.2rem; }
   .donut-center-value { font-size: 1.8rem; font-weight: 800; line-height: 1; }
   .donut-center-sub { color: var(--text-2); font-size: 0.78rem; margin-top: 0.3rem; }
-  .donut-legend { display: grid; gap: 0.65rem; }
-  .legend-row { display: grid; grid-template-columns: 16px 1fr auto auto auto; gap: 0.75rem; align-items: center; font-size: 0.86rem; padding: 0.5rem 0.65rem; border-radius: 6px; transition: background 0.15s; cursor: pointer; }
-  .legend-row:hover { background: var(--bg-3); }
-  .legend-swatch { width: 14px; height: 14px; border-radius: 4px; }
-  .legend-name { font-weight: 600; }
-  .legend-pct { font-weight: 700; min-width: 50px; text-align: right; }
-  .legend-gmv { color: var(--text-2); min-width: 80px; text-align: right; font-size: 0.82rem; }
-  .legend-delta { min-width: 70px; text-align: right; font-size: 0.78rem; }
+
+  /* Legend as proper table */
+  .legend-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+  .legend-table th { text-align: left; color: var(--text-2); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--border); font-weight: 600; }
+  .legend-table th.right { text-align: right; }
+  .legend-table td { padding: 0.65rem 0.6rem; border-bottom: 1px solid var(--border); }
+  .legend-table tr:last-child td { border-bottom: none; }
+  .legend-table tr:hover td { background: var(--bg-3); cursor: pointer; }
+  .legend-table .right { text-align: right; }
+  .legend-table .tier-cell { display: flex; align-items: center; gap: 0.55rem; font-weight: 600; }
+  .legend-table .tier-swatch { width: 14px; height: 14px; border-radius: 4px; flex-shrink: 0; }
+  .legend-pct-big { font-weight: 800; font-size: 0.95rem; }
+  .legend-cell-sub { color: var(--text-3); font-size: 0.72rem; margin-top: 0.1rem; }
 
   /* Task type chips */
   .ttype { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
@@ -1098,53 +1103,82 @@
           </div>
         </div>
 
-        <!-- LEGEND -->
-        <div class="donut-legend">
-          <div class="legend-row" onclick="alert('Drill-down: 250 Ruby клиентов')">
-            <div class="legend-swatch" style="background: var(--ruby);"></div>
-            <div class="legend-name">🔴 Ruby <span class="muted small">$10K+</span></div>
-            <div class="legend-pct">8.0%</div>
-            <div class="legend-gmv">$163K</div>
-            <div class="legend-delta" style="color: var(--orange);">-1pp vs Q1</div>
+        <!-- LEGEND TABLE -->
+        <div>
+          <div class="muted small" style="margin-bottom: 0.5rem; line-height: 1.5;">
+            Все цифры — за <strong style="color: var(--text);">май 2026 MTD</strong> (22 из 31 дня).
+            Тир — это категория по суммарному LTV клиента за всё время.
+            <strong style="color: var(--text);">Active</strong> = совершил хотя бы 1 заказ в мае.
+            Общий GMV компании за май = <strong style="color: var(--text);">$2.04M</strong>, активных покупателей всего = <strong style="color: var(--text);">~98,000</strong> (база — 356,250).
           </div>
-          <div class="legend-row" onclick="alert('Drill-down: 1,420 Diamond')">
-            <div class="legend-swatch" style="background: var(--diamond);"></div>
-            <div class="legend-name">🔷 Diamond <span class="muted small">$3-10K</span></div>
-            <div class="legend-pct">16.0%</div>
-            <div class="legend-gmv">$326K</div>
-            <div class="legend-delta" style="color: var(--green);">+1pp vs Q1</div>
-          </div>
-          <div class="legend-row" onclick="alert('Drill-down: 16,280 Crown')">
-            <div class="legend-swatch" style="background: var(--crown);"></div>
-            <div class="legend-name">👑 Crown <span class="muted small">$1-3K</span></div>
-            <div class="legend-pct">26.0%</div>
-            <div class="legend-gmv">$531K</div>
-            <div class="legend-delta" style="color: var(--text-2);">= vs Q1</div>
-          </div>
-          <div class="legend-row" onclick="alert('Drill-down: 52,400 Dolphin')">
-            <div class="legend-swatch" style="background: var(--dolphin);"></div>
-            <div class="legend-name">🐬 Dolphin <span class="muted small">$300-1K</span></div>
-            <div class="legend-pct">25.0%</div>
-            <div class="legend-gmv">$510K</div>
-            <div class="legend-delta" style="color: var(--green);">+1pp vs Q1</div>
-          </div>
-          <div class="legend-row" style="opacity: 0.75;">
-            <div class="legend-swatch" style="background: var(--bg-4);"></div>
-            <div class="legend-name">⚫ Plankton <span class="muted small">&lt;$300</span></div>
-            <div class="legend-pct">25.0%</div>
-            <div class="legend-gmv">$510K</div>
-            <div class="legend-delta" style="color: var(--orange);">-1pp vs Q1</div>
-          </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding-top: 0.85rem; margin-top: 0.4rem; border-top: 1px solid var(--border);">
-            <div>
-              <div class="muted small">Доля китов (Crown+Diamond+Ruby)</div>
-              <div style="font-size: 1.5rem; font-weight: 800; color: var(--ruby);">50.4%</div>
-              <div class="muted small">vs Q1 50.1% · <strong style="color: var(--green);">+0.3pp</strong></div>
+          <table class="legend-table">
+            <thead>
+              <tr>
+                <th>Тир</th>
+                <th class="right">Клиентов<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">(всего / % базы)</span></th>
+                <th class="right">Active в мае<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">(чел / % активных)</span></th>
+                <th class="right">GMV май<br><span style="font-weight: 400; text-transform: none; letter-spacing: 0;">($ / % компании)</span></th>
+                <th class="right">vs Q1</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr onclick="alert('Drill-down: 250 Ruby клиентов')">
+                <td><div class="tier-cell"><span class="tier-swatch" style="background: var(--ruby);"></span>🔴 Ruby <span class="muted small">$10K+</span></div></td>
+                <td class="right"><strong>250</strong><div class="legend-cell-sub">0.07% базы</div></td>
+                <td class="right"><strong style="color: var(--green);">218</strong><div class="legend-cell-sub">0.2% активных</div></td>
+                <td class="right"><strong>$163K</strong><div class="legend-cell-sub"><span class="legend-pct-big" style="color: var(--ruby);">8.0%</span> от GMV</div></td>
+                <td class="right" style="color: var(--orange); font-size: 0.78rem;">−1pp</td>
+              </tr>
+              <tr onclick="alert('Drill-down: 1,420 Diamond')">
+                <td><div class="tier-cell"><span class="tier-swatch" style="background: var(--diamond);"></span>🔷 Diamond <span class="muted small">$3-10K</span></div></td>
+                <td class="right"><strong>1,420</strong><div class="legend-cell-sub">0.4% базы</div></td>
+                <td class="right"><strong style="color: var(--green);">1,180</strong><div class="legend-cell-sub">1.2% активных</div></td>
+                <td class="right"><strong>$326K</strong><div class="legend-cell-sub"><span class="legend-pct-big" style="color: var(--diamond);">16.0%</span> от GMV</div></td>
+                <td class="right" style="color: var(--green); font-size: 0.78rem;">+1pp</td>
+              </tr>
+              <tr onclick="alert('Drill-down: 16,280 Crown')">
+                <td><div class="tier-cell"><span class="tier-swatch" style="background: var(--crown);"></span>👑 Crown <span class="muted small">$1-3K</span></div></td>
+                <td class="right"><strong>16,280</strong><div class="legend-cell-sub">4.6% базы</div></td>
+                <td class="right"><strong>11,400</strong><div class="legend-cell-sub">11.6% активных</div></td>
+                <td class="right"><strong>$531K</strong><div class="legend-cell-sub"><span class="legend-pct-big" style="color: var(--crown);">26.0%</span> от GMV</div></td>
+                <td class="right" style="color: var(--text-2); font-size: 0.78rem;">=</td>
+              </tr>
+              <tr onclick="alert('Drill-down: 52,400 Dolphin')">
+                <td><div class="tier-cell"><span class="tier-swatch" style="background: var(--dolphin);"></span>🐬 Dolphin <span class="muted small">$300-1K</span></div></td>
+                <td class="right"><strong>52,400</strong><div class="legend-cell-sub">14.7% базы</div></td>
+                <td class="right"><strong>22,800</strong><div class="legend-cell-sub">23.3% активных</div></td>
+                <td class="right"><strong>$510K</strong><div class="legend-cell-sub"><span class="legend-pct-big" style="color: var(--dolphin);">25.0%</span> от GMV</div></td>
+                <td class="right" style="color: var(--green); font-size: 0.78rem;">+1pp</td>
+              </tr>
+              <tr style="opacity: 0.75;">
+                <td><div class="tier-cell"><span class="tier-swatch" style="background: var(--bg-4);"></span>⚫ Plankton <span class="muted small">&lt;$300</span></div></td>
+                <td class="right"><strong>285,900</strong><div class="legend-cell-sub">80.3% базы</div></td>
+                <td class="right"><strong>62,400</strong><div class="legend-cell-sub">63.7% активных</div></td>
+                <td class="right"><strong>$510K</strong><div class="legend-cell-sub"><span class="legend-pct-big" style="color: var(--text-2);">25.0%</span> от GMV</div></td>
+                <td class="right" style="color: var(--orange); font-size: 0.78rem;">−1pp</td>
+              </tr>
+              <!-- TOTAL row -->
+              <tr style="background: rgba(0, 212, 255, 0.05);">
+                <td><strong style="color: var(--accent);">📊 ИТОГО компания</strong></td>
+                <td class="right"><strong>356,250</strong><div class="legend-cell-sub">100%</div></td>
+                <td class="right"><strong>98,098</strong><div class="legend-cell-sub">27.5% базы активна</div></td>
+                <td class="right"><strong>$2.04M</strong><div class="legend-cell-sub">100% MTD</div></td>
+                <td class="right">—</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- Two highlight summary boxes below -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding-top: 1rem; margin-top: 0.4rem; border-top: 1px solid var(--border);">
+            <div style="background: rgba(227, 74, 111, 0.08); padding: 0.85rem 1rem; border-radius: 8px; border-left: 3px solid var(--ruby);">
+              <div class="muted small">🐋 Доля китов в обороте (Crown + Diamond + Ruby)</div>
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--ruby); margin: 0.2rem 0;">50.4%</div>
+              <div class="muted small">vs Q1: <strong style="color: var(--green);">+0.3pp</strong> (было 50.1%)</div>
             </div>
-            <div>
-              <div class="muted small">% базы даёт эти 50%</div>
+            <div style="background: rgba(78, 205, 196, 0.08); padding: 0.85rem 1rem; border-radius: 8px; border-left: 3px solid var(--diamond);">
+              <div class="muted small">👥 Эти 50% дают</div>
               <div style="font-size: 1.5rem; font-weight: 800;">5.0%</div>
-              <div class="muted small">17,950 чел · Q1 было 16,900</div>
+              <div class="muted small">базы клиентов = <strong>17,950 чел</strong> · vs Q1 16,900 (+1,050)</div>
             </div>
           </div>
         </div>
