@@ -1884,101 +1884,156 @@
       </div>
       <div class="ic-app-content">
 
-        <!-- ROUTING ALERT -->
-        <div class="ic-app-route">
-          <div class="ic-app-route-title">⚡ RUBY · персональный менеджер</div>
-          <div class="ic-app-route-sub">Закреплён за <strong>тобой (Сергей)</strong> · ты сейчас online. Авто-routing сработал, беседа уже у тебя.</div>
-          <button class="ic-app-route-btn">💬 Открыть в Discord</button>
-          <button class="ic-app-route-btn-sec">🔁 Передать дежурному (Анна)</button>
-        </div>
-
-        <!-- IDENTITY -->
-        <div class="ic-app-section">
-          <div class="ic-app-section-title">Идентификация</div>
-          <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.5rem;">
-            <div class="ic-conv-av ruby" style="width: 38px; height: 38px;">GR</div>
-            <div>
-              <div style="font-weight: 700;">GrimmRaider <span class="tier-badge tier-ruby" style="margin-left: 0.3rem;">RUBY</span></div>
-              <div class="muted small">Marcus K. · 🇩🇪 DE · 34 года · ДР 12.08</div>
+        <!-- ⚡ MAIN: who is this + who manages + transfer button -->
+        <div style="background: linear-gradient(135deg, rgba(227, 74, 111, 0.18), rgba(0, 212, 255, 0.06)); border: 1px solid var(--ruby); border-radius: 10px; padding: 1rem; margin-bottom: 0.85rem;">
+          <!-- Identity -->
+          <div style="display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.85rem;">
+            <div class="ic-conv-av ruby" style="width: 44px; height: 44px;">GR</div>
+            <div style="min-width: 0;">
+              <div style="font-weight: 700; font-size: 1rem; display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;">GrimmRaider <span class="tier-badge tier-ruby">RUBY</span></div>
+              <div class="muted small">Marcus K. · 🇩🇪 DE · LTV $24,300 · клиент 19 мес</div>
+              <div style="margin-top: 0.25rem;"><span class="status-pill status-risk" style="font-size: 0.68rem;">at-risk · 48 дн без заказа</span></div>
             </div>
           </div>
-          <div style="font-size: 0.78rem; color: var(--text-2); line-height: 1.5; padding-top: 0.5rem; border-top: 1px solid var(--border);">
-            <span class="muted">Статус:</span> <span class="status-pill status-risk" style="font-size: 0.68rem;">at-risk</span> ·
-            <span class="muted">Discord:</span> <span class="discord-dot discord-connected"></span><strong>connected</strong>
+
+          <!-- Manager assignment + transfer -->
+          <div style="background: var(--bg-2); border-radius: 8px; padding: 0.65rem 0.8rem; margin-bottom: 0.6rem;">
+            <div class="muted small" style="margin-bottom: 0.4rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em;">Закреплённый менеджер</div>
+            <div style="display: flex; align-items: center; gap: 0.55rem;">
+              <div class="avatar" style="width: 32px; height: 32px; font-size: 0.85rem;">С</div>
+              <div style="flex: 1;">
+                <div style="font-weight: 700;">Сергей Иванов <span style="color: var(--green); font-size: 0.78rem; font-weight: 400;">🟢 online</span></div>
+                <div class="muted small">Skycoach | Sergey · отвечает обычно за 4 мин</div>
+              </div>
+            </div>
           </div>
+
+          <button class="ic-app-route-btn" onclick="alert('Беседа переведена @Сергею. История загружена. В Discord уведомление отправлено.')" style="font-size: 0.9rem; padding: 0.7rem;">💬 Передать @Сергею →</button>
+          <button class="ic-app-route-btn-sec" onclick="alert('Открыть выбор: Анна 🟢 · Михаил 🔴 · Елена 🟢')">↻ Передать другому менеджеру</button>
         </div>
 
-        <!-- CRM DATA — THE KEY ASK -->
-        <div class="ic-app-section" style="border-color: var(--accent);">
-          <div class="ic-app-section-title" style="color: var(--accent);">💳 Данные из CRM</div>
-          <div class="ic-stat-grid" style="margin-bottom: 0.65rem;">
+        <!-- 💳 CRM key numbers (compact) -->
+        <div class="ic-app-section">
+          <div class="ic-app-section-title">💳 Данные из CRM</div>
+          <div class="ic-stat-grid">
             <div class="ic-stat">
               <div class="ic-stat-label">Общий оборот (LTV)</div>
               <div class="ic-stat-value" style="color: var(--ruby);">$24,300</div>
-              <div class="ic-stat-sub">за 19 месяцев</div>
             </div>
             <div class="ic-stat">
               <div class="ic-stat-label">Заказов всего</div>
               <div class="ic-stat-value">72</div>
-              <div class="ic-stat-sub">avg $340</div>
             </div>
             <div class="ic-stat">
               <div class="ic-stat-label">Последний заказ</div>
-              <div class="ic-stat-value" style="color: var(--orange);">48 дн</div>
+              <div class="ic-stat-value" style="color: var(--orange);">48 дн назад</div>
               <div class="ic-stat-sub">4 апр · $420 M+ Boost</div>
             </div>
             <div class="ic-stat">
-              <div class="ic-stat-label">Spend 90 дней</div>
-              <div class="ic-stat-value">$1,840</div>
-              <div class="ic-stat-sub">−42% vs prev 90д</div>
+              <div class="ic-stat-label">Средний чек</div>
+              <div class="ic-stat-value">$340</div>
             </div>
-          </div>
-          <div style="padding: 0.5rem 0.6rem; background: var(--bg-4); border-radius: 5px; font-size: 0.75rem; color: var(--text-2); line-height: 1.45;">
-            <strong style="color: var(--text);">Цикл:</strong> 28±5 дней (M+ Boost) · обычно покупает каждый ресет.<br>
-            <strong style="color: var(--text);">Любимый исполнитель:</strong> Kostya_GG (24 заказа из 72).
           </div>
         </div>
 
-        <!-- LAST ORDERS -->
+        <!-- 🛒 Last orders -->
         <div class="ic-app-section">
-          <div class="ic-app-section-title">Последние заказы</div>
+          <div class="ic-app-section-title">🛒 Последние заказы</div>
           <div style="display: grid; gap: 0.35rem; font-size: 0.78rem;">
-            <div style="display: flex; justify-content: space-between; padding: 0.35rem 0.55rem; background: var(--bg-4); border-radius: 4px;">
-              <span>4 апр · M+ 20 Boost</span><strong style="color: var(--green);">$420</strong>
+            <div style="display: flex; justify-content: space-between; padding: 0.4rem 0.6rem; background: var(--bg-4); border-radius: 4px;">
+              <div><strong>M+ 20 Boost</strong><div class="muted" style="font-size: 0.7rem;">4 апр · Kostya_GG</div></div>
+              <strong style="color: var(--green);">$420</strong>
             </div>
-            <div style="display: flex; justify-content: space-between; padding: 0.35rem 0.55rem; background: var(--bg-4); border-radius: 4px;">
-              <span>10 мар · Glory Raider</span><strong style="color: var(--green);">$780</strong>
+            <div style="display: flex; justify-content: space-between; padding: 0.4rem 0.6rem; background: var(--bg-4); border-radius: 4px;">
+              <div><strong>Glory of the Raider</strong><div class="muted" style="font-size: 0.7rem;">10 мар · Pavel_BST</div></div>
+              <strong style="color: var(--green);">$780</strong>
             </div>
-            <div style="display: flex; justify-content: space-between; padding: 0.35rem 0.55rem; background: var(--bg-4); border-radius: 4px;">
-              <span>8 фев · PvP Arena 2400</span><strong style="color: var(--green);">$340</strong>
+            <div style="display: flex; justify-content: space-between; padding: 0.4rem 0.6rem; background: var(--bg-4); border-radius: 4px;">
+              <div><strong>PvP Arena 2400</strong><div class="muted" style="font-size: 0.7rem;">8 фев · Kostya_GG</div></div>
+              <strong style="color: var(--green);">$340</strong>
             </div>
-            <div style="display: flex; justify-content: space-between; padding: 0.35rem 0.55rem; background: var(--bg-4); border-radius: 4px;">
-              <span>11 янв · Coaching 5h</span><strong style="color: var(--green);">$280</strong>
-            </div>
-          </div>
-          <div class="muted small" style="text-align: center; margin-top: 0.45rem;">+ ещё 68 заказов · открыть карточку</div>
-        </div>
-
-        <!-- AI RECOMMENDATIONS -->
-        <div class="ic-app-section">
-          <div class="ic-app-section-title">💡 Что предложить (AI + game state)</div>
-          <div class="ic-rec-list">
-            <div class="ic-rec" onclick="alert('Создан draft offer на $420')">
-              <div class="ic-rec-title">M+ push 2847 → 3000+<span class="ic-rec-price">$420</span></div>
-              <div class="ic-rec-why">Сейчас спросил про M+. До titulа cutoff 3100 — остаётся 253 score. Совпадает с обычным циклом покупки.</div>
-            </div>
-            <div class="ic-rec" onclick="alert('Создан draft offer на $720')">
-              <div class="ic-rec-title">Glory of the Vault Raider<span class="ic-rec-price">$720</span></div>
-              <div class="ic-rec-why">Battle.net: 8 из 12 ачивок сделано. Заказывал Glory of Aberrus в марте, любит коллекционировать mounts.</div>
-            </div>
-            <div class="ic-rec" onclick="alert('Создан draft offer на $380')">
-              <div class="ic-rec-title">PvP 2310 → 2400 push<span class="ic-rec-price">$380</span></div>
-              <div class="ic-rec-why">Battle.net: 2310 rating, Gladiator cutoff 2350. Делал в феврале, может вернуться.</div>
+            <div style="display: flex; justify-content: space-between; padding: 0.4rem 0.6rem; background: var(--bg-4); border-radius: 4px;">
+              <div><strong>Coaching 5h</strong><div class="muted" style="font-size: 0.7rem;">11 янв · Maxim_Pro</div></div>
+              <strong style="color: var(--green);">$280</strong>
             </div>
           </div>
+          <div class="muted small" style="text-align: center; margin-top: 0.45rem;">+ ещё 68 заказов · <span style="color: var(--accent); cursor: pointer;">открыть полную историю →</span></div>
         </div>
 
-        <!-- ACTIONS -->
+        <!-- 💡 RECOMMENDATIONS WITH READY-TO-COPY MESSAGES -->
+        <div class="ic-app-section" style="border-color: var(--accent); border-width: 1.5px;">
+          <div class="ic-app-section-title" style="color: var(--accent);">💡 Что предложить · готовые сообщения</div>
+          <div class="muted small" style="margin-bottom: 0.7rem; font-size: 0.74rem; line-height: 1.4;">
+            AI сгенерировал персональные тексты на основе истории заказов, любимого исполнителя и контекста чата. Клик «Скопировать» — и вставляй в чат.
+          </div>
+
+          <!-- Recommendation 1: M+ push (matches current chat question) -->
+          <div style="background: var(--bg-4); border-radius: 8px; padding: 0.8rem; margin-bottom: 0.55rem; border-left: 3px solid var(--accent);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.45rem; gap: 0.5rem;">
+              <div>
+                <div style="font-weight: 700; font-size: 0.88rem;">🎯 M+ push 2847 → 3000+</div>
+                <div class="muted small" style="font-size: 0.72rem;">Marcus сейчас спросил про M+ — это hot момент</div>
+              </div>
+              <div style="text-align: right;">
+                <div style="color: var(--green); font-weight: 700; font-size: 1rem;">$420</div>
+                <div class="muted small" style="font-size: 0.7rem;">маржа $215</div>
+              </div>
+            </div>
+            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.65rem 0.8rem; font-size: 0.8rem; line-height: 1.5; color: var(--text); margin-bottom: 0.55rem;">
+              «Привет, Marcus! 👋 Спасибо за вопрос. Видел твой M+ score сейчас 2847 — до title cutoff S4 (3100) остаётся 253 очка, реально дотягиваемся. У нас есть пакет push до 3000+ за <strong>$420</strong>, обычно делаем с <strong>Kostya_GG</strong> (он тебе делал в прошлый раз и в феврале — отзывы 5/5). Как раз 4 апреля ты у нас брал M+ 20 Boost, всё прошло идеально. Хочешь — забронирую на эту неделю?»
+            </div>
+            <div style="display: flex; gap: 0.4rem;">
+              <button class="ic-tab-btn" style="flex: 1;" onclick="copyMsg(this, 'rec1')">📋 Скопировать</button>
+              <button class="ic-tab-btn" style="flex: 1; background: var(--accent); color: var(--bg); font-weight: 700;" onclick="alert('Сообщение вставлено в композер. Проверь и отправь.')">✉️ Вставить в чат</button>
+            </div>
+          </div>
+
+          <!-- Recommendation 2: Glory of the Vault -->
+          <div style="background: var(--bg-4); border-radius: 8px; padding: 0.8rem; margin-bottom: 0.55rem; border-left: 3px solid var(--crown);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.45rem; gap: 0.5rem;">
+              <div>
+                <div style="font-weight: 700; font-size: 0.88rem;">🏆 Glory of the Vault Raider</div>
+                <div class="muted small" style="font-size: 0.72rem;">Battle.net: 8 из 12 ачивок · недостающие 4</div>
+              </div>
+              <div style="text-align: right;">
+                <div style="color: var(--green); font-weight: 700; font-size: 1rem;">$720</div>
+                <div class="muted small" style="font-size: 0.7rem;">маржа $370</div>
+              </div>
+            </div>
+            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.65rem 0.8rem; font-size: 0.8rem; line-height: 1.5; color: var(--text); margin-bottom: 0.55rem;">
+              «Кстати, посмотрел твой профиль — у тебя <strong>Glory of the Aberrus Raider</strong> закрыт ещё в марте (маунт «Aberrus Stormcaller» — красавчик 🐉). А вот по <strong>Glory of the Vault</strong> у тебя 8 из 12 — недостающие 4 рейда могу собрать комплектом за <strong>$720</strong>, маунт «Vault Crawler» в коллекцию. После Aberrus’а хорошо ляжет. Если интересно — посмотри какие у тебя свободные вечера, подберём состав.»
+            </div>
+            <div style="display: flex; gap: 0.4rem;">
+              <button class="ic-tab-btn" style="flex: 1;" onclick="copyMsg(this, 'rec2')">📋 Скопировать</button>
+              <button class="ic-tab-btn" style="flex: 1; background: var(--accent); color: var(--bg); font-weight: 700;" onclick="alert('Сообщение вставлено в композер. Проверь и отправь.')">✉️ Вставить в чат</button>
+            </div>
+          </div>
+
+          <!-- Recommendation 3: feedback + PvP -->
+          <div style="background: var(--bg-4); border-radius: 8px; padding: 0.8rem; margin-bottom: 0.55rem; border-left: 3px solid var(--diamond);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.45rem; gap: 0.5rem;">
+              <div>
+                <div style="font-weight: 700; font-size: 0.88rem;">⚔️ PvP 2310 → 2400 (Glad cutoff)</div>
+                <div class="muted small" style="font-size: 0.72rem;">+ feedback по прошлому заказу</div>
+              </div>
+              <div style="text-align: right;">
+                <div style="color: var(--green); font-weight: 700; font-size: 1rem;">$380</div>
+                <div class="muted small" style="font-size: 0.7rem;">маржа $190</div>
+              </div>
+            </div>
+            <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.65rem 0.8rem; font-size: 0.8rem; line-height: 1.5; color: var(--text); margin-bottom: 0.55rem;">
+              «И вот ещё момент — раз уж мы тут — твой <strong>M+ 20 Boost от 4 апреля прошёл как тебе</strong>? Если что не так — скажи, разберёмся. И если будет настроение — у тебя сейчас <strong>PvP rating 2310</strong>, до Gladiator cutoff (2350) остаётся буквально 40 очков. Один good evening и ты в топе. Гарантированный 2400+ — <strong>$380</strong>. В феврале ты брал PvP, всё было ок — можем подключить того же Kostya.»
+            </div>
+            <div style="display: flex; gap: 0.4rem;">
+              <button class="ic-tab-btn" style="flex: 1;" onclick="copyMsg(this, 'rec3')">📋 Скопировать</button>
+              <button class="ic-tab-btn" style="flex: 1; background: var(--accent); color: var(--bg); font-weight: 700;" onclick="alert('Сообщение вставлено в композер. Проверь и отправь.')">✉️ Вставить в чат</button>
+            </div>
+          </div>
+
+          <button class="ic-tab-btn" style="width: 100%; margin-top: 0.3rem;" onclick="alert('Регенерация: попросить AI переписать в другом тоне (формальный / дружеский / краткий)')">🔄 Перегенерировать в другом тоне</button>
+        </div>
+
+        <!-- Quick actions footer -->
         <div class="ic-app-section">
           <div class="ic-app-section-title">Действия</div>
           <div class="ic-tab-buttons">
@@ -2190,6 +2245,21 @@ function enterApp(role) {
   document.getElementById('app-intercom').classList.remove('active');
   document.getElementById('app-' + role).classList.add('active');
   if (role === 'manager') setTimeout(showAutoAssignToast, 1500);
+}
+function copyMsg(btn, recId) {
+  const msgBox = btn.closest('div').previousElementSibling;
+  const text = msgBox.innerText;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.innerHTML;
+      btn.innerHTML = '✅ Скопировано';
+      btn.style.background = 'var(--green)';
+      btn.style.color = 'var(--bg)';
+      setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.style.color = ''; }, 1800);
+    });
+  } else {
+    alert('Скопировано:\n\n' + text);
+  }
 }
 function enterIntercom() {
   document.getElementById('landing').style.display = 'none';
