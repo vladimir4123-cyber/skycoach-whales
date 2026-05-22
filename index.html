@@ -883,21 +883,189 @@
     <div class="page-header">
       <div>
         <div class="page-title">Whale Health · Май 2026</div>
-        <div class="page-sub">22 мая, пятница · еженедельный обзор</div>
+        <div class="page-sub">22 мая, пятница · еженедельный обзор · фокус v1: Ruby (топ-250)</div>
       </div>
       <div class="filters">
+        <span class="muted small">Период:</span>
         <div class="filter-chip">Неделя</div>
-        <div class="filter-chip active">Месяц</div>
-        <div class="filter-chip">Квартал</div>
-        <div class="filter-chip">Год</div>
+        <div class="filter-chip active">MTD</div>
+        <div class="filter-chip">QTD</div>
+        <div class="filter-chip">YTD</div>
+        <span class="muted small" style="margin-left: 1rem;">Сравнить с:</span>
+        <div class="filter-chip">ЛП месяц</div>
+        <div class="filter-chip active">ЛП квартал</div>
+        <div class="filter-chip">ЛП год</div>
       </div>
     </div>
 
+    <!-- BLOCK 1: TOTAL ECONOMICS -->
+    <div class="section" style="background: linear-gradient(135deg, var(--bg-2), var(--bg-3));">
+      <div class="section-header">
+        <div>
+          <div class="section-title">💰 Whale Economics · общая картина · май 2026 (MTD, 22 дня из 31)</div>
+          <div class="section-sub">Откуда приходит выручка компании. Сравнение с Q1 2026.</div>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 1.5rem; margin-bottom: 1.25rem;">
+        <div>
+          <div class="muted small">Общий GMV месяца</div>
+          <div style="font-size: 2.4rem; font-weight: 800; line-height: 1.1; margin: 0.3rem 0;">$2.04M</div>
+          <div class="muted small">прогноз май: $2.87M (vs $2.79M апрель, <strong style="color: var(--green);">+3%</strong>)</div>
+          <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+            <div class="muted small">Доля китов в обороте (Crown+Diamond+Ruby)</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: var(--ruby);">50.4%</div>
+            <div class="muted small">vs Q1 50.1% · <strong style="color: var(--green);">+0.3pp</strong></div>
+          </div>
+          <div style="margin-top: 1rem;">
+            <div class="muted small">% базы, которая даёт эти 50%</div>
+            <div style="font-size: 1.4rem; font-weight: 700;">5.0%</div>
+            <div class="muted small">17,950 из 356,250 · vs Q1 было 5.0% при 16,900</div>
+          </div>
+        </div>
+        <div>
+          <div class="muted small" style="margin-bottom: 0.6rem;">Откуда $1 SkyCoach (доля каждого тира в GMV месяца)</div>
+          <!-- Stacked horizontal bar -->
+          <div style="display: flex; height: 56px; border-radius: 8px; overflow: hidden; margin-bottom: 1rem; border: 1px solid var(--border);">
+            <div style="width: 8%; background: var(--ruby); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: white;" title="Ruby 8%">Ruby 8%</div>
+            <div style="width: 16%; background: var(--diamond); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: var(--bg);" title="Diamond 16%">Diamond 16%</div>
+            <div style="width: 26%; background: var(--crown); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: var(--bg);" title="Crown 26%">Crown 26%</div>
+            <div style="width: 25%; background: var(--dolphin); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: var(--bg);" title="Dolphin 25%">Dolphin 25%</div>
+            <div style="width: 25%; background: var(--bg-4); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: var(--text-2);" title="Plankton 25%">Plankton 25%</div>
+          </div>
+          <!-- vs Q1 -->
+          <div class="muted small" style="margin-bottom: 0.4rem;">Для сравнения · Q1 2026</div>
+          <div style="display: flex; height: 24px; border-radius: 6px; overflow: hidden; opacity: 0.7; border: 1px solid var(--border);">
+            <div style="width: 9%; background: var(--ruby);"></div>
+            <div style="width: 15%; background: var(--diamond);"></div>
+            <div style="width: 26%; background: var(--crown);"></div>
+            <div style="width: 24%; background: var(--dolphin);"></div>
+            <div style="width: 26%; background: var(--bg-4);"></div>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-3); margin-top: 0.3rem;">
+            <span>Ruby ↓ 9→8%</span><span>Diamond ↑ 15→16%</span><span>Crown =</span><span>Dolphin ↑ 24→25%</span><span>Plankton ↓ 26→25%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 2: TIER BREAKDOWN CARDS -->
+    <div class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-title">🎯 Разбивка по тирам · кто сколько весит</div>
+          <div class="section-sub">Текущий месяц · клик на тир → список клиентов</div>
+        </div>
+        <div class="section-action">Tier movements →</div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem;">
+
+        <!-- Ruby -->
+        <div onclick="alert('Список 250 Ruby — открывается отдельной страницей')" style="background: var(--bg-3); border: 1px solid rgba(227, 74, 111, 0.4); border-left: 4px solid var(--ruby); border-radius: 8px; padding: 1rem; cursor: pointer;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span class="tier-badge tier-ruby">🔴 Ruby</span>
+            <span class="muted small">$10K+</span>
+          </div>
+          <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 0.5rem;">Суперкиты</div>
+          <div style="font-size: 1.7rem; font-weight: 800; line-height: 1;">$163K</div>
+          <div class="muted small" style="margin-bottom: 0.6rem;">8% GMV · <span style="color: var(--green);">+$8K</span> vs Q1</div>
+          <div style="padding-top: 0.5rem; border-top: 1px solid var(--border); display: grid; gap: 0.25rem; font-size: 0.78rem;">
+            <div style="display: flex; justify-content: space-between;"><span class="muted">Чел в тире</span><strong>250</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">% базы</span><strong>0.07%</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">Active MTD</span><strong style="color: var(--green);">218</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">avg LTV</span><strong>$19.2K</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">vs Q1: чел</span><span style="color: var(--green);">+8</span></div>
+          </div>
+        </div>
+
+        <!-- Diamond -->
+        <div onclick="alert('Diamond drill-down')" style="background: var(--bg-3); border: 1px solid rgba(78, 205, 196, 0.4); border-left: 4px solid var(--diamond); border-radius: 8px; padding: 1rem; cursor: pointer;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span class="tier-badge tier-diamond">🔷 Diamond</span>
+            <span class="muted small">$3–10K</span>
+          </div>
+          <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 0.5rem;">Мега-киты</div>
+          <div style="font-size: 1.7rem; font-weight: 800; line-height: 1;">$326K</div>
+          <div class="muted small" style="margin-bottom: 0.6rem;">16% GMV · <span style="color: var(--green);">+$24K</span> vs Q1</div>
+          <div style="padding-top: 0.5rem; border-top: 1px solid var(--border); display: grid; gap: 0.25rem; font-size: 0.78rem;">
+            <div style="display: flex; justify-content: space-between;"><span class="muted">Чел в тире</span><strong>1,420</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">% базы</span><strong>0.4%</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">Active MTD</span><strong style="color: var(--green);">1,180</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">avg LTV</span><strong>$5.4K</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">vs Q1: чел</span><span style="color: var(--green);">+62</span></div>
+          </div>
+        </div>
+
+        <!-- Crown -->
+        <div onclick="alert('Crown drill-down')" style="background: var(--bg-3); border: 1px solid rgba(244, 197, 66, 0.4); border-left: 4px solid var(--crown); border-radius: 8px; padding: 1rem; cursor: pointer;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span class="tier-badge tier-crown">👑 Crown</span>
+            <span class="muted small">$1–3K</span>
+          </div>
+          <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 0.5rem;">Киты</div>
+          <div style="font-size: 1.7rem; font-weight: 800; line-height: 1;">$531K</div>
+          <div class="muted small" style="margin-bottom: 0.6rem;">26% GMV · <span class="muted">=</span> vs Q1</div>
+          <div style="padding-top: 0.5rem; border-top: 1px solid var(--border); display: grid; gap: 0.25rem; font-size: 0.78rem;">
+            <div style="display: flex; justify-content: space-between;"><span class="muted">Чел в тире</span><strong>16,280</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">% базы</span><strong>4.6%</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">Active MTD</span><strong>11,400</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">avg LTV</span><strong>$1.8K</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">vs Q1: чел</span><span style="color: var(--green);">+340</span></div>
+          </div>
+        </div>
+
+        <!-- Dolphin -->
+        <div onclick="alert('Dolphin drill-down')" style="background: var(--bg-3); border: 1px solid rgba(163, 184, 208, 0.4); border-left: 4px solid var(--dolphin); border-radius: 8px; padding: 1rem; cursor: pointer;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span class="tier-badge tier-dolphin">🐬 Dolphin</span>
+            <span class="muted small">$300–1K</span>
+          </div>
+          <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 0.5rem;">Дельфины</div>
+          <div style="font-size: 1.7rem; font-weight: 800; line-height: 1;">$510K</div>
+          <div class="muted small" style="margin-bottom: 0.6rem;">25% GMV · <span style="color: var(--green);">+$12K</span> vs Q1</div>
+          <div style="padding-top: 0.5rem; border-top: 1px solid var(--border); display: grid; gap: 0.25rem; font-size: 0.78rem;">
+            <div style="display: flex; justify-content: space-between;"><span class="muted">Чел в тире</span><strong>52,400</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">% базы</span><strong>14.7%</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">Active MTD</span><strong>22,800</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">avg LTV</span><strong>$580</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">vs Q1: чел</span><span style="color: var(--green);">+1,800</span></div>
+          </div>
+        </div>
+
+        <!-- Plankton -->
+        <div style="background: var(--bg-3); border: 1px solid var(--border); border-left: 4px solid var(--bg-4); border-radius: 8px; padding: 1rem; opacity: 0.85;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span class="tier-badge" style="background: var(--bg-4); color: var(--text-2);">⚫ Plankton</span>
+            <span class="muted small">&lt;$300</span>
+          </div>
+          <div style="font-weight: 700; font-size: 0.92rem; margin-bottom: 0.5rem;">Планктон</div>
+          <div style="font-size: 1.7rem; font-weight: 800; line-height: 1;">$510K</div>
+          <div class="muted small" style="margin-bottom: 0.6rem;">25% GMV · <span style="color: var(--orange);">−$8K</span> vs Q1</div>
+          <div style="padding-top: 0.5rem; border-top: 1px solid var(--border); display: grid; gap: 0.25rem; font-size: 0.78rem;">
+            <div style="display: flex; justify-content: space-between;"><span class="muted">Чел в тире</span><strong>285,900</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">% базы</span><strong>80.3%</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">Active MTD</span><strong>62,400</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">avg LTV</span><strong>$42</strong></div>
+            <div style="display: flex; justify-content: space-between;"><span class="muted">scope v1</span><span class="muted">вне</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOCK 3: KEY INSIGHT -->
+    <div class="alert-banner" style="background: linear-gradient(135deg, rgba(244, 197, 66, 0.12), rgba(227, 74, 111, 0.08)); border-color: var(--crown);">
+      <div class="alert-icon" style="background: var(--crown);">💡</div>
+      <div class="alert-text">
+        <div class="alert-title">Концентрация выручки растёт качественно</div>
+        <div class="alert-sub">В Q1 топ-5% базы (Ruby+Diamond+Crown) дали 50.1% GMV при 16,900 человек. В мае — 50.4% GMV при 17,950. То есть киты НЕ перестают расти, просто их становится больше. Это значит работа выращивания pre-whale → Crown работает: <strong style="color: var(--crown);">+1,050 новых клиентов в whale-сегментах за квартал</strong>.</div>
+      </div>
+    </div>
+
+    <!-- BLOCK 4: OLD KPI ROW (now focused on Ruby) -->
     <div class="kpi-row">
-      <div class="kpi"><div class="kpi-label">Ruby active / total</div><div class="kpi-value">218 / 250</div><div class="kpi-delta up">87% · +2 за неделю</div></div>
-      <div class="kpi"><div class="kpi-label">Ruby GMV share, MTD</div><div class="kpi-value">31%</div><div class="kpi-delta up">+3pp к ЛП</div></div>
+      <div class="kpi"><div class="kpi-label">🔴 Ruby active / total</div><div class="kpi-value">218 / 250</div><div class="kpi-delta up">87% · +2 за неделю</div></div>
+      <div class="kpi"><div class="kpi-label">🔴 Ruby GMV, MTD</div><div class="kpi-value">$163K</div><div class="kpi-delta up">8% от компании · +$8K vs Q1</div></div>
       <div class="kpi"><div class="kpi-label">Возвращено за неделю</div><div class="kpi-value">12 китов</div><div class="kpi-delta up">$34,200 GMV</div></div>
-      <div class="kpi"><div class="kpi-label">В зоне риска</div><div class="kpi-value">18</div><div class="kpi-delta bad">+3 за неделю</div></div>
+      <div class="kpi"><div class="kpi-label">Ruby в зоне риска</div><div class="kpi-value">18</div><div class="kpi-delta bad">+3 за неделю</div></div>
     </div>
 
     <div class="section">
