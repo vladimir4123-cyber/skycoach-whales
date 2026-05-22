@@ -232,6 +232,55 @@
   .view { display: none; }
   .view.active { display: block; }
 
+  /* Tabs */
+  .tabs-row { display: flex; gap: 0.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.25rem; }
+  .tab-btn { padding: 0.7rem 1.1rem; cursor: pointer; color: var(--text-2); font-size: 0.9rem; border-bottom: 2px solid transparent; transition: all 0.15s; display: flex; align-items: center; gap: 0.4rem; user-select: none; }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-btn .badge { background: var(--bg-3); padding: 0.1rem 0.45rem; border-radius: 8px; font-size: 0.75rem; }
+  .tab-btn.active .badge { background: var(--accent); color: var(--bg); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Donut chart for tier breakdown */
+  .donut-block { display: grid; grid-template-columns: 280px 1fr; gap: 2rem; align-items: center; }
+  .donut-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
+  .donut-center { position: absolute; text-align: center; }
+  .donut-center-label { color: var(--text-2); font-size: 0.78rem; margin-bottom: 0.2rem; }
+  .donut-center-value { font-size: 1.8rem; font-weight: 800; line-height: 1; }
+  .donut-center-sub { color: var(--text-2); font-size: 0.78rem; margin-top: 0.3rem; }
+  .donut-legend { display: grid; gap: 0.65rem; }
+  .legend-row { display: grid; grid-template-columns: 16px 1fr auto auto auto; gap: 0.75rem; align-items: center; font-size: 0.86rem; padding: 0.5rem 0.65rem; border-radius: 6px; transition: background 0.15s; cursor: pointer; }
+  .legend-row:hover { background: var(--bg-3); }
+  .legend-swatch { width: 14px; height: 14px; border-radius: 4px; }
+  .legend-name { font-weight: 600; }
+  .legend-pct { font-weight: 700; min-width: 50px; text-align: right; }
+  .legend-gmv { color: var(--text-2); min-width: 80px; text-align: right; font-size: 0.82rem; }
+  .legend-delta { min-width: 70px; text-align: right; font-size: 0.78rem; }
+
+  /* Task type chips */
+  .ttype { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; }
+  .ttype-contact { background: rgba(0, 212, 255, 0.15); color: var(--accent); }
+  .ttype-sell { background: rgba(74, 222, 128, 0.15); color: var(--green); }
+  .ttype-upsell { background: rgba(244, 197, 66, 0.15); color: var(--crown); }
+  .ttype-critical { background: rgba(239, 68, 68, 0.18); color: var(--red); }
+  .ttype-risk { background: rgba(251, 146, 60, 0.18); color: var(--orange); }
+  .ttype-birthday { background: rgba(167, 139, 250, 0.15); color: var(--purple); }
+
+  /* Outcome pill */
+  .outcome { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.72rem; font-weight: 600; }
+  .out-bought { background: rgba(74, 222, 128, 0.18); color: var(--green); }
+  .out-promised { background: rgba(0, 212, 255, 0.15); color: var(--accent); }
+  .out-pending { background: rgba(163, 184, 208, 0.15); color: var(--dolphin); }
+  .out-refused { background: rgba(239, 68, 68, 0.15); color: var(--red); }
+  .out-silent { background: rgba(251, 146, 60, 0.15); color: var(--orange); }
+
+  /* Manager profile (drilldown) */
+  .mgr-header-card { background: linear-gradient(135deg, var(--bg-2), var(--bg-3)); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.25rem; display: grid; grid-template-columns: 80px 1fr auto; gap: 1.5rem; align-items: center; }
+  .mgr-avatar-big { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--ruby)); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 2rem; color: var(--bg); }
+  .mgr-name { font-size: 1.5rem; font-weight: 700; }
+  .mgr-meta { color: var(--text-2); font-size: 0.86rem; margin-top: 0.2rem; }
+
   /* Analytics view */
   .analytics-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
   .plan-card { background: var(--bg-2); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; }
@@ -320,7 +369,7 @@
     <div class="sidebar-role"><span class="role-dot"></span>Менеджер · Сергей</div>
     <div class="nav-section">Работа</div>
     <div class="nav-item active" onclick="switchView(this, 'today')">🔥 <span>Сегодня</span><span class="count">14</span></div>
-    <div class="nav-item" onclick="switchView(this, 'rubies')">🐋 <span>Мои Ruby</span><span class="count">24</span></div>
+    <div class="nav-item" onclick="switchView(this, 'rubies')">🐋 <span>Киты</span><span class="count">32</span></div>
     <div class="nav-item" onclick="switchView(this, 'tasks')">📋 <span>Задачи</span><span class="count red">12</span></div>
     <div class="nav-item" onclick="switchView(this, 'analytics')">📊 <span>Моя аналитика</span></div>
     <div class="nav-section">Связь</div>
@@ -823,37 +872,149 @@
       </div>
     </div>
 
-    <!-- VIEW: MY RUBIES (placeholder) -->
+    <!-- VIEW: KITS (renamed from "Мои Ruby") -->
     <div class="view" data-view="rubies">
       <div class="page-header">
         <div>
-          <div class="page-title">🐋 Все мои Ruby · 24</div>
-          <div class="page-sub">Закреплённые за тобой · отсортировано по риску</div>
-        </div>
-        <div class="filters">
-          <div class="filter-chip active">Все</div>
-          <div class="filter-chip">Active</div>
-          <div class="filter-chip">At-risk</div>
-          <div class="filter-chip">Hibernating</div>
+          <div class="page-title">🐋 Мои Киты</div>
+          <div class="page-sub">Твоя клиентская база: активные · в зоне риска · песочница Pre-Ruby (выращивание)</div>
         </div>
       </div>
-      <div class="section">
-        <table class="table">
-          <thead><tr><th>Кит</th><th>Игра</th><th>LTV</th><th>Spend май</th><th>Last order</th><th>Цикл</th><th>Статус</th><th>Discord</th></tr></thead>
-          <tbody>
-            <tr onclick="openWhale('grimm')"><td><strong>GrimmRaider</strong></td><td>WoW Classic</td><td>$24,300</td><td>$0</td><td>48 дн</td><td>28±5</td><td><span class="status-pill status-risk">at-risk</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
-            <tr onclick="openWhale('phoenix')"><td><strong>Phoenix_Hunter</strong></td><td>Destiny 2</td><td>$18,650</td><td>$0</td><td>32 дн</td><td>21±4</td><td><span class="status-pill status-risk">at-risk</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
-            <tr onclick="openWhale('nyx')"><td><strong>Nyx_Shadow</strong></td><td>Destiny / D4</td><td>$15,200</td><td>$3,600</td><td>1 дн</td><td>14±3</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-invited"></span>inv</td></tr>
-            <tr onclick="openWhale('vex')"><td><strong>VexMachina</strong></td><td>WoW Retail</td><td>$12,800</td><td>$3,920</td><td>6 дн</td><td>18±4</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
-            <tr onclick="openWhale('iron')"><td><strong>IronWolfPL</strong></td><td>Diablo IV</td><td>$11,400</td><td>$4,800</td><td>5 дн</td><td>22±5</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
-            <tr onclick="openWhale('thorin')"><td><strong>ThorinBeast</strong></td><td>WoW Classic</td><td>$10,750</td><td>$0</td><td>96 дн</td><td>45±10</td><td><span class="status-pill status-hibernate">hibernate</span></td><td><span class="discord-dot discord-none"></span>—</td></tr>
-            <tr><td><strong>SilverStorm_K</strong></td><td>WoW Retail</td><td>$13,200</td><td>$1,840</td><td>18 дн</td><td>30±6</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
-            <tr><td><strong>MoonWalker99</strong></td><td>Diablo IV</td><td>$10,800</td><td>$2,200</td><td>12 дн</td><td>20±5</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-invited"></span>inv</td></tr>
-            <tr><td><strong>Wraith_Lord</strong></td><td>WoW Classic</td><td>$22,400</td><td>$1,420</td><td>9 дн</td><td>15±4</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
-            <tr><td><strong>Crimson_Tide</strong></td><td>WoW Classic</td><td>$13,800</td><td>$2,800</td><td>2 дн</td><td>14±3</td><td><span class="status-pill status-active">active</span></td><td><span class="discord-dot discord-connected"></span>on</td></tr>
-          </tbody>
-        </table>
-        <div class="muted small" style="text-align: center; padding-top: 1rem;">+ ещё 14 закреплённых китов</div>
+
+      <div class="tabs-container">
+        <div class="tabs-row">
+          <div class="tab-btn active" onclick="switchTab(this, 'kits-active')">🟢 <strong>Активные</strong> <span class="badge">22</span></div>
+          <div class="tab-btn" onclick="switchTab(this, 'kits-risk')">🟡 <strong>В зоне риска</strong> <span class="badge">5</span></div>
+          <div class="tab-btn" onclick="switchTab(this, 'kits-sandbox')">🌱 <strong>Песочница · Pre-Ruby</strong> <span class="badge">8</span></div>
+          <div class="tab-btn" onclick="switchTab(this, 'kits-recommend')">💡 <strong>Рекомендуется связаться</strong> <span class="badge">11</span></div>
+        </div>
+
+        <!-- TAB: Active -->
+        <div class="tab-content active" data-tab="kits-active">
+          <div class="section">
+            <div class="section-header">
+              <div>
+                <div class="section-title">🟢 Активные киты · купили в мае</div>
+                <div class="section-sub">22 из 24 твоих Ruby сделали хотя бы один заказ в этом месяце</div>
+              </div>
+              <div class="filters">
+                <div class="filter-chip">Все игры</div>
+                <div class="filter-chip">WoW</div>
+                <div class="filter-chip">Diablo</div>
+                <div class="filter-chip">Destiny</div>
+              </div>
+            </div>
+            <table class="table">
+              <thead><tr><th>Кит</th><th>Игра</th><th>LTV</th><th>Spend май</th><th>Last order</th><th>Цикл</th><th>Discord</th></tr></thead>
+              <tbody>
+                <tr onclick="openWhale('iron')"><td><strong>IronWolfPL</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>Diablo IV</td><td>$11,400</td><td><strong style="color: var(--green);">$4,800</strong></td><td>5 дн</td><td>22±5</td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+                <tr onclick="openWhale('vex')"><td><strong>VexMachina</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>WoW Retail</td><td>$12,800</td><td><strong style="color: var(--green);">$3,920</strong></td><td>6 дн</td><td>18±4</td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+                <tr onclick="openWhale('nyx')"><td><strong>Nyx_Shadow</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>Destiny/D4</td><td>$15,200</td><td>$3,600</td><td>1 дн</td><td>14±3</td><td><span class="discord-dot discord-invited"></span>inv</td></tr>
+                <tr><td><strong>Crimson_Tide</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>WoW Classic</td><td>$13,800</td><td>$2,800</td><td>2 дн</td><td>14±3</td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+                <tr><td><strong>BlackHawk_42</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>WoW Classic</td><td>$16,200</td><td>$2,640</td><td>8 дн</td><td>16±4</td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+                <tr><td><strong>Wraith_Lord</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>WoW Classic</td><td>$22,400</td><td>$1,420</td><td>9 дн</td><td>15±4</td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+                <tr><td><strong>SilverStorm_K</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>WoW Retail</td><td>$13,200</td><td>$1,840</td><td>18 дн</td><td>30±6</td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+                <tr><td><strong>MoonWalker99</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>Diablo IV</td><td>$10,800</td><td>$2,200</td><td>12 дн</td><td>20±5</td><td><span class="discord-dot discord-invited"></span>inv</td></tr>
+              </tbody>
+            </table>
+            <div class="muted small" style="text-align: center; padding-top: 1rem;">+ ещё 14 активных</div>
+          </div>
+        </div>
+
+        <!-- TAB: Risk -->
+        <div class="tab-content" data-tab="kits-risk">
+          <div class="alert-banner" style="background: linear-gradient(135deg, rgba(251, 146, 60, 0.12), rgba(239, 68, 68, 0.08)); border-color: var(--orange);">
+            <div class="alert-icon" style="background: var(--orange);">⚠️</div>
+            <div class="alert-text">
+              <div class="alert-title">5 твоих Ruby в зоне риска · $90,500 LTV под угрозой</div>
+              <div class="alert-sub">Это киты, у которых пропущен ожидаемый цикл покупки И в их main_game был релевантный релиз. Связаться приоритетно.</div>
+            </div>
+            <button class="btn btn-primary btn-lg">Создать 5 задач outreach</button>
+          </div>
+          <div class="section">
+            <table class="table">
+              <thead><tr><th>Кит</th><th>Игра</th><th>LTV</th><th>Last order</th><th>Норм. цикл</th><th>Триггер риска</th><th>Discord</th></tr></thead>
+              <tbody>
+                <tr onclick="openWhale('grimm')"><td><strong>GrimmRaider</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>WoW Classic</td><td>$24,300</td><td style="color: var(--orange);">48 дн</td><td>28±5</td><td>S4 вышел 12 дн назад, тишина</td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+                <tr onclick="openWhale('phoenix')"><td><strong>Phoenix_Hunter</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>Destiny 2</td><td>$18,650</td><td style="color: var(--orange);">32 дн</td><td>21±4</td><td>Обычно за час отвечает, тишина</td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+                <tr><td><strong>NightOwl_DK</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>WoW Retail</td><td>$15,400</td><td style="color: var(--orange);">52 дн</td><td>30±6</td><td>Reset вышел, не покупал</td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+                <tr><td><strong>BloodMoon_X</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>Diablo IV</td><td>$12,100</td><td style="color: var(--orange);">68 дн</td><td>24±4</td><td>S5 уже сейчас, не зашёл</td><td><span class="discord-dot discord-invited"></span>inv</td></tr>
+                <tr><td><strong>SkyHunter_RU</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>WoW Classic</td><td>$20,050</td><td style="color: var(--orange);">41 дн</td><td>22±5</td><td>Last contact 35 дн</td><td><span class="discord-dot discord-connected"></span>on</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB: Sandbox / Pre-Ruby -->
+        <div class="tab-content" data-tab="kits-sandbox">
+          <div class="alert-banner" style="background: linear-gradient(135deg, rgba(167, 139, 250, 0.12), rgba(0, 212, 255, 0.06)); border-color: var(--purple);">
+            <div class="alert-icon" style="background: var(--purple);">🌱</div>
+            <div class="alert-text">
+              <div class="alert-title">8 кандидатов в Ruby · вырасти их</div>
+              <div class="alert-sub">Это клиенты с большими первыми заказами или быстрым ростом LTV. Сделай оффер, познакомься, добавь в Discord — есть шанс довести до Ruby.</div>
+            </div>
+          </div>
+          <div class="section">
+            <table class="table">
+              <thead><tr><th>Клиент</th><th>Игра</th><th>Текущий LTV</th><th>Score</th><th>Сигнал</th><th>Прогноз → Ruby</th></tr></thead>
+              <tbody>
+                <tr onclick="openWhale('dragon')"><td><strong>DragonSlayer_99</strong> <span class="tier-badge tier-prewhale">Pre-Ruby</span></td><td>WoW Classic</td><td>$840</td><td><strong style="color: var(--purple);">75/100</strong></td><td>Первый заказ $840 (12× ср.чека)</td><td style="color: var(--green);">~75 дней</td></tr>
+                <tr><td><strong>VoidStrider</strong> <span class="tier-badge tier-prewhale">Pre-Ruby</span></td><td>Destiny 2</td><td>$1,200</td><td><strong style="color: var(--purple);">82/100</strong></td><td>2-й заказ за 8 дней</td><td style="color: var(--green);">~60 дней</td></tr>
+                <tr><td><strong>FrostBorn_X</strong> <span class="tier-badge tier-prewhale">Pre-Ruby</span></td><td>WoW Retail</td><td>$640</td><td>65/100</td><td>Первый заказ $640</td><td>~110 дней</td></tr>
+                <tr><td><strong>ShadowEcho_2</strong> <span class="tier-badge tier-prewhale">Pre-Ruby</span></td><td>Diablo IV</td><td>$920</td><td>70/100</td><td>Cross-game активность</td><td>~90 дней</td></tr>
+                <tr><td><strong>Vulkan_Reborn</strong> <span class="tier-badge tier-prewhale">Pre-Ruby</span></td><td>WoW Classic</td><td>$1,580</td><td><strong style="color: var(--purple);">88/100</strong></td><td>Crown → быстрый рост к Ruby</td><td style="color: var(--green);">~45 дней</td></tr>
+                <tr><td><strong>EnderQueen</strong> <span class="tier-badge tier-prewhale">Pre-Ruby</span></td><td>Destiny 2</td><td>$1,140</td><td>72/100</td><td>VIP-tier interest</td><td>~70 дней</td></tr>
+                <tr><td><strong>StormCaller42</strong> <span class="tier-badge tier-prewhale">Pre-Ruby</span></td><td>WoW Retail</td><td>$780</td><td>62/100</td><td>3 заказа за месяц</td><td>~95 дней</td></tr>
+                <tr><td><strong>RoninBlade</strong> <span class="tier-badge tier-prewhale">Pre-Ruby</span></td><td>WoW Classic</td><td>$1,340</td><td>78/100</td><td>Заказы растут 2x</td><td>~55 дней</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB: Recommended to contact -->
+        <div class="tab-content" data-tab="kits-recommend">
+          <div class="section">
+            <div class="section-header">
+              <div>
+                <div class="section-title">💡 Система рекомендует связаться</div>
+                <div class="section-sub">Сводный лист: триггер NBA + предложение действия. Закрой по карточке кита.</div>
+              </div>
+            </div>
+            <div class="task-grid">
+              <div class="task-card urgent" onclick="openWhale('grimm')">
+                <div class="task-card-head"><div class="task-whale">GrimmRaider <span class="tier-badge tier-ruby">Ruby</span></div><span class="ttype ttype-risk">риск</span></div>
+                <div class="task-trigger">Цикл 28 дн, сейчас 48. S4 идёт.</div>
+                <div class="task-action">💬 Discord: «Видел S4 — пакет под старт?»</div>
+              </div>
+              <div class="task-card urgent" onclick="openWhale('phoenix')">
+                <div class="task-card-head"><div class="task-whale">Phoenix_Hunter <span class="tier-badge tier-ruby">Ruby</span></div><span class="ttype ttype-critical">критич.</span></div>
+                <div class="task-trigger">32 дня без касания. Mega-кит.</div>
+                <div class="task-action">💬 Touch-base без оффера</div>
+              </div>
+              <div class="task-card new-prewhale" onclick="openWhale('dragon')">
+                <div class="task-card-head"><div class="task-whale">DragonSlayer_99 <span class="tier-badge tier-prewhale">Pre-Ruby</span></div><span class="ttype ttype-contact">связаться</span></div>
+                <div class="task-trigger">Только что закреплён за тобой</div>
+                <div class="task-action">💬 «Спасибо за заказ, давай познакомимся»</div>
+              </div>
+              <div class="task-card warn" onclick="openWhale('nyx')">
+                <div class="task-card-head"><div class="task-whale">Nyx_Shadow <span class="tier-badge tier-ruby">Ruby</span></div><span class="ttype ttype-upsell">допродать</span></div>
+                <div class="task-trigger">Cross-game: первый D4 заказ</div>
+                <div class="task-action">💬 «D4 S5 starter покажу?»</div>
+              </div>
+              <div class="task-card success" onclick="openWhale('iron')">
+                <div class="task-card-head"><div class="task-whale">IronWolfPL <span class="tier-badge tier-ruby">Ruby</span></div><span class="ttype ttype-sell">продать</span></div>
+                <div class="task-trigger">Покупка 5 дн назад — впечатления + апсейл</div>
+                <div class="task-action">💬 «Как впечатления? + S5 starter»</div>
+              </div>
+              <div class="task-card celebrate" onclick="openWhale('wraith')">
+                <div class="task-card-head"><div class="task-whale">Wraith_Lord <span class="tier-badge tier-ruby">Ruby</span></div><span class="ttype ttype-birthday">ДР</span></div>
+                <div class="task-trigger">25 мая — ДР, готовь поздравление</div>
+                <div class="task-action">📝 Запланировать на 9:00 UTC 25.05</div>
+              </div>
+            </div>
+            <div class="muted small" style="text-align: center; padding-top: 1rem;">+ ещё 5 рекомендаций (показать все)</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -865,9 +1026,10 @@
     <div class="sidebar-logo">SkyCoach <span>Whales</span></div>
     <div class="sidebar-role"><span class="role-dot"></span>Руководитель · Семён</div>
     <div class="nav-section">Обзор</div>
-    <div class="nav-item active">📊 <span>Whale Health</span></div>
-    <div class="nav-item">👥 <span>Менеджеры</span><span class="count">4</span></div>
-    <div class="nav-item">🐋 <span>Все Ruby</span><span class="count">250</span></div>
+    <div class="nav-item active" onclick="switchView(this, 'health')">📊 <span>Whale Health</span></div>
+    <div class="nav-item" onclick="switchView(this, 'managers')">👥 <span>Менеджеры</span><span class="count">4</span></div>
+    <div class="nav-item" onclick="switchView(this, 'all-tasks')">📋 <span>Все задачи</span><span class="count red">38</span></div>
+    <div class="nav-item">🐋 <span>Все киты</span><span class="count">250</span></div>
     <div class="nav-item">🟡 <span>В зоне риска</span><span class="count">18</span></div>
     <div class="nav-item">🔄 <span>Reactivation</span><span class="count">47</span></div>
     <div class="nav-section">Разбор</div>
@@ -881,6 +1043,9 @@
   </aside>
 
   <div class="main">
+
+    <!-- ============ VIEW: HEALTH ============ -->
+    <div class="view active" data-view="health">
     <div class="page-header">
       <div>
         <div class="page-title">Whale Health · Май 2026</div>
@@ -899,51 +1064,88 @@
       </div>
     </div>
 
-    <!-- BLOCK 1: TOTAL ECONOMICS -->
+    <!-- BLOCK 1: TOTAL ECONOMICS · with DONUT -->
     <div class="section" style="background: linear-gradient(135deg, var(--bg-2), var(--bg-3));">
       <div class="section-header">
         <div>
           <div class="section-title">💰 Whale Economics · общая картина · май 2026 (MTD, 22 дня из 31)</div>
           <div class="section-sub">Откуда приходит выручка компании. Сравнение с Q1 2026.</div>
         </div>
+        <div class="filters">
+          <div class="filter-chip active">Май MTD</div>
+          <div class="filter-chip">Q1 для сравнения</div>
+        </div>
       </div>
-      <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 1.5rem; margin-bottom: 1.25rem;">
-        <div>
-          <div class="muted small">Общий GMV месяца</div>
-          <div style="font-size: 2.4rem; font-weight: 800; line-height: 1.1; margin: 0.3rem 0;">$2.04M</div>
-          <div class="muted small">прогноз май: $2.87M (vs $2.79M апрель, <strong style="color: var(--green);">+3%</strong>)</div>
-          <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border);">
-            <div class="muted small">Доля китов в обороте (Crown+Diamond+Ruby)</div>
-            <div style="font-size: 1.8rem; font-weight: 800; color: var(--ruby);">50.4%</div>
-            <div class="muted small">vs Q1 50.1% · <strong style="color: var(--green);">+0.3pp</strong></div>
-          </div>
-          <div style="margin-top: 1rem;">
-            <div class="muted small">% базы, которая даёт эти 50%</div>
-            <div style="font-size: 1.4rem; font-weight: 700;">5.0%</div>
-            <div class="muted small">17,950 из 356,250 · vs Q1 было 5.0% при 16,900</div>
+
+      <div class="donut-block">
+        <!-- DONUT CHART -->
+        <div class="donut-wrap">
+          <svg width="260" height="260" viewBox="0 0 260 260">
+            <!-- Donut: 8% Ruby, 16% Diamond, 26% Crown, 25% Dolphin, 25% Plankton -->
+            <!-- Center=130,130, radius=100, stroke-width=44 -->
+            <!-- Circumference = 2 * PI * 100 = 628.318 -->
+            <!-- 8%: 50.27, 16%: 100.53, 26%: 163.36, 25%: 157.08, 25%: 157.08 -->
+            <circle cx="130" cy="130" r="100" fill="none" stroke="var(--ruby)"    stroke-width="44" stroke-dasharray="50.27 578.05"  stroke-dashoffset="0"      transform="rotate(-90 130 130)"/>
+            <circle cx="130" cy="130" r="100" fill="none" stroke="var(--diamond)" stroke-width="44" stroke-dasharray="100.53 527.79" stroke-dashoffset="-50.27"  transform="rotate(-90 130 130)"/>
+            <circle cx="130" cy="130" r="100" fill="none" stroke="var(--crown)"   stroke-width="44" stroke-dasharray="163.36 464.96" stroke-dashoffset="-150.8"  transform="rotate(-90 130 130)"/>
+            <circle cx="130" cy="130" r="100" fill="none" stroke="var(--dolphin)" stroke-width="44" stroke-dasharray="157.08 471.24" stroke-dashoffset="-314.16" transform="rotate(-90 130 130)"/>
+            <circle cx="130" cy="130" r="100" fill="none" stroke="var(--bg-4)"    stroke-width="44" stroke-dasharray="157.08 471.24" stroke-dashoffset="-471.24" transform="rotate(-90 130 130)"/>
+          </svg>
+          <div class="donut-center">
+            <div class="donut-center-label">GMV май MTD</div>
+            <div class="donut-center-value">$2.04M</div>
+            <div class="donut-center-sub">прогноз $2.87M (+3% к апр)</div>
           </div>
         </div>
-        <div>
-          <div class="muted small" style="margin-bottom: 0.6rem;">Откуда $1 SkyCoach (доля каждого тира в GMV месяца)</div>
-          <!-- Stacked horizontal bar -->
-          <div style="display: flex; height: 56px; border-radius: 8px; overflow: hidden; margin-bottom: 1rem; border: 1px solid var(--border);">
-            <div style="width: 8%; background: var(--ruby); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: white;" title="Ruby 8%">Ruby 8%</div>
-            <div style="width: 16%; background: var(--diamond); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: var(--bg);" title="Diamond 16%">Diamond 16%</div>
-            <div style="width: 26%; background: var(--crown); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: var(--bg);" title="Crown 26%">Crown 26%</div>
-            <div style="width: 25%; background: var(--dolphin); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: var(--bg);" title="Dolphin 25%">Dolphin 25%</div>
-            <div style="width: 25%; background: var(--bg-4); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; color: var(--text-2);" title="Plankton 25%">Plankton 25%</div>
+
+        <!-- LEGEND -->
+        <div class="donut-legend">
+          <div class="legend-row" onclick="alert('Drill-down: 250 Ruby клиентов')">
+            <div class="legend-swatch" style="background: var(--ruby);"></div>
+            <div class="legend-name">🔴 Ruby <span class="muted small">$10K+</span></div>
+            <div class="legend-pct">8.0%</div>
+            <div class="legend-gmv">$163K</div>
+            <div class="legend-delta" style="color: var(--orange);">-1pp vs Q1</div>
           </div>
-          <!-- vs Q1 -->
-          <div class="muted small" style="margin-bottom: 0.4rem;">Для сравнения · Q1 2026</div>
-          <div style="display: flex; height: 24px; border-radius: 6px; overflow: hidden; opacity: 0.7; border: 1px solid var(--border);">
-            <div style="width: 9%; background: var(--ruby);"></div>
-            <div style="width: 15%; background: var(--diamond);"></div>
-            <div style="width: 26%; background: var(--crown);"></div>
-            <div style="width: 24%; background: var(--dolphin);"></div>
-            <div style="width: 26%; background: var(--bg-4);"></div>
+          <div class="legend-row" onclick="alert('Drill-down: 1,420 Diamond')">
+            <div class="legend-swatch" style="background: var(--diamond);"></div>
+            <div class="legend-name">🔷 Diamond <span class="muted small">$3-10K</span></div>
+            <div class="legend-pct">16.0%</div>
+            <div class="legend-gmv">$326K</div>
+            <div class="legend-delta" style="color: var(--green);">+1pp vs Q1</div>
           </div>
-          <div style="display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-3); margin-top: 0.3rem;">
-            <span>Ruby ↓ 9→8%</span><span>Diamond ↑ 15→16%</span><span>Crown =</span><span>Dolphin ↑ 24→25%</span><span>Plankton ↓ 26→25%</span>
+          <div class="legend-row" onclick="alert('Drill-down: 16,280 Crown')">
+            <div class="legend-swatch" style="background: var(--crown);"></div>
+            <div class="legend-name">👑 Crown <span class="muted small">$1-3K</span></div>
+            <div class="legend-pct">26.0%</div>
+            <div class="legend-gmv">$531K</div>
+            <div class="legend-delta" style="color: var(--text-2);">= vs Q1</div>
+          </div>
+          <div class="legend-row" onclick="alert('Drill-down: 52,400 Dolphin')">
+            <div class="legend-swatch" style="background: var(--dolphin);"></div>
+            <div class="legend-name">🐬 Dolphin <span class="muted small">$300-1K</span></div>
+            <div class="legend-pct">25.0%</div>
+            <div class="legend-gmv">$510K</div>
+            <div class="legend-delta" style="color: var(--green);">+1pp vs Q1</div>
+          </div>
+          <div class="legend-row" style="opacity: 0.75;">
+            <div class="legend-swatch" style="background: var(--bg-4);"></div>
+            <div class="legend-name">⚫ Plankton <span class="muted small">&lt;$300</span></div>
+            <div class="legend-pct">25.0%</div>
+            <div class="legend-gmv">$510K</div>
+            <div class="legend-delta" style="color: var(--orange);">-1pp vs Q1</div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; padding-top: 0.85rem; margin-top: 0.4rem; border-top: 1px solid var(--border);">
+            <div>
+              <div class="muted small">Доля китов (Crown+Diamond+Ruby)</div>
+              <div style="font-size: 1.5rem; font-weight: 800; color: var(--ruby);">50.4%</div>
+              <div class="muted small">vs Q1 50.1% · <strong style="color: var(--green);">+0.3pp</strong></div>
+            </div>
+            <div>
+              <div class="muted small">% базы даёт эти 50%</div>
+              <div style="font-size: 1.5rem; font-weight: 800;">5.0%</div>
+              <div class="muted small">17,950 чел · Q1 было 16,900</div>
+            </div>
           </div>
         </div>
       </div>
@@ -1153,6 +1355,256 @@
         <div><div class="kpi-label">Лучшая когорта</div><div class="kpi-value" style="font-size: 1.1rem; color: var(--accent);">WoW Classic S4</div><div class="small muted">28% возврат</div></div>
       </div>
     </div>
+    </div><!-- /view-health -->
+
+    <!-- ============ VIEW: MANAGERS DRILLDOWN ============ -->
+    <div class="view" data-view="managers">
+      <div class="page-header">
+        <div>
+          <div class="page-title">👥 Менеджеры · команда VIP</div>
+          <div class="page-sub">Клик на менеджера → полный профиль · фильтр и сортировка ниже</div>
+        </div>
+        <div class="filters">
+          <div class="filter-chip active">Все 4</div>
+          <div class="filter-chip">Online</div>
+          <div class="filter-chip">Под планом</div>
+          <div class="filter-chip">⭐ Звёзды</div>
+        </div>
+      </div>
+
+      <div class="tabs-container">
+        <div class="tabs-row">
+          <div class="tab-btn active" onclick="switchTab(this, 'mgr-all')">👥 <strong>Все менеджеры</strong> <span class="badge">4</span></div>
+          <div class="tab-btn" onclick="switchTab(this, 'mgr-sergey')">👤 <strong>Сергей</strong> <span class="badge">⭐</span></div>
+          <div class="tab-btn" onclick="switchTab(this, 'mgr-anna')">👤 <strong>Анна</strong> <span class="badge">⭐⭐</span></div>
+          <div class="tab-btn" onclick="switchTab(this, 'mgr-mikhail')">👤 <strong>Михаил</strong> <span class="badge" style="background: rgba(239,68,68,0.3); color: var(--red);">⚠️</span></div>
+          <div class="tab-btn" onclick="switchTab(this, 'mgr-elena')">👤 <strong>Елена</strong></div>
+        </div>
+
+        <!-- All managers overview -->
+        <div class="tab-content active" data-tab="mgr-all">
+          <div class="section">
+            <table class="table">
+              <thead><tr><th>Менеджер</th><th>Закр. киты</th><th>GMV май</th><th>План</th><th>Возвраты</th><th>Задачи откр/закр</th><th>Discord</th><th>Pre→Ruby</th></tr></thead>
+              <tbody>
+                <tr onclick="switchTab(document.querySelector('[onclick*=\\'mgr-sergey\\']'), 'mgr-sergey')"><td><div class="manager-name" style="display: flex; align-items: center; gap: 0.5rem;"><div class="avatar">С</div><strong>Сергей</strong> <span class="star">⭐</span></div></td><td>24</td><td><strong>$48K</strong></td><td>80%</td><td>2</td><td>12/4</td><td>87%</td><td>1/3</td></tr>
+                <tr onclick="switchTab(document.querySelector('[onclick*=\\'mgr-anna\\']'), 'mgr-anna')"><td><div style="display: flex; align-items: center; gap: 0.5rem;"><div class="avatar" style="background: linear-gradient(135deg, var(--crown), var(--orange));">А</div><strong>Анна</strong> <span class="star">⭐⭐</span></div></td><td>22</td><td><strong>$52K</strong></td><td style="color: var(--green);">95%</td><td>3 ⭐</td><td>9/6</td><td>91%</td><td>2/3</td></tr>
+                <tr onclick="switchTab(document.querySelector('[onclick*=\\'mgr-mikhail\\']'), 'mgr-mikhail')"><td style="color: var(--orange);"><div style="display: flex; align-items: center; gap: 0.5rem;"><div class="avatar" style="background: linear-gradient(135deg, var(--diamond), var(--accent));">M</div><strong>Михаил ⚠️</strong></div></td><td>19</td><td>$28K</td><td style="color: var(--red);">47%</td><td>0</td><td><span style="color: var(--red);">18/1</span></td><td>62%</td><td>0/3</td></tr>
+                <tr onclick="switchTab(document.querySelector('[onclick*=\\'mgr-elena\\']'), 'mgr-elena')"><td><div style="display: flex; align-items: center; gap: 0.5rem;"><div class="avatar" style="background: linear-gradient(135deg, var(--ruby), var(--crown));">Е</div><strong>Елена</strong></div></td><td>21</td><td>$41K</td><td>70%</td><td>1</td><td>11/3</td><td>78%</td><td>1/2</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="metric-row">
+            <div class="metric-card"><div class="metric-icon">💰</div><div class="metric-label">Суммарно GMV команды</div><div class="metric-value">$169K</div><div class="metric-sub">73% от total Ruby GMV</div></div>
+            <div class="metric-card"><div class="metric-icon">📋</div><div class="metric-label">Задач закрыто сегодня</div><div class="metric-value">14</div><div class="metric-sub">из 38 открытых</div></div>
+            <div class="metric-card"><div class="metric-icon">⭐</div><div class="metric-label">Возвратов команды</div><div class="metric-value">6 / нед</div><div class="metric-sub">$18,400 GMV recovered</div></div>
+          </div>
+        </div>
+
+        <!-- Sergey profile -->
+        <div class="tab-content" data-tab="mgr-sergey">
+          <div class="mgr-header-card">
+            <div class="mgr-avatar-big">С</div>
+            <div>
+              <div class="mgr-name">Сергей Иванов <span class="star">⭐ Менеджер недели</span></div>
+              <div class="mgr-meta">VIP-менеджер · в команде с 2025-08-15 · WoW Classic + Diablo IV специализация</div>
+              <div class="mgr-meta">🟢 Online сейчас · ответил Discord 4 мин назад</div>
+            </div>
+            <div style="text-align: right;">
+              <div class="muted small">Personal: <strong style="color: var(--text);">Skycoach | Sergey</strong></div>
+              <div class="muted small">Discord-аккаунт корпоративный</div>
+              <button class="btn btn-lg" style="margin-top: 0.5rem;">💬 Написать</button>
+            </div>
+          </div>
+
+          <div class="metric-row">
+            <div class="metric-card"><div class="metric-icon">💰</div><div class="metric-label">GMV май (план $60K)</div><div class="metric-value">$48,200</div><div class="metric-sub" style="color: var(--green);">80% плана · прогноз $58K</div></div>
+            <div class="metric-card"><div class="metric-icon">💸</div><div class="metric-label">Заработал в мае</div><div class="metric-value">$4,820</div><div class="metric-sub">комиссия 10% + бонус $1,200</div></div>
+            <div class="metric-card"><div class="metric-icon">🐋</div><div class="metric-label">Закреплённых Ruby</div><div class="metric-value">24</div><div class="metric-sub">22 active / 1 hibernate / 1 lost</div></div>
+            <div class="metric-card"><div class="metric-icon">📋</div><div class="metric-label">Задачи (откр / закр сегодня)</div><div class="metric-value">12 / 4</div><div class="metric-sub">просрочено: 2 ⚠️</div></div>
+            <div class="metric-card"><div class="metric-icon">⭐</div><div class="metric-label">Возвратов в мае</div><div class="metric-value">2</div><div class="metric-sub">$8,400 recovered · бонус $1,200</div></div>
+            <div class="metric-card"><div class="metric-icon">💬</div><div class="metric-label">Discord активность май</div><div class="metric-value">147</div><div class="metric-sub">сообщений · 6.1/день</div></div>
+          </div>
+
+          <div class="two-col">
+            <div class="section">
+              <div class="section-header"><div><div class="section-title">🐋 Топ-5 китов Сергея · май</div></div></div>
+              <table class="table">
+                <thead><tr><th>Кит</th><th>Игра</th><th>GMV май</th><th>Last contact</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>IronWolfPL</strong></td><td>Diablo IV</td><td><strong>$4,800</strong></td><td>1 час</td></tr>
+                  <tr><td><strong>VexMachina</strong></td><td>WoW Retail</td><td><strong>$3,920</strong></td><td>3 мин</td></tr>
+                  <tr><td><strong>Nyx_Shadow</strong></td><td>Destiny/D4</td><td><strong>$3,600</strong></td><td>2 часа</td></tr>
+                  <tr><td><strong>Crimson_Tide</strong></td><td>WoW Classic</td><td><strong>$2,800</strong></td><td>09:24</td></tr>
+                  <tr><td><strong>BlackHawk_42</strong></td><td>WoW Classic</td><td><strong>$2,640</strong></td><td>1 день</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="section">
+              <div class="section-header"><div><div class="section-title">⚠️ Ruby в риске у Сергея</div></div></div>
+              <div class="activity-list">
+                <div class="activity-item"><strong>GrimmRaider</strong> · 48 дн без заказа<div class="muted small">$24,300 LTV · Marcus K. · Германия</div></div>
+                <div class="activity-item"><strong>Phoenix_Hunter</strong> · 32 дн без касания<div class="muted small">$18,650 LTV · Daniel R. · UK</div></div>
+                <div class="activity-item"><strong>ThorinBeast</strong> · 96 дн hibernating<div class="muted small">$10,750 LTV · WoW Classic — S5 через 14 дн</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Anna profile -->
+        <div class="tab-content" data-tab="mgr-anna">
+          <div class="mgr-header-card">
+            <div class="mgr-avatar-big" style="background: linear-gradient(135deg, var(--crown), var(--orange));">А</div>
+            <div>
+              <div class="mgr-name">Анна Петрова <span class="star">⭐⭐ Топ перфомер</span></div>
+              <div class="mgr-meta">VIP-менеджер · в команде с 2025-03-20 · Universal специализация</div>
+              <div class="mgr-meta">🟢 Online · 3 возврата кита за неделю — лидер</div>
+            </div>
+            <div style="text-align: right;">
+              <div class="muted small">Personal: <strong style="color: var(--text);">Skycoach | Anna</strong></div>
+              <button class="btn btn-lg" style="margin-top: 0.5rem;">💬 Написать</button>
+            </div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-card"><div class="metric-icon">💰</div><div class="metric-label">GMV май (план $55K)</div><div class="metric-value">$52,000</div><div class="metric-sub" style="color: var(--green);">95% · топ команды</div></div>
+            <div class="metric-card"><div class="metric-icon">💸</div><div class="metric-label">Заработала май</div><div class="metric-value">$5,200</div><div class="metric-sub">+ бонус $1,800 за 3 возврата</div></div>
+            <div class="metric-card"><div class="metric-icon">⭐</div><div class="metric-label">Возвратов май</div><div class="metric-value" style="color: var(--crown);">3 ⭐⭐⭐</div><div class="metric-sub">$12,600 recovered</div></div>
+          </div>
+        </div>
+
+        <!-- Mikhail profile -->
+        <div class="tab-content" data-tab="mgr-mikhail">
+          <div class="mgr-header-card" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.08), var(--bg-3));">
+            <div class="mgr-avatar-big" style="background: linear-gradient(135deg, var(--diamond), var(--accent));">M</div>
+            <div>
+              <div class="mgr-name">Михаил Соколов <span style="color: var(--red);">⚠️ Нужна помощь</span></div>
+              <div class="mgr-meta">VIP-менеджер · в команде с 2025-10-10 · Destiny 2 специализация</div>
+              <div class="mgr-meta">🔴 Offline 6 часов · 7 at-risk · 5 без касания 30+ · 18 задач открыто</div>
+            </div>
+            <div style="text-align: right;">
+              <div class="muted small">Personal: <strong style="color: var(--text);">Skycoach | Mikhail</strong></div>
+              <button class="btn btn-primary btn-lg" style="margin-top: 0.5rem;">🚨 Обсудить нагрузку</button>
+            </div>
+          </div>
+          <div class="alert-banner" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(251, 146, 60, 0.05)); border-color: var(--red);">
+            <div class="alert-icon" style="background: var(--red);">!</div>
+            <div class="alert-text">
+              <div class="alert-title">Критическая нагрузка / отставание</div>
+              <div class="alert-sub">47% плана к 22 мая, 7 at-risk не разобрано, 5 китов без касания 30+ дней. Рекомендация: перераспределить часть нагрузки или провести 1-on-1.</div>
+            </div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-card"><div class="metric-icon">💰</div><div class="metric-label">GMV май</div><div class="metric-value" style="color: var(--red);">$28K</div><div class="metric-sub">47% от $60K плана</div></div>
+            <div class="metric-card"><div class="metric-icon">📋</div><div class="metric-label">Задач не закрыто</div><div class="metric-value" style="color: var(--red);">18</div><div class="metric-sub">только 1 закрыта сегодня</div></div>
+            <div class="metric-card"><div class="metric-icon">😴</div><div class="metric-label">Без касания 30+</div><div class="metric-value" style="color: var(--red);">5</div><div class="metric-sub">из 19 закреплённых = 26%</div></div>
+          </div>
+        </div>
+
+        <!-- Elena profile -->
+        <div class="tab-content" data-tab="mgr-elena">
+          <div class="mgr-header-card">
+            <div class="mgr-avatar-big" style="background: linear-gradient(135deg, var(--ruby), var(--crown));">Е</div>
+            <div>
+              <div class="mgr-name">Елена Кузнецова</div>
+              <div class="mgr-meta">VIP-менеджер · в команде с 2025-11-20 · WoW Retail специализация</div>
+              <div class="mgr-meta">🟢 Online · стабильный 70% плана 3 месяца подряд</div>
+            </div>
+            <div style="text-align: right;">
+              <div class="muted small">Personal: <strong style="color: var(--text);">Skycoach | Elena</strong></div>
+              <button class="btn btn-lg" style="margin-top: 0.5rem;">💬 Написать</button>
+            </div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-card"><div class="metric-icon">💰</div><div class="metric-label">GMV май</div><div class="metric-value">$41K</div><div class="metric-sub">70% плана</div></div>
+            <div class="metric-card"><div class="metric-icon">⭐</div><div class="metric-label">Возвратов</div><div class="metric-value">1</div><div class="metric-sub">$4,200 recovered</div></div>
+            <div class="metric-card"><div class="metric-icon">📋</div><div class="metric-label">Задачи</div><div class="metric-value">11 / 3</div><div class="metric-sub">открыто / закрыто сегодня</div></div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /view-managers -->
+
+    <!-- ============ VIEW: ALL TASKS ============ -->
+    <div class="view" data-view="all-tasks">
+      <div class="page-header">
+        <div>
+          <div class="page-title">📋 Все задачи команды</div>
+          <div class="page-sub">38 открытых, 14 закрыто сегодня · клик на задачу — карточка кита и результат</div>
+        </div>
+      </div>
+
+      <div class="tasks-summary">
+        <div><div class="tasks-stat-label">Открытых всего</div><div class="tasks-stat-value">38</div></div>
+        <div><div class="tasks-stat-label">Закрыто сегодня</div><div class="tasks-stat-value" style="color: var(--green);">14</div></div>
+        <div><div class="tasks-stat-label">Просрочено</div><div class="tasks-stat-value" style="color: var(--red);">5</div></div>
+        <div><div class="tasks-stat-label">Конверсия в заказ</div><div class="tasks-stat-value" style="color: var(--accent);">42%</div></div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-title">Фильтры</div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center;">
+          <span class="muted small">Менеджер:</span>
+          <div class="filter-chip active">Все</div>
+          <div class="filter-chip">Сергей</div>
+          <div class="filter-chip">Анна</div>
+          <div class="filter-chip">Михаил</div>
+          <div class="filter-chip">Елена</div>
+          <span class="muted small" style="margin-left: 1rem;">Тип:</span>
+          <div class="filter-chip">📞 связаться</div>
+          <div class="filter-chip">💰 продать</div>
+          <div class="filter-chip">⬆️ допродать</div>
+          <div class="filter-chip">🚨 критический</div>
+          <div class="filter-chip">🟡 зона риска</div>
+          <span class="muted small" style="margin-left: 1rem;">Статус:</span>
+          <div class="filter-chip active">Открытые</div>
+          <div class="filter-chip">Закрытые сегодня</div>
+          <div class="filter-chip">Просроченные</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header"><div><div class="section-title">🔥 Открытые задачи · 38</div><div class="section-sub">Сортировка по приоритету. Клик — карточка кита</div></div></div>
+        <table class="table">
+          <thead><tr><th>Кит</th><th>Тип</th><th>Менеджер</th><th>Создана</th><th>Триггер</th><th>Дедлайн</th></tr></thead>
+          <tbody>
+            <tr onclick="openWhale('grimm')"><td><strong>GrimmRaider</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td><span class="ttype ttype-risk">зона риска</span></td><td>Сергей</td><td>09:00</td><td>48 дн без заказа, S4 идёт</td><td style="color: var(--orange);">сегодня</td></tr>
+            <tr onclick="openWhale('phoenix')"><td><strong>Phoenix_Hunter</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td><span class="ttype ttype-critical">критич.</span></td><td>Сергей</td><td>08:45</td><td>Mega-кит, 32 дн без касания</td><td style="color: var(--red);">просрочено 1 дн</td></tr>
+            <tr onclick="openWhale('dragon')"><td><strong>DragonSlayer_99</strong> <span class="tier-badge tier-prewhale">Pre-Ruby</span></td><td><span class="ttype ttype-contact">связаться</span></td><td>Сергей</td><td>10:55</td><td>Auto-assigned, первый заказ $840</td><td>через 48ч</td></tr>
+            <tr><td><strong>SilverHawk_X</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td><span class="ttype ttype-risk">риск</span></td><td>Анна</td><td>09:15</td><td>WoW Retail patch, тишина 24 дн</td><td>сегодня</td></tr>
+            <tr><td><strong>ShadowVortex</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td><span class="ttype ttype-sell">продать</span></td><td>Анна</td><td>09:20</td><td>Заказ доставлен 3 дн — feedback</td><td>сегодня</td></tr>
+            <tr><td><strong>ThunderBoy_GR</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td><span class="ttype ttype-critical">критич.</span></td><td style="color: var(--red);">Михаил</td><td>3 дня назад</td><td>$15,400 кит, тишина 38 дн</td><td style="color: var(--red);">просрочено 3 дн</td></tr>
+            <tr><td><strong>NightCrystal</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td><span class="ttype ttype-risk">риск</span></td><td style="color: var(--red);">Михаил</td><td>2 дня назад</td><td>Diablo S5 — не зашёл</td><td style="color: var(--red);">просрочено 2 дн</td></tr>
+            <tr><td><strong>EmberRogue</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td><span class="ttype ttype-upsell">допродать</span></td><td>Елена</td><td>09:40</td><td>Cross-game candidate</td><td>сегодня</td></tr>
+            <tr onclick="openWhale('wraith')"><td><strong>Wraith_Lord</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td><span class="ttype ttype-birthday">ДР</span></td><td>Сергей</td><td>11:10</td><td>ДР через 3 дня (25.05)</td><td>25.05 09:00</td></tr>
+            <tr><td><strong>Vesper_Knight</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td><span class="ttype ttype-contact">связаться</span></td><td>Елена</td><td>10:30</td><td>Discord onboarding не закончен</td><td>завтра</td></tr>
+          </tbody>
+        </table>
+        <div class="muted small" style="text-align: center; padding-top: 1rem;">+ ещё 28 открытых задач</div>
+      </div>
+
+      <div class="section">
+        <div class="section-header"><div><div class="section-title">✅ Закрыто сегодня · 14 · с результатами</div><div class="section-sub">Что именно произошло с китом — купил, отказался, отложил</div></div></div>
+        <table class="table">
+          <thead><tr><th>Кит</th><th>Тип задачи</th><th>Менеджер</th><th>Закрыто в</th><th>Результат</th><th>Комментарий</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Crimson_Tide</strong></td><td><span class="ttype ttype-sell">продать</span></td><td>Сергей</td><td>09:24</td><td><span class="outcome out-bought">купил $280</span></td><td class="muted small">M+ Boost, без вопросов</td></tr>
+            <tr><td><strong>BlackHawk_42</strong></td><td><span class="ttype ttype-contact">связаться</span></td><td>Сергей</td><td>10:15</td><td><span class="outcome out-promised">Discord on</span></td><td class="muted small">Принял приглашение в #vip-wow</td></tr>
+            <tr><td><strong>Vesper_X</strong></td><td><span class="ttype ttype-risk">риск</span></td><td>Анна</td><td>10:42</td><td><span class="outcome out-promised">обещал зайти</span></td><td class="muted small">Hibernating 4 мес — потеплел</td></tr>
+            <tr><td><strong>NeonRider_88</strong></td><td><span class="ttype ttype-upsell">допродать</span></td><td>Анна</td><td>11:48</td><td><span class="outcome out-bought">купил $640</span></td><td class="muted small">Season Pack — отзыв 5/5</td></tr>
+            <tr><td><strong>FrostBlade</strong></td><td><span class="ttype ttype-sell">продать</span></td><td>Елена</td><td>12:05</td><td><span class="outcome out-pending">подумает</span></td><td class="muted small">Цена ок, обсудит с женой</td></tr>
+            <tr><td><strong>VioletMage</strong></td><td><span class="ttype ttype-contact">связаться</span></td><td>Анна</td><td>13:20</td><td><span class="outcome out-bought">купил $1,200</span></td><td class="muted small">Promoted Crown → Diamond ⭐</td></tr>
+            <tr><td><strong>StonePillar</strong></td><td><span class="ttype ttype-risk">риск</span></td><td>Сергей</td><td>13:45</td><td><span class="outcome out-refused">отказался</span></td><td class="muted small">Перешёл на конкурента, обсудит retention</td></tr>
+            <tr><td><strong>WindSong</strong></td><td><span class="ttype ttype-birthday">ДР</span></td><td>Анна</td><td>14:02</td><td><span class="outcome out-promised">благодарил</span></td><td class="muted small">Поздравление, без оффера</td></tr>
+            <tr><td><strong>GoldGrip</strong></td><td><span class="ttype ttype-sell">продать</span></td><td>Сергей</td><td>14:30</td><td><span class="outcome out-silent">не ответил</span></td><td class="muted small">Discord прочитан, тишина</td></tr>
+          </tbody>
+        </table>
+        <div class="muted small" style="text-align: center; padding-top: 1rem;">+ ещё 5 закрытых</div>
+      </div>
+    </div><!-- /view-all-tasks -->
+
   </div>
 </div>
 
@@ -1359,11 +1811,23 @@ function goLanding() {
 }
 
 function switchView(navEl, viewName) {
-  document.querySelectorAll('#app-manager .nav-item').forEach(n => n.classList.remove('active'));
+  const app = navEl.closest('.app');
+  if (!app) return;
+  app.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   navEl.classList.add('active');
-  document.querySelectorAll('#app-manager .view').forEach(v => v.classList.remove('active'));
-  document.querySelector(`#app-manager .view[data-view="${viewName}"]`).classList.add('active');
-  document.querySelector('#app-manager .main').scrollTop = 0;
+  app.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const targetView = app.querySelector(`.view[data-view="${viewName}"]`);
+  if (targetView) targetView.classList.add('active');
+  const main = app.querySelector('.main');
+  if (main) main.scrollTop = 0;
+}
+
+function switchTab(tabEl, tabName) {
+  const container = tabEl.closest('.tabs-container');
+  container.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+  tabEl.classList.add('active');
+  container.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  container.querySelector(`.tab-content[data-tab="${tabName}"]`).classList.add('active');
 }
 
 const whaleData = {
