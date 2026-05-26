@@ -16,17 +16,47 @@
   body { font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 14px; line-height: 1.5; }
 
   /* Landing */
-  .landing { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 2rem; text-align: center; }
-  .landing-logo { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.4rem; letter-spacing: -0.02em; }
+  .landing { display: flex; flex-direction: column; min-height: 100vh; padding: 2.5rem 3rem; }
+  .landing-header { text-align: center; margin-bottom: 2.5rem; }
+  .landing-logo { font-size: 2.4rem; font-weight: 700; margin-bottom: 0.3rem; letter-spacing: -0.02em; }
   .landing-logo span { color: var(--accent); }
-  .landing-tag { color: var(--text-2); margin-bottom: 2.5rem; font-size: 1rem; }
-  .role-buttons { display: flex; gap: 1.5rem; margin-bottom: 2rem; flex-wrap: wrap; justify-content: center; }
-  .role-btn { background: var(--bg-2); border: 2px solid var(--border); color: var(--text); padding: 2rem 2.5rem; border-radius: 16px; cursor: pointer; font-family: inherit; transition: all 0.2s; min-width: 280px; text-align: center; }
-  .role-btn:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0, 212, 255, 0.18); }
-  .role-btn-icon { font-size: 3rem; margin-bottom: 0.75rem; }
-  .role-btn-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .landing-tag { color: var(--text-2); font-size: 1rem; }
+  .landing-body { display: grid; grid-template-columns: 1fr 1.1fr; gap: 2.5rem; max-width: 1400px; margin: 0 auto; width: 100%; align-items: start; }
+  .landing-left { display: flex; flex-direction: column; gap: 1.25rem; }
+  .role-btn { background: var(--bg-2); border: 2px solid var(--border); color: var(--text); padding: 1.7rem 2rem; border-radius: 16px; cursor: pointer; font-family: inherit; transition: all 0.2s; text-align: left; display: grid; grid-template-columns: 70px 1fr; gap: 1.1rem; align-items: center; }
+  .role-btn:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0, 212, 255, 0.18); }
+  .role-btn-icon { font-size: 2.5rem; text-align: center; }
+  .role-btn-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; }
   .role-btn-sub { color: var(--text-2); font-size: 0.85rem; line-height: 1.5; }
-  .landing-foot { color: var(--text-3); font-size: 0.82rem; max-width: 650px; line-height: 1.6; }
+  .landing-foot { color: var(--text-3); font-size: 0.8rem; line-height: 1.6; padding: 0.8rem; background: rgba(0,0,0,0.2); border-radius: 8px; margin-top: 0.5rem; }
+  .landing-foot strong { color: var(--ruby); }
+
+  /* Open Questions panel on landing */
+  .oq-panel { background: var(--bg-2); border: 1px solid var(--orange); border-radius: 14px; padding: 1.4rem 1.6rem; }
+  .oq-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--border); }
+  .oq-title { font-size: 1.15rem; font-weight: 700; color: var(--orange); display: flex; align-items: center; gap: 0.5rem; }
+  .oq-badge { background: var(--red); color: white; padding: 0.15rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 700; }
+  .oq-block { margin-bottom: 0.85rem; }
+  .oq-block-head { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.45rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 0.4rem 0.5rem; background: var(--bg-3); border-radius: 6px; }
+  .oq-block-head:hover { background: var(--bg-4); }
+  .oq-block-head .chev { color: var(--text-3); transition: transform 0.2s; }
+  .oq-block.open .oq-block-head .chev { transform: rotate(90deg); }
+  .oq-block-body { display: none; padding: 0.4rem 0.55rem; }
+  .oq-block.open .oq-block-body { display: block; }
+  .oq-item { padding: 0.45rem 0.55rem; font-size: 0.82rem; line-height: 1.45; color: var(--text); border-left: 2px solid var(--border); margin-bottom: 0.3rem; background: rgba(255,255,255,0.02); border-radius: 0 4px 4px 0; }
+  .oq-item.must { border-left-color: var(--red); }
+  .oq-item.should { border-left-color: var(--orange); }
+  .oq-item.nice { border-left-color: var(--green); }
+  .oq-item.purple { border-left-color: var(--purple); }
+  .oq-item.accent { border-left-color: var(--accent); }
+  .oq-item .who { color: var(--text-3); font-size: 0.72rem; margin-left: 0.2rem; }
+  .oq-cta { padding: 0.8rem 1rem; background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,212,255,0.05)); border: 1px solid var(--accent); border-radius: 8px; margin-top: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.6rem; }
+  .oq-cta-text { font-size: 0.86rem; }
+  .oq-cta-text strong { display: block; margin-bottom: 0.15rem; }
+
+  @media (max-width: 1100px) {
+    .landing-body { grid-template-columns: 1fr; }
+  }
 
   /* App */
   .app { display: none; min-height: 100vh; }
@@ -323,24 +353,147 @@
 
 <!-- ========== LANDING ========== -->
 <div class="landing" id="landing">
-  <div class="landing-logo">SkyCoach <span>Whales Console</span></div>
-  <div class="landing-tag">Кликабельный мокап · v2 · 26 мая 2026 · по детальному ТЗ</div>
-  <div class="role-buttons">
-    <button class="role-btn" onclick="enterApp('manager')">
-      <div class="role-btn-icon">🎯</div>
-      <div class="role-btn-title">Менеджер</div>
-      <div class="role-btn-sub">Сергей · 24 закреплённых Ruby<br>Дашборд / Аналитика / Клиенты / Киты / Задачи / Настройки</div>
-    </button>
-    <button class="role-btn" onclick="enterApp('leader')">
-      <div class="role-btn-icon">👑</div>
-      <div class="role-btn-title">Руководитель</div>
-      <div class="role-btn-sub">Семён · Whale Initiative Lead<br>+ Mass tasks · Working hours · Настройки команды</div>
-    </button>
+  <div class="landing-header">
+    <div class="landing-logo">SkyCoach <span>Whales Console</span></div>
+    <div class="landing-tag">Кликабельный мокап · v2 · 26 мая 2026 · по детальному ТЗ</div>
   </div>
-  <div class="landing-foot">
-    🎯 Фокус v1: <strong style="color: var(--ruby);">Ruby + Diamond</strong> (~1,650 чел · 24% GMV компании) · стартуем с Ruby<br>
-    Без жёстких планов — прогресс-бар с задержкой 2 дня · 3 потока (50/25/25): топ-250 / Песочница High Potential / Реактивация<br>
-    Интерком-карточка / WoW Battle.net / лидерборд / AI-бот Discord — отложены, не в v1
+
+  <div class="landing-body">
+
+    <!-- LEFT — role buttons + summary -->
+    <div class="landing-left">
+      <button class="role-btn" onclick="enterApp('manager')">
+        <div class="role-btn-icon">🎯</div>
+        <div>
+          <div class="role-btn-title">Менеджер</div>
+          <div class="role-btn-sub">Сергей · 24 закреплённых Ruby<br>Дашборд · Аналитика · Клиенты · Задачи · Настройки</div>
+        </div>
+      </button>
+      <button class="role-btn" onclick="enterApp('leader')">
+        <div class="role-btn-icon">👑</div>
+        <div>
+          <div class="role-btn-title">Руководитель</div>
+          <div class="role-btn-sub">Семён · Whale Lead<br>+ Менеджеры · Mass tasks · Working hours · команда</div>
+        </div>
+      </button>
+      <div class="landing-foot">
+        🎯 Фокус v1: <strong>Ruby + Diamond</strong> (~1,650 чел · 24% GMV) · стартуем с Ruby<br>
+        Без жёстких планов · прогресс-бар с задержкой 2 дня · 3 потока (50/25/25)<br>
+        Intercom Canvas Kit / WoW Battle.net / лидерборд / AI-бот Discord — отложены
+      </div>
+    </div>
+
+    <!-- RIGHT — Open Questions panel -->
+    <div class="oq-panel">
+      <div class="oq-header">
+        <div class="oq-title">❓ Open Questions <span class="oq-badge">30 открытых</span></div>
+        <button class="btn btn-primary" onclick="alert('Создаётся документ для звонка с Андреем + новым CTO')">📞 Звонок с Андреем</button>
+      </div>
+
+      <!-- Block 1: API handles -->
+      <div class="oq-block open">
+        <div class="oq-block-head" onclick="this.parentElement.classList.toggle('open')">
+          <span>🔧 API ручки от CRM SkyCoach <small class="muted">· 8 шт</small></span>
+          <span class="chev">▶</span>
+        </div>
+        <div class="oq-block-body">
+          <div class="oq-item must"><strong>1.</strong> GET клиента с расширенными полями (email, имя, страна, character_name) <span class="who">· Лёша / новый CTO</span></div>
+          <div class="oq-item must"><strong>2.</strong> GET orders с <strong>Order ID</strong> + статусом (новое требование Семёна) <span class="who">· Лёша</span></div>
+          <div class="oq-item must"><strong>3.</strong> Webhook на новый заказ → auto-assignment <span class="who">· Лёша</span></div>
+          <div class="oq-item should"><strong>4.</strong> Webhook на refund/cancel → daily summary <span class="who">· Лёша</span></div>
+          <div class="oq-item should"><strong>5.</strong> Deep-link URL на админку (карточка/заказ) <span class="who">· Андрей</span></div>
+          <div class="oq-item must"><strong>6.</strong> Filter клиентов по LTV (для списков тиров) <span class="who">· Лёша</span></div>
+          <div class="oq-item must"><strong>7.</strong> API auth — read-only ключ + sandbox <span class="who">· Лёша</span></div>
+          <div class="oq-item nice"><strong>8.</strong> Custom attributes в Intercom (tier, manager) <span class="who">· Семён</span></div>
+        </div>
+      </div>
+
+      <!-- Block 2: Sandbox rules -->
+      <div class="oq-block">
+        <div class="oq-block-head" onclick="this.parentElement.classList.toggle('open')">
+          <span>🌱 Правила песочницы потенциальных Ruby <small class="muted">· 4 шт</small></span>
+          <span class="chev">▶</span>
+        </div>
+        <div class="oq-block-body">
+          <div class="oq-item purple"><strong>2.1</strong> Score threshold (≥ 50 в песочницу, ≥ 70 горячий) <span class="who">· Семён + Юра</span></div>
+          <div class="oq-item purple"><strong>2.2</strong> Сумма первого заказа = pre-Ruby? По играм отдельно? <span class="who">· Юра</span></div>
+          <div class="oq-item purple"><strong>2.3</strong> Логика auto-assignment pre-Ruby (round-robin / специализация / WH-match) <span class="who">· Семён</span></div>
+          <div class="oq-item purple"><strong>2.4</strong> Manual claim — менеджер сам забирает? Лимит? <span class="who">· Семён</span></div>
+        </div>
+      </div>
+
+      <!-- Block 3: Recommendations rules -->
+      <div class="oq-block">
+        <div class="oq-block-head" onclick="this.parentElement.classList.toggle('open')">
+          <span>💬 Правила рекомендаций (что отправлять) <small class="muted">· 5 шт</small></span>
+          <span class="chev">▶</span>
+        </div>
+        <div class="oq-block-body">
+          <div class="oq-item accent"><strong>3.1</strong> Кто пишет 8 шаблонов NBA (Семён / маркетинг / AI?) <span class="who">· Семён + маркетинг</span></div>
+          <div class="oq-item accent"><strong>3.2</strong> Канал отправки (Discord приоритет vs Intercom vs WhatsApp) <span class="who">· Семён</span></div>
+          <div class="oq-item accent"><strong>3.3</strong> Когда нельзя писать (ночь клиента, выходные, «не беспокоить») <span class="who">· Семён</span></div>
+          <div class="oq-item accent"><strong>3.4</strong> Готовый шаблон vs импровизация менеджера <span class="who">· Семён</span></div>
+          <div class="oq-item accent"><strong>3.5</strong> Антиспам — 2 автозадачи/день, 5 дн между одинаковыми. Норм? <span class="who">· Семён</span></div>
+        </div>
+      </div>
+
+      <!-- Block 4: Settings -->
+      <div class="oq-block">
+        <div class="oq-block-head" onclick="this.parentElement.classList.toggle('open')">
+          <span>⚙️ Настройки на обсуждение <small class="muted">· 8 шт</small></span>
+          <span class="chev">▶</span>
+        </div>
+        <div class="oq-block-body">
+          <div class="oq-item"><strong>4.1</strong> Max capacity менеджера (default 30 задач) — откуда цифра? <span class="who">· Семён</span></div>
+          <div class="oq-item"><strong>4.2</strong> % ставки от GMV (5%?) <span class="who">· Андрей</span></div>
+          <div class="oq-item"><strong>4.3</strong> Бонус за возврат Ruby ($500 фикс или % от GMV?) <span class="who">· Андрей</span></div>
+          <div class="oq-item"><strong>4.4</strong> At-risk threshold — 1.5× цикла + релиз. По играм отдельно? <span class="who">· Юра</span></div>
+          <div class="oq-item"><strong>4.5</strong> Lost threshold (180 vs 270 дней для WoW Classic) <span class="who">· Семён</span></div>
+          <div class="oq-item"><strong>4.6</strong> Архив задач — 30 дней автомат. Норм? <span class="who">· Семён</span></div>
+          <div class="oq-item"><strong>4.7</strong> Buddy-пары — авто (по специализации) или вручную? <span class="who">· Семён</span></div>
+          <div class="oq-item"><strong>4.8</strong> SLA — обещаем ли клиенту скорость? Как замерять в Discord/WhatsApp? <span class="who">· Денис</span></div>
+        </div>
+      </div>
+
+      <!-- Block 5: Process -->
+      <div class="oq-block">
+        <div class="oq-block-head" onclick="this.parentElement.classList.toggle('open')">
+          <span>🤔 Процессные вопросы <small class="muted">· 5 шт</small></span>
+          <span class="chev">▶</span>
+        </div>
+        <div class="oq-block-body">
+          <div class="oq-item"><strong>5.1</strong> Клиент просит сменить менеджера — какой процесс? <span class="who">· Семён</span></div>
+          <div class="oq-item"><strong>5.2</strong> Voice звонки разрешены? Кто инициирует? <span class="who">· Семён</span></div>
+          <div class="oq-item"><strong>5.3</strong> Quality check — раз в месяц или после каждого негативного? <span class="who">· Денис</span></div>
+          <div class="oq-item"><strong>5.4</strong> Сезонные кампании (BF, WoW Season) — mass task или отдельно? <span class="who">· Семён</span></div>
+          <div class="oq-item"><strong>5.5</strong> Языки команды — 4 английских менеджера найдено? Дедлайн? <span class="who">· Семён + HR</span></div>
+        </div>
+      </div>
+
+      <!-- Block 6: Parked -->
+      <div class="oq-block">
+        <div class="oq-block-head" onclick="this.parentElement.classList.toggle('open')">
+          <span>🅿️ Запарковано на следующие фазы <small class="muted">· 5 шт</small></span>
+          <span class="chev">▶</span>
+        </div>
+        <div class="oq-block-body">
+          <div class="oq-item nice">🎮 <strong>WoW Battle.net интеграция</strong> — через 3 мес, к следующему сезону</div>
+          <div class="oq-item nice">🤖 <strong>AI-бот для чтения Discord-чатов</strong> — нет готовых решений (Денис ресёрчил)</div>
+          <div class="oq-item nice">🏆 <strong>Лидерборд менеджеров</strong> — Денис против в v1 (US-timezone unfair)</div>
+          <div class="oq-item nice">💰 <strong>Жёсткие планы продаж</strong> — после 2 мес исторических данных</div>
+          <div class="oq-item nice">📨 <strong>Intercom Canvas Kit App</strong> — отдельный трек после v1</div>
+        </div>
+      </div>
+
+      <div class="oq-cta">
+        <div class="oq-cta-text">
+          <strong>Следующий шаг</strong>
+          <span class="muted small">Звонок с Андреем + новым CTO · пройти все 30 пунктов</span>
+        </div>
+        <button class="btn btn-primary btn-lg">📅 Назначить звонок</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -356,7 +509,6 @@
     <div class="nav-item" onclick="switchView(this,'clients')">👥 <span>Клиенты</span><span class="count">24</span></div>
     <div class="nav-item" onclick="switchView(this,'tasks')">📋 <span>Задачи</span><span class="count red">12</span></div>
     <div class="nav-item" onclick="switchView(this,'settings')">⚙️ <span>Настройки</span></div>
-    <div class="nav-item" onclick="switchView(this,'open-questions')" style="color: var(--orange);">❓ <span>Open questions</span><span class="count red">9</span></div>
     <div class="switch-role">
       <button class="switch-btn" onclick="goLanding()">← Стартовый экран</button>
     </div>
@@ -1063,105 +1215,6 @@
       </div>
     </div>
 
-    <!-- ====== VIEW: OPEN QUESTIONS (manager) ====== -->
-    <div class="view" data-view="open-questions">
-      <div class="page-header">
-        <div>
-          <div class="page-title">❓ Ещё нерешённые задачи</div>
-          <div class="page-sub">Вопросы для обсуждения с руководителем · правила, рекомендации, настройки</div>
-        </div>
-      </div>
-
-      <div class="alert-banner warn">
-        <div class="alert-icon">!</div>
-        <div class="alert-text">
-          <div class="alert-title">Что не финализировано к запуску 15 июня</div>
-          <div class="alert-sub">Эти решения и API-ручки нужно утвердить до старта работы</div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-header"><div><div class="section-title">🔧 API ручки которые нам ещё нужны (из CRM SkyCoach)</div></div></div>
-        <div style="display: grid; gap: 0.55rem;">
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--red);">
-            <strong>1.</strong> GET клиента с расширенными полями (email, имя, страна, регистрация, character_name) <span class="muted small">· критично для карточки кита</span>
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--red);">
-            <strong>2.</strong> GET orders с <strong>Order ID</strong> + статусом (paid / in_progress / refunded / pending) <span class="muted small">· новое требование Семёна</span>
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--red);">
-            <strong>3.</strong> Webhook на новый заказ → auto-assignment <span class="muted small">· без webhook auto-assignment не работает</span>
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--orange);">
-            <strong>4.</strong> Webhook на refund / cancel → daily summary руководителю
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--orange);">
-            <strong>5.</strong> Deep-link URL на админку SkyCoach (карточка клиента, конкретный заказ)
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--green);">
-            <strong>6.</strong> Любимый исполнитель клиента (или считаем сами из orders)
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--green);">
-            <strong>7.</strong> Каталог игр и услуг
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--green);">
-            <strong>8.</strong> Custom attributes в Intercom (tier, assigned_manager, is_at_risk)
-          </div>
-          <div class="muted small">🔴 Must-have · 🟠 Strongly desired · 🟢 Nice-to-have. Полный список — в файле api-needs-v2.pdf</div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-header"><div><div class="section-title">📋 Правила для песочницы потенциальных Ruby</div><div class="section-sub">Какие критерии «высокого потенциала» по каждой игре · Семён уточняет с Юрой</div></div></div>
-        <div style="display: grid; gap: 0.55rem;">
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--purple);">
-            🟡 <strong>Score threshold</strong> — Score ≥ 50 = песочница, ≥ 70 = горячий. <span class="muted small">Утверждено?</span>
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--purple);">
-            🟡 <strong>Первый заказ X</strong> — какая сумма квалифицирует как pre-Ruby? $700 (12× ср.чека)? $1,000? По каждой игре отдельно?
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--purple);">
-            🟡 <strong>Кому распределяется новый pre-Ruby?</strong> Round-robin / по специализации / по working hours match / по загруженности?
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--purple);">
-            🟡 <strong>Manual claim</strong> — менеджер может сам забрать кандидата из общей песочницы? Лимит 5/неделю?
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-header"><div><div class="section-title">💬 Правила рекомендаций (что и кому отправлять)</div></div></div>
-        <div style="display: grid; gap: 0.55rem;">
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
-            🔵 <strong>Шаблоны сообщений NBA</strong> — кто их пишет (Семён? AI? менеджеры по очереди?) и под какой контекст
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
-            🔵 <strong>Канал отправки</strong> — Discord приоритетнее Intercom? WhatsApp — для каких клиентов?
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
-            🔵 <strong>Когда нельзя писать</strong> — ночные часы клиента? Выходные? «Не беспокоить» статус?
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
-            🔵 <strong>Антиспам</strong> — макс 2 автозадачи на кита в день. 5 дней между одинаковыми. Это окончательно?
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
-            🔵 <strong>Готовые тексты vs импровизация</strong> — менеджер обязан использовать шаблон или адаптирует?
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-header"><div><div class="section-title">🎯 Что ещё хочется обсудить с командой</div></div></div>
-        <div style="display: grid; gap: 0.55rem;">
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Что делать если клиент просит сменить менеджера?</div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ SLA — обещаем ли клиенту скорость ответа? (Денис: 30 сек - 1 мин и так)</div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Quality check после заказа — раз в месяц или после каждого негативного?</div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Voice звонки — разрешены? Кто инициирует?</div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Buddy-пары — кто кого подменяет при отпуске? Автоматически или вручную?</div>
-        </div>
-      </div>
-    </div>
-
   </div>
 </div>
 
@@ -1178,7 +1231,6 @@
     <div class="nav-item" onclick="switchView(this,'clients')">👥 <span>Клиенты</span><span class="count">250</span></div>
     <div class="nav-item" onclick="switchView(this,'tasks')">📋 <span>Задачи</span><span class="count red">38</span></div>
     <div class="nav-item" onclick="switchView(this,'settings')">⚙️ <span>Настройки</span></div>
-    <div class="nav-item" onclick="switchView(this,'open-questions')" style="color: var(--orange);">❓ <span>Open questions</span><span class="count red">14</span></div>
     <div class="switch-role">
       <button class="switch-btn" onclick="goLanding()">← Стартовый экран</button>
     </div>
@@ -1965,170 +2017,6 @@
           <div><label class="form-label">Бонус за возврат Ruby</label><input class="form-input" value="$500"></div>
           <div><label class="form-label">Бонус за pre-Ruby → Ruby</label><input class="form-input" value="$200"></div>
         </div>
-      </div>
-    </div>
-
-    <!-- ====== VIEW: OPEN QUESTIONS (LEADER · полный) ====== -->
-    <div class="view" data-view="open-questions">
-      <div class="page-header">
-        <div>
-          <div class="page-title">❓ Ещё нерешённые задачи</div>
-          <div class="page-sub">Что финализировать до 15 июня · API · правила · настройки</div>
-        </div>
-        <button class="btn btn-primary btn-lg" onclick="alert('Создаётся документ для звонка с Андреем + новым CTO')">📞 Назначить звонок с Андреем</button>
-      </div>
-
-      <div class="alert-banner warn">
-        <div class="alert-icon">!</div>
-        <div class="alert-text">
-          <div class="alert-title">14 открытых вопросов · 8 API ручек + 4 правила + 2 настройки</div>
-          <div class="alert-sub">Все нужно решить до запуска · ответственные указаны рядом</div>
-        </div>
-      </div>
-
-      <!-- BLOCK 1: API handles -->
-      <div class="section">
-        <div class="section-header">
-          <div><div class="section-title">🔧 API ручки которые нам нужны от CRM SkyCoach</div><div class="section-sub">Ответственный: <strong>Андрей + новый CTO</strong> · звонок на этой неделе</div></div>
-        </div>
-        <table class="table">
-          <thead><tr><th>#</th><th>Ручка</th><th>Зачем</th><th>Приоритет</th><th>Статус</th></tr></thead>
-          <tbody>
-            <tr><td>1</td><td><strong>GET клиента</strong> по user_id/email/nickname</td><td>Карточка кита, поиск</td><td><span class="status-pill status-lost">MUST</span></td><td>🤷 уточняем</td></tr>
-            <tr><td>2</td><td><strong>GET orders</strong> с Order ID + status</td><td>История заказов · новое требование Семёна</td><td><span class="status-pill status-lost">MUST</span></td><td>🤷 уточняем</td></tr>
-            <tr><td>3</td><td><strong>GET stats клиента</strong> (LTV, заказов, last)</td><td>Карточка кита, аналитика</td><td><span class="status-pill status-lost">MUST</span></td><td>🤷 уточняем</td></tr>
-            <tr><td>4</td><td><strong>Filter клиентов по LTV</strong></td><td>Загрузить Ruby/Diamond списками</td><td><span class="status-pill status-lost">MUST</span></td><td>🤷 уточняем</td></tr>
-            <tr><td>5</td><td><strong>Webhook на новый заказ</strong></td><td>Auto-assignment pre-Ruby</td><td><span class="status-pill status-lost">MUST</span></td><td>🤷 уточняем</td></tr>
-            <tr><td>6</td><td><strong>Webhook refund/cancel</strong></td><td>Daily summary руководителю</td><td><span class="status-pill status-risk">SHOULD</span></td><td>🤷 уточняем</td></tr>
-            <tr><td>7</td><td><strong>Deep-link URL</strong> на админку</td><td>Не дублируем функционал</td><td><span class="status-pill status-lost">MUST</span></td><td>🤷 уточняем</td></tr>
-            <tr><td>8</td><td><strong>API auth</strong> (read-only ключ)</td><td>Безопасный доступ</td><td><span class="status-pill status-lost">MUST</span></td><td>🤷 уточняем</td></tr>
-          </tbody>
-        </table>
-        <div class="muted small" style="margin-top: 0.5rem;">📄 Полный список 18 ручек — в файле <a style="color: var(--accent);">api-needs-v2.pdf</a></div>
-      </div>
-
-      <!-- BLOCK 2: Sandbox rules -->
-      <div class="section">
-        <div class="section-header">
-          <div><div class="section-title">🌱 Правила для песочницы потенциальных Ruby</div><div class="section-sub">Ответственный: <strong>Семён + Юра</strong></div></div>
-        </div>
-        <div style="display: grid; gap: 0.55rem;">
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--purple);">
-            <strong>2.1 · Score threshold</strong><br>
-            <span class="muted small">Score ≥ 50 = в песочнице. Score ≥ 70 = горячий, авто-задача «связаться 48ч». <strong>Утвердить или скорректировать?</strong></span>
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--purple);">
-            <strong>2.2 · Первый заказ X (по играм)</strong><br>
-            <span class="muted small">WoW Classic — какая сумма первого заказа квалифицирует как pre-Ruby? WoW Retail? Destiny? D4? У Семёна: «пока туманно, спрошу Юру».</span>
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--purple);">
-            <strong>2.3 · Авторазспределение pre-Ruby</strong><br>
-            <span class="muted small">Round-robin? По специализации игры? По working hours match (US-кит → ночной менеджер)? По загруженности? Комбинация?</span>
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--purple);">
-            <strong>2.4 · Manual claim</strong><br>
-            <span class="muted small">Менеджер сам может забрать pre-Ruby из общей песочницы? Лимит 5 в неделю? Или только Семён распределяет?</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- BLOCK 3: Recommendations & messaging rules -->
-      <div class="section">
-        <div class="section-header">
-          <div><div class="section-title">💬 Правила рекомендаций (что и кому отправлять)</div><div class="section-sub">Ответственный: <strong>Семён + маркетинг</strong></div></div>
-        </div>
-        <div style="display: grid; gap: 0.55rem;">
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
-            <strong>3.1 · Кто пишет шаблоны NBA</strong><br>
-            <span class="muted small">Семён вручную / маркетинг / AI генерит на основе истории + контекста? Какие 8 базовых шаблонов под 8 триггеров?</span>
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
-            <strong>3.2 · Канал отправки</strong><br>
-            <span class="muted small">Discord приоритетнее Intercom? WhatsApp — для каких клиентов? Когда переключаемся между каналами?</span>
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
-            <strong>3.3 · Когда нельзя писать</strong><br>
-            <span class="muted small">Ночные часы клиента (по его TZ)? Выходные? Статус «не беспокоить»? Что делать с триггером в неудобное время?</span>
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
-            <strong>3.4 · Шаблон vs импровизация</strong><br>
-            <span class="muted small">Менеджер обязан использовать готовый шаблон или может адаптировать? Как контролируем качество сообщений?</span>
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
-            <strong>3.5 · Антиспам</strong><br>
-            <span class="muted small">Макс 2 автозадачи на кита в день, 5 дней между одинаковыми. Норм или подкорректировать?</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- BLOCK 4: Settings to discuss -->
-      <div class="section">
-        <div class="section-header">
-          <div><div class="section-title">⚙️ Настройки на обсуждение</div><div class="section-sub">Ответственный: <strong>Семён + Володя</strong></div></div>
-        </div>
-        <div style="display: grid; gap: 0.55rem;">
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">
-            ⚪ <strong>Max capacity менеджера</strong> — default 30 задач. Правильно? Откуда взяли цифру?
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">
-            ⚪ <strong>% ставки от GMV</strong> — 5%? Сколько в реальности будет?
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">
-            ⚪ <strong>Бонус за возврат Ruby</strong> — $500 фикс? % от GMV возвращённого?
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">
-            ⚪ <strong>At-risk threshold</strong> — 1.5× обычного цикла + новый релиз. Возможно нужно по играм отдельно?
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">
-            ⚪ <strong>Lost threshold</strong> — 180 дней. Для WoW Classic возможно 270 дней (длинные сезоны)?
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">
-            ⚪ <strong>Архив задач</strong> — 30 дней автомат. Норм?
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">
-            ⚪ <strong>Buddy-пары</strong> — авто (по специализации) или Семён вручную назначает?
-          </div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">
-            ⚪ <strong>SLA</strong> — обещаем клиенту скорость ответа? Денис: «и так 30 сек - 1 мин». Как замерять в Discord/WhatsApp?
-          </div>
-        </div>
-      </div>
-
-      <!-- BLOCK 5: Process questions -->
-      <div class="section">
-        <div class="section-header">
-          <div><div class="section-title">🤔 Процессные вопросы</div></div>
-        </div>
-        <div style="display: grid; gap: 0.55rem;">
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Клиент просит сменить менеджера — какой процесс? (Семён вручную / автоопрос / какой trigger)</div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Voice звонки — разрешены ли? Кто инициирует? В какое время?</div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Quality check после заказа — раз в месяц или после каждого негативного?</div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Сезонные кампании (Black Friday, WoW Season release) — отдельный процесс или mass task?</div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Языки команды — ищем 4-х свободно English. Сколько уже нашли? Дедлайн?</div>
-        </div>
-      </div>
-
-      <!-- BLOCK 6: parked but to remember -->
-      <div class="section">
-        <div class="section-header">
-          <div><div class="section-title">🅿️ Запарковано (но помним)</div><div class="section-sub">Что отложили на следующие фазы</div></div>
-        </div>
-        <div style="display: grid; gap: 0.55rem;">
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">🟢 <strong>WoW Battle.net интеграция</strong> — через 3 месяца, к следующему сезону WoW</div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">🟢 <strong>AI-бот для чтения Discord-чатов</strong> — нет готовых решений (Денис ресёрчил)</div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">🟢 <strong>Лидерборд менеджеров</strong> — Денис против в v1 (US-timezone unfair)</div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">🟢 <strong>Жёсткие планы продаж</strong> — после 2 мес данных</div>
-          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">🟢 <strong>Intercom Canvas Kit App</strong> — отдельный трек после v1</div>
-        </div>
-      </div>
-
-      <div class="alert-banner">
-        <div class="alert-icon">📞</div>
-        <div class="alert-text">
-          <div class="alert-title">Следующий шаг — звонок с Андреем + новым CTO</div>
-          <div class="alert-sub">Пройти все 14 вопросов выше, получить статусы по ручкам, оценить сроки. Назначить через Семёна.</div>
-        </div>
-        <button class="btn btn-primary btn-lg">📅 Назначить звонок</button>
       </div>
     </div>
 
