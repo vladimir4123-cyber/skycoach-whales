@@ -353,10 +353,10 @@
     <div class="sidebar-role"><span class="role-dot"></span>Менеджер · Сергей</div>
     <div class="nav-item active" onclick="switchView(this,'dashboard')">📊 <span>Дашборд</span></div>
     <div class="nav-item" onclick="switchView(this,'analytics')">📈 <span>Аналитика</span></div>
-    <div class="nav-item" onclick="switchView(this,'clients')">👥 <span>Клиенты</span></div>
-    <div class="nav-item" onclick="switchView(this,'whales')">🐋 <span>Киты</span><span class="count">24</span></div>
+    <div class="nav-item" onclick="switchView(this,'clients')">👥 <span>Клиенты</span><span class="count">24</span></div>
     <div class="nav-item" onclick="switchView(this,'tasks')">📋 <span>Задачи</span><span class="count red">12</span></div>
     <div class="nav-item" onclick="switchView(this,'settings')">⚙️ <span>Настройки</span></div>
+    <div class="nav-item" onclick="switchView(this,'open-questions')" style="color: var(--orange);">❓ <span>Open questions</span><span class="count red">9</span></div>
     <div class="switch-role">
       <button class="switch-btn" onclick="goLanding()">← Стартовый экран</button>
     </div>
@@ -641,39 +641,189 @@
       </div>
     </div>
 
-    <!-- ====== VIEW: CLIENTS ====== -->
+    <!-- ====== VIEW: CLIENTS (управление клиентским опытом) ====== -->
     <div class="view" data-view="clients">
       <div class="page-header">
         <div>
-          <div class="page-title">👥 Клиенты</div>
-          <div class="page-sub">Полная клиентская база · поиск + фильтры по статусу/игре</div>
-        </div>
-        <div class="filters">
-          <div class="filter-chip active">Все</div>
-          <div class="filter-chip">Active</div>
-          <div class="filter-chip">At-risk</div>
-          <div class="filter-chip">Hibernating</div>
-          <div class="filter-chip">Pre-Ruby</div>
+          <div class="page-title">👥 Клиенты · управление клиентским опытом</div>
+          <div class="page-sub">Все мои клиенты с разделением по статусам и потенциалу · правила автораспределения и рекомендаций в Настройках</div>
         </div>
       </div>
-      <div class="section">
-        <table class="table">
-          <thead>
-            <tr><th>Кит</th><th>Email (имя в админке)</th><th>Main game</th><th>LTV</th><th>Spend май</th><th>Last order</th><th>Статус</th><th>Discord</th><th>WhatsApp</th></tr>
-          </thead>
-          <tbody>
-            <tr onclick="openWhale('grimm')"><td><strong>GrimmRaider</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td class="muted">marcus.k@email.de</td><td>WoW Classic</td><td>$24,300</td><td>$0</td><td>48 дн</td><td><span class="status-pill status-risk">at-risk</span></td><td><span class="disc-link">🟢 chat</span></td><td><span class="ws-link">📱 +49…</span></td></tr>
-            <tr onclick="openWhale('phoenix')"><td><strong>Phoenix_Hunter</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td class="muted">daniel.r@email.uk</td><td>Destiny 2</td><td>$18,650</td><td>$0</td><td>32 дн</td><td><span class="status-pill status-risk">at-risk</span></td><td><span class="disc-link">🟢 chat</span></td><td><span class="muted">—</span></td></tr>
-            <tr onclick="openWhale('nyx')"><td><strong>Nyx_Shadow</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td class="muted">nyx@email.ca</td><td>Destiny/D4</td><td>$15,200</td><td>$3,600</td><td>1 дн</td><td><span class="status-pill status-active">active</span></td><td><span style="color: var(--orange);">🟡 invited</span></td><td><span class="ws-link">📱 +1…</span></td></tr>
-            <tr onclick="openWhale('vex')"><td><strong>VexMachina</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td class="muted">pierre.l@email.fr</td><td>WoW Retail</td><td>$12,800</td><td>$3,920</td><td>6 дн</td><td><span class="status-pill status-active">active</span></td><td><span class="disc-link">🟢 chat</span></td><td><span class="muted">—</span></td></tr>
-            <tr onclick="openWhale('iron')"><td><strong>IronWolfPL</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td class="muted">tomasz.k@email.pl</td><td>Diablo IV</td><td>$11,400</td><td>$4,800</td><td>5 дн</td><td><span class="status-pill status-active">active</span></td><td><span class="disc-link">🟢 chat</span></td><td><span class="ws-link">📱 +48…</span></td></tr>
-            <tr onclick="openWhale('thorin')"><td><strong>ThorinBeast</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td class="muted">erik.s@email.se</td><td>WoW Classic</td><td>$10,750</td><td>$0</td><td>96 дн</td><td><span class="status-pill status-hibernate">hibernate</span></td><td><span class="muted">—</span></td><td><span class="muted">—</span></td></tr>
-            <tr onclick="openWhale('dragon')"><td><strong>DragonSlayer_99</strong> <span class="tier-badge tier-prewhale">Pre-Ruby</span></td><td class="muted">dragon@email.com</td><td>WoW Classic</td><td>$840</td><td>$840</td><td>5 мин</td><td><span class="status-pill status-new">new</span></td><td><span class="muted">—</span></td><td><span class="muted">—</span></td></tr>
-          </tbody>
-        </table>
-        <div class="muted small" style="text-align: center; padding-top: 0.8rem;">+ ещё 17 клиентов</div>
+
+      <div class="tabs-row">
+        <div class="tab-btn active" onclick="switchTab(this,'cl-recent')">🕐 <strong>По последним заказам</strong> <span class="badge">24</span></div>
+        <div class="tab-btn" onclick="switchTab(this,'cl-risk')">🟡 <strong>В зоне риска</strong> <span class="badge">5</span></div>
+        <div class="tab-btn" onclick="switchTab(this,'cl-upsell')">💰 <strong>Допродажи · что предложить</strong> <span class="badge">11</span></div>
+        <div class="tab-btn" onclick="switchTab(this,'cl-sandbox')">🌱 <strong>Песочница потенциальных</strong> <span class="badge">8</span></div>
+        <div class="tab-btn" onclick="switchTab(this,'cl-all')">📋 <strong>Все мои</strong> <span class="badge">24</span></div>
+      </div>
+
+      <!-- TAB 1: by last order (default) -->
+      <div class="tab-content active" data-tab="cl-recent">
+        <div class="section">
+          <div class="section-header">
+            <div><div class="section-title">🕐 Группировка по последним заказам</div><div class="section-sub">Сверху — кто покупал сегодня, ниже — давно. Клик — карточка кита</div></div>
+            <div class="filters">
+              <div class="filter-chip active">Сегодня</div>
+              <div class="filter-chip">Неделя</div>
+              <div class="filter-chip">Месяц</div>
+              <div class="filter-chip">Все</div>
+            </div>
+          </div>
+
+          <div class="muted small" style="margin: 0.5rem 0 0.3rem;">📅 Сегодня — 1 заказ</div>
+          <table class="table">
+            <tbody>
+              <tr onclick="openWhale('dragon')"><td><strong>DragonSlayer_99</strong> <span class="tier-badge tier-prewhale">Pre-Ruby</span></td><td>WoW Classic</td><td>$840</td><td>5 мин назад · первый заказ</td><td><span class="status-pill status-new">new pre-Ruby</span></td></tr>
+            </tbody>
+          </table>
+
+          <div class="muted small" style="margin: 0.8rem 0 0.3rem;">📅 Вчера-неделя — 4 заказа</div>
+          <table class="table">
+            <tbody>
+              <tr onclick="openWhale('nyx')"><td><strong>Nyx_Shadow</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>Destiny/D4</td><td>$15,200</td><td>1 день назад · $420 D4</td><td><span class="status-pill status-active">active</span></td></tr>
+              <tr onclick="openWhale('iron')"><td><strong>IronWolfPL</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>Diablo IV</td><td>$11,400</td><td>5 дней назад · $380</td><td><span class="status-pill status-active">active</span></td></tr>
+              <tr onclick="openWhale('vex')"><td><strong>VexMachina</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>WoW Retail</td><td>$12,800</td><td>6 дней назад · $310</td><td><span class="status-pill status-active">active</span></td></tr>
+            </tbody>
+          </table>
+
+          <div class="muted small" style="margin: 0.8rem 0 0.3rem;">📅 2-4 недели назад — 7 заказов</div>
+          <table class="table">
+            <tbody>
+              <tr><td><strong>Wraith_Lord</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>WoW Classic</td><td>$22,400</td><td>9 дней назад</td><td><span class="status-pill status-active">active</span></td></tr>
+              <tr><td><strong>SilverStorm_K</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>WoW Retail</td><td>$13,200</td><td>18 дней назад</td><td><span class="status-pill status-active">active</span></td></tr>
+            </tbody>
+          </table>
+
+          <div class="muted small" style="margin: 0.8rem 0 0.3rem; color: var(--orange);">⚠️ Больше месяца — 5 заказов (требуют внимания)</div>
+          <table class="table">
+            <tbody>
+              <tr onclick="openWhale('grimm')"><td><strong>GrimmRaider</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>WoW Classic</td><td>$24,300</td><td style="color: var(--orange);">48 дней назад</td><td><span class="status-pill status-risk">at-risk</span></td></tr>
+              <tr onclick="openWhale('phoenix')"><td><strong>Phoenix_Hunter</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>Destiny 2</td><td>$18,650</td><td style="color: var(--orange);">32 дня назад</td><td><span class="status-pill status-risk">at-risk</span></td></tr>
+              <tr onclick="openWhale('thorin')"><td><strong>ThorinBeast</strong> <span class="tier-badge tier-ruby">Ruby</span></td><td>WoW Classic</td><td>$10,750</td><td style="color: var(--red);">96 дней назад</td><td><span class="status-pill status-hibernate">hibernate</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 2: at-risk -->
+      <div class="tab-content" data-tab="cl-risk">
+        <div class="alert-banner warn">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-text">
+            <div class="alert-title">5 моих Ruby в зоне риска · $90,500 LTV под угрозой</div>
+            <div class="alert-sub">Триггеры: > 1.5× обычного цикла + есть релиз в main_game · правила настраиваются Семёном</div>
+          </div>
+          <button class="btn btn-primary btn-lg">Создать 5 outreach задач</button>
+        </div>
+        <div class="section">
+          <table class="table">
+            <thead><tr><th>Кит</th><th>Игра</th><th>LTV</th><th>Last order</th><th>Триггер риска</th><th>Действие</th></tr></thead>
+            <tbody>
+              <tr onclick="openWhale('grimm')"><td><strong>GrimmRaider</strong> <span class="tier-badge tier-ruby">R</span></td><td>WoW Classic</td><td>$24,300</td><td style="color: var(--orange);">48 дн</td><td>S4 вышел 12 дн назад, тишина</td><td><button class="btn btn-primary" onclick="event.stopPropagation(); openTask(1)">📞 Связаться</button></td></tr>
+              <tr onclick="openWhale('phoenix')"><td><strong>Phoenix_Hunter</strong> <span class="tier-badge tier-ruby">R</span></td><td>Destiny 2</td><td>$18,650</td><td style="color: var(--orange);">32 дн</td><td>Mega-кит, тишина непривычная</td><td><button class="btn btn-primary" onclick="event.stopPropagation(); openTask(2)">📞 Связаться</button></td></tr>
+              <tr><td><strong>NightOwl_DK</strong> <span class="tier-badge tier-ruby">R</span></td><td>WoW Retail</td><td>$15,400</td><td style="color: var(--orange);">52 дн</td><td>Reset вышел, не покупал</td><td><button class="btn btn-primary" onclick="event.stopPropagation(); alert('Связаться')">📞 Связаться</button></td></tr>
+              <tr><td><strong>BloodMoon_X</strong> <span class="tier-badge tier-ruby">R</span></td><td>Diablo IV</td><td>$12,100</td><td style="color: var(--orange);">68 дн</td><td>S5 уже сейчас, не зашёл</td><td><button class="btn btn-primary" onclick="event.stopPropagation(); alert('Связаться')">📞 Связаться</button></td></tr>
+              <tr><td><strong>SkyHunter_RU</strong> <span class="tier-badge tier-ruby">R</span></td><td>WoW Classic</td><td>$20,050</td><td style="color: var(--orange);">41 дн</td><td>Last contact 35 дн</td><td><button class="btn btn-primary" onclick="event.stopPropagation(); alert('Связаться')">📞 Связаться</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 3: upsell / what to sell -->
+      <div class="tab-content" data-tab="cl-upsell">
+        <div class="alert-banner">
+          <div class="alert-icon">💡</div>
+          <div class="alert-text">
+            <div class="alert-title">11 моих клиентов с горячими рекомендациями · итого $XX,000 потенциал</div>
+            <div class="alert-sub">Система предлагает что продать каждому · готовые тексты сообщений в карточке кита</div>
+          </div>
+        </div>
+        <div class="section">
+          <table class="table">
+            <thead><tr><th>Кит</th><th>Триггер допродажи</th><th>Что предложить</th><th>Сумма</th><th>Действие</th></tr></thead>
+            <tbody>
+              <tr onclick="openWhale('grimm')"><td><strong>GrimmRaider</strong> <span class="tier-badge tier-ruby">R</span></td><td>Цикл 28 дн, время покупать</td><td>M+ push 2847 → 3000+</td><td><strong style="color: var(--green);">$420</strong></td><td><button class="btn btn-primary" onclick="event.stopPropagation(); openTask(1)">💬 Предложить</button></td></tr>
+              <tr onclick="openWhale('iron')"><td><strong>IronWolfPL</strong> <span class="tier-badge tier-ruby">R</span></td><td>Заказ 5 дней назад · feedback</td><td>D4 S5 starter pack</td><td><strong style="color: var(--green);">$280</strong></td><td><button class="btn btn-primary" onclick="event.stopPropagation(); openTask(5)">💬 Предложить</button></td></tr>
+              <tr onclick="openWhale('nyx')"><td><strong>Nyx_Shadow</strong> <span class="tier-badge tier-ruby">R</span></td><td>Cross-game: первый D4 заказ</td><td>D4 bundle расширение</td><td><strong style="color: var(--green);">$340</strong></td><td><button class="btn btn-primary" onclick="event.stopPropagation(); openTask(4)">💬 Предложить</button></td></tr>
+              <tr onclick="openWhale('vex')"><td><strong>VexMachina</strong> <span class="tier-badge tier-ruby">R</span></td><td>Спросил про нового бога M+</td><td>M+ god boss kill</td><td><strong style="color: var(--green);">$520</strong></td><td><button class="btn btn-primary" onclick="event.stopPropagation(); alert('Предложить')">💬 Предложить</button></td></tr>
+              <tr><td><strong>BlackHawk_42</strong> <span class="tier-badge tier-ruby">R</span></td><td>Не делал Glory of Vault</td><td>Glory of the Vault Raider</td><td><strong style="color: var(--green);">$720</strong></td><td><button class="btn btn-primary" onclick="event.stopPropagation(); alert('Предложить')">💬 Предложить</button></td></tr>
+            </tbody>
+          </table>
+          <div class="muted small" style="text-align: center; padding-top: 0.6rem;">+ ещё 6 рекомендаций</div>
+        </div>
+      </div>
+
+      <!-- TAB 4: sandbox potential -->
+      <div class="tab-content" data-tab="cl-sandbox">
+        <div class="alert-banner purple">
+          <div class="alert-icon">🌱</div>
+          <div class="alert-text">
+            <div class="alert-title">8 кандидатов в Ruby · песочница потенциальных</div>
+            <div class="alert-sub">Сюда падают клиенты по правилам автораспределения (см. Настройки) · твоя задача вырастить их</div>
+          </div>
+          <button class="btn btn-lg" onclick="navTo('settings')">⚙️ Правила сандбокса</button>
+        </div>
+        <div class="section">
+          <table class="table">
+            <thead><tr><th>Клиент</th><th>Игра</th><th>LTV</th><th>Score</th><th>Сигнал</th><th>Прогноз → Ruby</th><th>Что делать</th></tr></thead>
+            <tbody>
+              <tr onclick="openWhale('dragon')"><td><strong>DragonSlayer_99</strong></td><td>WoW Classic</td><td>$840</td><td><strong style="color: var(--purple);">75/100</strong></td><td>Первый заказ $840 (12× ср.чека)</td><td style="color: var(--green);">~75 дн</td><td><button class="btn btn-primary" onclick="event.stopPropagation(); openTask(3)">📞 Связаться</button></td></tr>
+              <tr><td><strong>VoidStrider</strong></td><td>Destiny 2</td><td>$1,200</td><td><strong style="color: var(--purple);">82/100</strong></td><td>2-й заказ за 8 дней</td><td style="color: var(--green);">~60 дн</td><td><button class="btn btn-primary" onclick="event.stopPropagation(); alert('Связаться')">📞 Связаться</button></td></tr>
+              <tr><td><strong>FrostBorn_X</strong></td><td>WoW Retail</td><td>$640</td><td>65/100</td><td>Первый заказ $640</td><td>~110 дн</td><td><button class="btn" onclick="event.stopPropagation(); alert('Подождать')">⏰ Подождать</button></td></tr>
+              <tr><td><strong>ShadowEcho_2</strong></td><td>Diablo IV</td><td>$920</td><td>70/100</td><td>Cross-game активность</td><td>~90 дн</td><td><button class="btn btn-primary" onclick="event.stopPropagation(); alert('Связаться')">📞 Связаться</button></td></tr>
+              <tr><td><strong>Vulkan_Reborn</strong></td><td>WoW Classic</td><td>$1,580</td><td><strong style="color: var(--purple);">88/100</strong></td><td>Crown → быстрый рост к Ruby</td><td style="color: var(--green);">~45 дн</td><td><button class="btn btn-primary" onclick="event.stopPropagation(); alert('Связаться')">📞 Связаться</button></td></tr>
+              <tr><td><strong>EnderQueen</strong></td><td>Destiny 2</td><td>$1,140</td><td>72/100</td><td>VIP-tier interest</td><td>~70 дн</td><td><button class="btn btn-primary" onclick="event.stopPropagation(); alert('Связаться')">📞 Связаться</button></td></tr>
+            </tbody>
+          </table>
+          <div class="muted small" style="text-align: center; padding-top: 0.6rem;">+ ещё 2 кандидата</div>
+        </div>
+        <div class="section">
+          <div class="section-header"><div><div class="section-title">⚙️ Правила «попадания в песочницу»</div><div class="section-sub">Настройки: Семён конфигурирует условия · твоя задача только работать с теми кто пришёл</div></div></div>
+          <div class="muted small" style="line-height: 1.7;">
+            • <strong>Первый заказ ≥ $700</strong> (4× средний чек) → score +25<br>
+            • <strong>Первый заказ ≥ $1,000</strong> → score +15 (итого 40)<br>
+            • <strong>2-й заказ за 30 дней</strong> → score +20<br>
+            • <strong>Заказы в ≥ 2 играх</strong> → score +15<br>
+            • <strong>Spend(90d) > 80-percentile cohort</strong> → score +20<br>
+            • <strong>Score ≥ 50</strong> → попадает в песочницу<br>
+            • <strong>Score ≥ 70</strong> → горячий, авто-задача «связаться 48ч»
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 5: all my -->
+      <div class="tab-content" data-tab="cl-all">
+        <div class="section">
+          <div class="filters" style="margin-bottom: 0.7rem;">
+            <span class="muted small">Игра:</span>
+            <div class="filter-chip active">Все</div>
+            <div class="filter-chip">WoW Classic</div>
+            <div class="filter-chip">WoW Retail</div>
+            <div class="filter-chip">Diablo IV</div>
+            <div class="filter-chip">Destiny 2</div>
+          </div>
+          <table class="table">
+            <thead>
+              <tr><th>Кит</th><th>Email (имя в админке)</th><th>Игра</th><th>LTV</th><th>Spend май</th><th>Last order</th><th>Статус</th><th>Discord</th><th>WhatsApp</th></tr>
+            </thead>
+            <tbody>
+              <tr onclick="openWhale('grimm')"><td><strong>GrimmRaider</strong> <span class="tier-badge tier-ruby">R</span></td><td class="muted">marcus.k@email.de</td><td>WoW Classic</td><td>$24,300</td><td>$0</td><td>48 дн</td><td><span class="status-pill status-risk">at-risk</span></td><td><span class="disc-link">🟢</span></td><td><span class="ws-link">📱</span></td></tr>
+              <tr onclick="openWhale('phoenix')"><td><strong>Phoenix_Hunter</strong> <span class="tier-badge tier-ruby">R</span></td><td class="muted">daniel.r@email.uk</td><td>Destiny 2</td><td>$18,650</td><td>$0</td><td>32 дн</td><td><span class="status-pill status-risk">at-risk</span></td><td><span class="disc-link">🟢</span></td><td><span class="muted">—</span></td></tr>
+              <tr onclick="openWhale('nyx')"><td><strong>Nyx_Shadow</strong> <span class="tier-badge tier-ruby">R</span></td><td class="muted">nyx@email.ca</td><td>Destiny/D4</td><td>$15,200</td><td>$3,600</td><td>1 дн</td><td><span class="status-pill status-active">active</span></td><td><span style="color: var(--orange);">🟡</span></td><td><span class="ws-link">📱</span></td></tr>
+              <tr onclick="openWhale('vex')"><td><strong>VexMachina</strong> <span class="tier-badge tier-ruby">R</span></td><td class="muted">pierre.l@email.fr</td><td>WoW Retail</td><td>$12,800</td><td>$3,920</td><td>6 дн</td><td><span class="status-pill status-active">active</span></td><td><span class="disc-link">🟢</span></td><td><span class="muted">—</span></td></tr>
+              <tr onclick="openWhale('iron')"><td><strong>IronWolfPL</strong> <span class="tier-badge tier-ruby">R</span></td><td class="muted">tomasz.k@email.pl</td><td>Diablo IV</td><td>$11,400</td><td>$4,800</td><td>5 дн</td><td><span class="status-pill status-active">active</span></td><td><span class="disc-link">🟢</span></td><td><span class="ws-link">📱</span></td></tr>
+              <tr onclick="openWhale('thorin')"><td><strong>ThorinBeast</strong> <span class="tier-badge tier-ruby">R</span></td><td class="muted">erik.s@email.se</td><td>WoW Classic</td><td>$10,750</td><td>$0</td><td>96 дн</td><td><span class="status-pill status-hibernate">hibernate</span></td><td><span class="muted">—</span></td><td><span class="muted">—</span></td></tr>
+              <tr onclick="openWhale('dragon')"><td><strong>DragonSlayer_99</strong> <span class="tier-badge tier-prewhale">P</span></td><td class="muted">dragon@email.com</td><td>WoW Classic</td><td>$840</td><td>$840</td><td>5 мин</td><td><span class="status-pill status-new">new</span></td><td><span class="muted">—</span></td><td><span class="muted">—</span></td></tr>
+            </tbody>
+          </table>
+          <div class="muted small" style="text-align: center; padding-top: 0.6rem;">+ ещё 17 клиентов</div>
+        </div>
       </div>
     </div>
+
+    <!-- ====== OBSOLETE WHALES VIEW (kept for back-compat, hidden from nav) ====== -->
+    <div class="view" data-view="whales" style="display: none;"></div>
 
     <!-- ====== VIEW: WHALES (4 tabs) ====== -->
     <div class="view" data-view="whales">
@@ -913,6 +1063,105 @@
       </div>
     </div>
 
+    <!-- ====== VIEW: OPEN QUESTIONS (manager) ====== -->
+    <div class="view" data-view="open-questions">
+      <div class="page-header">
+        <div>
+          <div class="page-title">❓ Ещё нерешённые задачи</div>
+          <div class="page-sub">Вопросы для обсуждения с руководителем · правила, рекомендации, настройки</div>
+        </div>
+      </div>
+
+      <div class="alert-banner warn">
+        <div class="alert-icon">!</div>
+        <div class="alert-text">
+          <div class="alert-title">Что не финализировано к запуску 15 июня</div>
+          <div class="alert-sub">Эти решения и API-ручки нужно утвердить до старта работы</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header"><div><div class="section-title">🔧 API ручки которые нам ещё нужны (из CRM SkyCoach)</div></div></div>
+        <div style="display: grid; gap: 0.55rem;">
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--red);">
+            <strong>1.</strong> GET клиента с расширенными полями (email, имя, страна, регистрация, character_name) <span class="muted small">· критично для карточки кита</span>
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--red);">
+            <strong>2.</strong> GET orders с <strong>Order ID</strong> + статусом (paid / in_progress / refunded / pending) <span class="muted small">· новое требование Семёна</span>
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--red);">
+            <strong>3.</strong> Webhook на новый заказ → auto-assignment <span class="muted small">· без webhook auto-assignment не работает</span>
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--orange);">
+            <strong>4.</strong> Webhook на refund / cancel → daily summary руководителю
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--orange);">
+            <strong>5.</strong> Deep-link URL на админку SkyCoach (карточка клиента, конкретный заказ)
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--green);">
+            <strong>6.</strong> Любимый исполнитель клиента (или считаем сами из orders)
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--green);">
+            <strong>7.</strong> Каталог игр и услуг
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--green);">
+            <strong>8.</strong> Custom attributes в Intercom (tier, assigned_manager, is_at_risk)
+          </div>
+          <div class="muted small">🔴 Must-have · 🟠 Strongly desired · 🟢 Nice-to-have. Полный список — в файле api-needs-v2.pdf</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header"><div><div class="section-title">📋 Правила для песочницы потенциальных Ruby</div><div class="section-sub">Какие критерии «высокого потенциала» по каждой игре · Семён уточняет с Юрой</div></div></div>
+        <div style="display: grid; gap: 0.55rem;">
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--purple);">
+            🟡 <strong>Score threshold</strong> — Score ≥ 50 = песочница, ≥ 70 = горячий. <span class="muted small">Утверждено?</span>
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--purple);">
+            🟡 <strong>Первый заказ X</strong> — какая сумма квалифицирует как pre-Ruby? $700 (12× ср.чека)? $1,000? По каждой игре отдельно?
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--purple);">
+            🟡 <strong>Кому распределяется новый pre-Ruby?</strong> Round-robin / по специализации / по working hours match / по загруженности?
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--purple);">
+            🟡 <strong>Manual claim</strong> — менеджер может сам забрать кандидата из общей песочницы? Лимит 5/неделю?
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header"><div><div class="section-title">💬 Правила рекомендаций (что и кому отправлять)</div></div></div>
+        <div style="display: grid; gap: 0.55rem;">
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
+            🔵 <strong>Шаблоны сообщений NBA</strong> — кто их пишет (Семён? AI? менеджеры по очереди?) и под какой контекст
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
+            🔵 <strong>Канал отправки</strong> — Discord приоритетнее Intercom? WhatsApp — для каких клиентов?
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
+            🔵 <strong>Когда нельзя писать</strong> — ночные часы клиента? Выходные? «Не беспокоить» статус?
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
+            🔵 <strong>Антиспам</strong> — макс 2 автозадачи на кита в день. 5 дней между одинаковыми. Это окончательно?
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
+            🔵 <strong>Готовые тексты vs импровизация</strong> — менеджер обязан использовать шаблон или адаптирует?
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header"><div><div class="section-title">🎯 Что ещё хочется обсудить с командой</div></div></div>
+        <div style="display: grid; gap: 0.55rem;">
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Что делать если клиент просит сменить менеджера?</div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ SLA — обещаем ли клиенту скорость ответа? (Денис: 30 сек - 1 мин и так)</div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Quality check после заказа — раз в месяц или после каждого негативного?</div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Voice звонки — разрешены? Кто инициирует?</div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Buddy-пары — кто кого подменяет при отпуске? Автоматически или вручную?</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -926,10 +1175,10 @@
     <div class="nav-item active" onclick="switchView(this,'dashboard')">📊 <span>Дашборд</span></div>
     <div class="nav-item" onclick="switchView(this,'managers')">👨‍💼 <span>Менеджеры</span><span class="count">4</span></div>
     <div class="nav-item" onclick="switchView(this,'analytics')">📈 <span>Аналитика</span></div>
-    <div class="nav-item" onclick="switchView(this,'clients')">👥 <span>Клиенты</span><span class="count">356K</span></div>
-    <div class="nav-item" onclick="switchView(this,'whales')">🐋 <span>Киты</span><span class="count">250</span></div>
+    <div class="nav-item" onclick="switchView(this,'clients')">👥 <span>Клиенты</span><span class="count">250</span></div>
     <div class="nav-item" onclick="switchView(this,'tasks')">📋 <span>Задачи</span><span class="count red">38</span></div>
     <div class="nav-item" onclick="switchView(this,'settings')">⚙️ <span>Настройки</span></div>
+    <div class="nav-item" onclick="switchView(this,'open-questions')" style="color: var(--orange);">❓ <span>Open questions</span><span class="count red">14</span></div>
     <div class="switch-role">
       <button class="switch-btn" onclick="goLanding()">← Стартовый экран</button>
     </div>
@@ -1716,6 +1965,170 @@
           <div><label class="form-label">Бонус за возврат Ruby</label><input class="form-input" value="$500"></div>
           <div><label class="form-label">Бонус за pre-Ruby → Ruby</label><input class="form-input" value="$200"></div>
         </div>
+      </div>
+    </div>
+
+    <!-- ====== VIEW: OPEN QUESTIONS (LEADER · полный) ====== -->
+    <div class="view" data-view="open-questions">
+      <div class="page-header">
+        <div>
+          <div class="page-title">❓ Ещё нерешённые задачи</div>
+          <div class="page-sub">Что финализировать до 15 июня · API · правила · настройки</div>
+        </div>
+        <button class="btn btn-primary btn-lg" onclick="alert('Создаётся документ для звонка с Андреем + новым CTO')">📞 Назначить звонок с Андреем</button>
+      </div>
+
+      <div class="alert-banner warn">
+        <div class="alert-icon">!</div>
+        <div class="alert-text">
+          <div class="alert-title">14 открытых вопросов · 8 API ручек + 4 правила + 2 настройки</div>
+          <div class="alert-sub">Все нужно решить до запуска · ответственные указаны рядом</div>
+        </div>
+      </div>
+
+      <!-- BLOCK 1: API handles -->
+      <div class="section">
+        <div class="section-header">
+          <div><div class="section-title">🔧 API ручки которые нам нужны от CRM SkyCoach</div><div class="section-sub">Ответственный: <strong>Андрей + новый CTO</strong> · звонок на этой неделе</div></div>
+        </div>
+        <table class="table">
+          <thead><tr><th>#</th><th>Ручка</th><th>Зачем</th><th>Приоритет</th><th>Статус</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><strong>GET клиента</strong> по user_id/email/nickname</td><td>Карточка кита, поиск</td><td><span class="status-pill status-lost">MUST</span></td><td>🤷 уточняем</td></tr>
+            <tr><td>2</td><td><strong>GET orders</strong> с Order ID + status</td><td>История заказов · новое требование Семёна</td><td><span class="status-pill status-lost">MUST</span></td><td>🤷 уточняем</td></tr>
+            <tr><td>3</td><td><strong>GET stats клиента</strong> (LTV, заказов, last)</td><td>Карточка кита, аналитика</td><td><span class="status-pill status-lost">MUST</span></td><td>🤷 уточняем</td></tr>
+            <tr><td>4</td><td><strong>Filter клиентов по LTV</strong></td><td>Загрузить Ruby/Diamond списками</td><td><span class="status-pill status-lost">MUST</span></td><td>🤷 уточняем</td></tr>
+            <tr><td>5</td><td><strong>Webhook на новый заказ</strong></td><td>Auto-assignment pre-Ruby</td><td><span class="status-pill status-lost">MUST</span></td><td>🤷 уточняем</td></tr>
+            <tr><td>6</td><td><strong>Webhook refund/cancel</strong></td><td>Daily summary руководителю</td><td><span class="status-pill status-risk">SHOULD</span></td><td>🤷 уточняем</td></tr>
+            <tr><td>7</td><td><strong>Deep-link URL</strong> на админку</td><td>Не дублируем функционал</td><td><span class="status-pill status-lost">MUST</span></td><td>🤷 уточняем</td></tr>
+            <tr><td>8</td><td><strong>API auth</strong> (read-only ключ)</td><td>Безопасный доступ</td><td><span class="status-pill status-lost">MUST</span></td><td>🤷 уточняем</td></tr>
+          </tbody>
+        </table>
+        <div class="muted small" style="margin-top: 0.5rem;">📄 Полный список 18 ручек — в файле <a style="color: var(--accent);">api-needs-v2.pdf</a></div>
+      </div>
+
+      <!-- BLOCK 2: Sandbox rules -->
+      <div class="section">
+        <div class="section-header">
+          <div><div class="section-title">🌱 Правила для песочницы потенциальных Ruby</div><div class="section-sub">Ответственный: <strong>Семён + Юра</strong></div></div>
+        </div>
+        <div style="display: grid; gap: 0.55rem;">
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--purple);">
+            <strong>2.1 · Score threshold</strong><br>
+            <span class="muted small">Score ≥ 50 = в песочнице. Score ≥ 70 = горячий, авто-задача «связаться 48ч». <strong>Утвердить или скорректировать?</strong></span>
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--purple);">
+            <strong>2.2 · Первый заказ X (по играм)</strong><br>
+            <span class="muted small">WoW Classic — какая сумма первого заказа квалифицирует как pre-Ruby? WoW Retail? Destiny? D4? У Семёна: «пока туманно, спрошу Юру».</span>
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--purple);">
+            <strong>2.3 · Авторазспределение pre-Ruby</strong><br>
+            <span class="muted small">Round-robin? По специализации игры? По working hours match (US-кит → ночной менеджер)? По загруженности? Комбинация?</span>
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--purple);">
+            <strong>2.4 · Manual claim</strong><br>
+            <span class="muted small">Менеджер сам может забрать pre-Ruby из общей песочницы? Лимит 5 в неделю? Или только Семён распределяет?</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOCK 3: Recommendations & messaging rules -->
+      <div class="section">
+        <div class="section-header">
+          <div><div class="section-title">💬 Правила рекомендаций (что и кому отправлять)</div><div class="section-sub">Ответственный: <strong>Семён + маркетинг</strong></div></div>
+        </div>
+        <div style="display: grid; gap: 0.55rem;">
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
+            <strong>3.1 · Кто пишет шаблоны NBA</strong><br>
+            <span class="muted small">Семён вручную / маркетинг / AI генерит на основе истории + контекста? Какие 8 базовых шаблонов под 8 триггеров?</span>
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
+            <strong>3.2 · Канал отправки</strong><br>
+            <span class="muted small">Discord приоритетнее Intercom? WhatsApp — для каких клиентов? Когда переключаемся между каналами?</span>
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
+            <strong>3.3 · Когда нельзя писать</strong><br>
+            <span class="muted small">Ночные часы клиента (по его TZ)? Выходные? Статус «не беспокоить»? Что делать с триггером в неудобное время?</span>
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
+            <strong>3.4 · Шаблон vs импровизация</strong><br>
+            <span class="muted small">Менеджер обязан использовать готовый шаблон или может адаптировать? Как контролируем качество сообщений?</span>
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px; border-left: 3px solid var(--accent);">
+            <strong>3.5 · Антиспам</strong><br>
+            <span class="muted small">Макс 2 автозадачи на кита в день, 5 дней между одинаковыми. Норм или подкорректировать?</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOCK 4: Settings to discuss -->
+      <div class="section">
+        <div class="section-header">
+          <div><div class="section-title">⚙️ Настройки на обсуждение</div><div class="section-sub">Ответственный: <strong>Семён + Володя</strong></div></div>
+        </div>
+        <div style="display: grid; gap: 0.55rem;">
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">
+            ⚪ <strong>Max capacity менеджера</strong> — default 30 задач. Правильно? Откуда взяли цифру?
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">
+            ⚪ <strong>% ставки от GMV</strong> — 5%? Сколько в реальности будет?
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">
+            ⚪ <strong>Бонус за возврат Ruby</strong> — $500 фикс? % от GMV возвращённого?
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">
+            ⚪ <strong>At-risk threshold</strong> — 1.5× обычного цикла + новый релиз. Возможно нужно по играм отдельно?
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">
+            ⚪ <strong>Lost threshold</strong> — 180 дней. Для WoW Classic возможно 270 дней (длинные сезоны)?
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">
+            ⚪ <strong>Архив задач</strong> — 30 дней автомат. Норм?
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">
+            ⚪ <strong>Buddy-пары</strong> — авто (по специализации) или Семён вручную назначает?
+          </div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">
+            ⚪ <strong>SLA</strong> — обещаем клиенту скорость ответа? Денис: «и так 30 сек - 1 мин». Как замерять в Discord/WhatsApp?
+          </div>
+        </div>
+      </div>
+
+      <!-- BLOCK 5: Process questions -->
+      <div class="section">
+        <div class="section-header">
+          <div><div class="section-title">🤔 Процессные вопросы</div></div>
+        </div>
+        <div style="display: grid; gap: 0.55rem;">
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Клиент просит сменить менеджера — какой процесс? (Семён вручную / автоопрос / какой trigger)</div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Voice звонки — разрешены ли? Кто инициирует? В какое время?</div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Quality check после заказа — раз в месяц или после каждого негативного?</div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Сезонные кампании (Black Friday, WoW Season release) — отдельный процесс или mass task?</div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">⚪ Языки команды — ищем 4-х свободно English. Сколько уже нашли? Дедлайн?</div>
+        </div>
+      </div>
+
+      <!-- BLOCK 6: parked but to remember -->
+      <div class="section">
+        <div class="section-header">
+          <div><div class="section-title">🅿️ Запарковано (но помним)</div><div class="section-sub">Что отложили на следующие фазы</div></div>
+        </div>
+        <div style="display: grid; gap: 0.55rem;">
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">🟢 <strong>WoW Battle.net интеграция</strong> — через 3 месяца, к следующему сезону WoW</div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">🟢 <strong>AI-бот для чтения Discord-чатов</strong> — нет готовых решений (Денис ресёрчил)</div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">🟢 <strong>Лидерборд менеджеров</strong> — Денис против в v1 (US-timezone unfair)</div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">🟢 <strong>Жёсткие планы продаж</strong> — после 2 мес данных</div>
+          <div style="background: var(--bg-3); padding: 0.7rem 0.9rem; border-radius: 6px;">🟢 <strong>Intercom Canvas Kit App</strong> — отдельный трек после v1</div>
+        </div>
+      </div>
+
+      <div class="alert-banner">
+        <div class="alert-icon">📞</div>
+        <div class="alert-text">
+          <div class="alert-title">Следующий шаг — звонок с Андреем + новым CTO</div>
+          <div class="alert-sub">Пройти все 14 вопросов выше, получить статусы по ручкам, оценить сроки. Назначить через Семёна.</div>
+        </div>
+        <button class="btn btn-primary btn-lg">📅 Назначить звонок</button>
       </div>
     </div>
 
