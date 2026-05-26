@@ -352,29 +352,29 @@
         </div>
       </div>
 
-      <!-- FEATURED METRICS (customizable) -->
+      <!-- FEATURED METRICS (customizable, все кликабельные) -->
       <div class="featured-row">
-        <div class="featured">
-          <span class="featured-config" onclick="alert('Настройка Featured Metrics: выбрать какие 4 цифры показывать. Открыть в Настройках.')" title="Настроить">⚙️</span>
-          <div class="featured-label">Ruby active в мае</div>
+        <div class="featured" style="cursor: pointer;" onclick="navTo('whales','wh-active')" title="→ Киты · Активные">
+          <span class="featured-config" onclick="event.stopPropagation(); navTo('settings')" title="Настроить">⚙️</span>
+          <div class="featured-label">Ruby active в мае <small style="color: var(--accent);">→</small></div>
           <div class="featured-value">22 / 24</div>
           <div class="featured-delta up">+1 за неделю</div>
         </div>
-        <div class="featured">
-          <span class="featured-config" onclick="alert('Настройка Featured Metrics')">⚙️</span>
-          <div class="featured-label">GMV закреплённых, май</div>
+        <div class="featured" style="cursor: pointer;" onclick="navTo('analytics')" title="→ Моя аналитика">
+          <span class="featured-config" onclick="event.stopPropagation(); navTo('settings')">⚙️</span>
+          <div class="featured-label">GMV закреплённых, май <small style="color: var(--accent);">→</small></div>
           <div class="featured-value">$48,200</div>
           <div class="featured-delta up">+12% к апрелю</div>
         </div>
-        <div class="featured">
-          <span class="featured-config" onclick="alert('Настройка Featured Metrics')">⚙️</span>
-          <div class="featured-label">Возвратов / неделя ⭐</div>
+        <div class="featured" style="cursor: pointer;" onclick="navTo('analytics')" title="→ Моя аналитика">
+          <span class="featured-config" onclick="event.stopPropagation(); navTo('settings')">⚙️</span>
+          <div class="featured-label">Возвратов / неделя ⭐ <small style="color: var(--accent);">→</small></div>
           <div class="featured-value">2</div>
           <div class="featured-delta up">$8,400 GMV</div>
         </div>
-        <div class="featured" style="cursor: pointer;" onclick="switchView(document.querySelector('[onclick*=\\'tasks\\']'),'tasks')">
-          <span class="featured-config" onclick="event.stopPropagation(); alert('Настройка Featured Metrics')">⚙️</span>
-          <div class="featured-label">Без касания 30+ <small style="color: var(--accent);">кликабельно</small></div>
+        <div class="featured" style="cursor: pointer;" onclick="navTo('tasks')" title="→ Задачи без касания">
+          <span class="featured-config" onclick="event.stopPropagation(); navTo('settings')">⚙️</span>
+          <div class="featured-label">Без касания 30+ <small style="color: var(--accent);">→ задачи</small></div>
           <div class="featured-value">3</div>
           <div class="featured-delta down">требует внимания</div>
         </div>
@@ -488,18 +488,19 @@
           <div class="section-header">
             <div>
               <div class="section-title">💬 Discord — непрочитанные от моих китов</div>
+              <div class="section-sub">Клик — карточка кита</div>
             </div>
           </div>
           <div class="activity-list">
-            <div class="activity-item unread">
+            <div class="activity-item unread" style="cursor: pointer;" onclick="openWhale('vex')">
               <div class="activity-item-head"><strong>VexMachina</strong><span class="muted small">3 мин</span></div>
               <div class="muted small">«Привет, есть варианты под нового бога M+?»</div>
             </div>
-            <div class="activity-item unread">
+            <div class="activity-item unread" style="cursor: pointer;" onclick="openWhale('iron')">
               <div class="activity-item-head"><strong>IronWolfPL</strong><span class="muted small">25 мин</span></div>
               <div class="muted small">«Спасибо за бундл, идеально зашёл!»</div>
             </div>
-            <div class="activity-item">
+            <div class="activity-item" style="cursor: pointer;" onclick="openWhale('nyx')">
               <div class="activity-item-head"><strong>Nyx_Shadow</strong><span class="muted small">2ч</span></div>
               <div class="muted small">«Видел приглашение, приму вечером»</div>
             </div>
@@ -510,18 +511,20 @@
           <div class="section-header">
             <div>
               <div class="section-title">📵 Без касания 30+ (3 кита)</div>
+              <div class="section-sub">Клик — открыть карточку</div>
             </div>
+            <div class="section-action" onclick="navTo('tasks')">Все задачи →</div>
           </div>
           <div class="activity-list">
-            <div class="activity-item">
+            <div class="activity-item" style="cursor: pointer;" onclick="openWhale('thorin')">
               <strong>ThorinBeast</strong> · WoW Classic · LTV $10,750
               <div class="muted small">96 дней без заказа · hibernating, S5 через 14 дн</div>
             </div>
-            <div class="activity-item">
+            <div class="activity-item" style="cursor: pointer;" onclick="openWhale('grimm')">
               <strong>SilverStorm_K</strong> · WoW Retail · LTV $13,200
               <div class="muted small">38 дней без касания</div>
             </div>
-            <div class="activity-item">
+            <div class="activity-item" style="cursor: pointer;" onclick="openWhale('phoenix')">
               <strong>MoonWalker99</strong> · Diablo IV · LTV $10,800
               <div class="muted small">42 дня без касания</div>
             </div>
@@ -586,24 +589,24 @@
 
       <div class="two-col">
         <div class="section">
-          <div class="section-header"><div><div class="section-title">🐋 Активность моих китов</div></div></div>
+          <div class="section-header"><div><div class="section-title">🐋 Активность моих китов</div><div class="section-sub">Клик — открыть нужный таб</div></div></div>
           <div style="display: grid; gap: 0.45rem; font-size: 0.88rem;">
-            <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--border);"><span class="muted">🟢 Active в мае</span><strong style="color: var(--green);">22 / 24</strong></div>
-            <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--border);"><span class="muted">💤 Hibernating</span><strong style="color: var(--dolphin);">1</strong></div>
-            <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--border);"><span class="muted">🟡 At-risk</span><strong style="color: var(--orange);">1</strong></div>
+            <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--border); cursor: pointer;" onclick="navTo('whales','wh-active')"><span class="muted">🟢 Active в мае →</span><strong style="color: var(--green);">22 / 24</strong></div>
+            <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--border); cursor: pointer;" onclick="navTo('clients')"><span class="muted">💤 Hibernating →</span><strong style="color: var(--dolphin);">1</strong></div>
+            <div style="display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--border); cursor: pointer;" onclick="navTo('whales','wh-risk')"><span class="muted">🟡 At-risk →</span><strong style="color: var(--orange);">1</strong></div>
             <div style="display: flex; justify-content: space-between; padding: 0.4rem 0;"><span class="muted">🔴 Lost</span><strong>0</strong></div>
           </div>
         </div>
         <div class="section">
-          <div class="section-header"><div><div class="section-title">🏆 Топ-5 моих китов в мае</div></div></div>
+          <div class="section-header"><div><div class="section-title">🏆 Топ-5 моих китов в мае</div><div class="section-sub">Клик — карточка кита</div></div></div>
           <table class="table">
             <thead><tr><th>Кит</th><th>Игра</th><th>GMV</th><th>Зак.</th></tr></thead>
             <tbody>
-              <tr><td><strong>IronWolfPL</strong></td><td>Diablo IV</td><td><strong>$4,800</strong></td><td>6</td></tr>
-              <tr><td><strong>VexMachina</strong></td><td>WoW Retail</td><td><strong>$3,920</strong></td><td>9</td></tr>
-              <tr><td><strong>Nyx_Shadow</strong></td><td>Destiny/D4</td><td><strong>$3,600</strong></td><td>11</td></tr>
-              <tr><td><strong>Crimson_Tide</strong></td><td>WoW Classic</td><td><strong>$2,800</strong></td><td>5</td></tr>
-              <tr><td><strong>BlackHawk_42</strong></td><td>WoW Classic</td><td><strong>$2,640</strong></td><td>4</td></tr>
+              <tr onclick="openWhale('iron')"><td><strong>IronWolfPL</strong></td><td>Diablo IV</td><td><strong>$4,800</strong></td><td>6</td></tr>
+              <tr onclick="openWhale('vex')"><td><strong>VexMachina</strong></td><td>WoW Retail</td><td><strong>$3,920</strong></td><td>9</td></tr>
+              <tr onclick="openWhale('nyx')"><td><strong>Nyx_Shadow</strong></td><td>Destiny/D4</td><td><strong>$3,600</strong></td><td>11</td></tr>
+              <tr onclick="openWhale('grimm')"><td><strong>Crimson_Tide</strong></td><td>WoW Classic</td><td><strong>$2,800</strong></td><td>5</td></tr>
+              <tr onclick="openWhale('thorin')"><td><strong>BlackHawk_42</strong></td><td>WoW Classic</td><td><strong>$2,640</strong></td><td>4</td></tr>
             </tbody>
           </table>
         </div>
@@ -794,8 +797,8 @@
             <tr onclick="openTask(4)"><td><strong>Nyx_Shadow</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="ttype ttype-upsell">допродать</span></td><td class="muted small">🤖 auto</td><td>Cross-game: первый D4 заказ</td><td>сегодня</td><td><button class="btn" onclick="event.stopPropagation(); openCloseTask(4,'Nyx_Shadow')">✓</button></td></tr>
             <tr onclick="openTask(5)"><td><strong>IronWolfPL</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="ttype ttype-sell">feedback</span></td><td class="muted small">🤖 auto</td><td>Заказ 5 дней назад · feedback + S5</td><td>сегодня</td><td><button class="btn" onclick="event.stopPropagation(); openCloseTask(5,'IronWolfPL')">✓</button></td></tr>
             <tr onclick="openTask(6)"><td><strong>Wraith_Lord</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="ttype ttype-birthday">ДР</span></td><td class="muted small">🤖 auto</td><td>29 мая ДР · поздравление</td><td>29.05 09:00</td><td><button class="btn" onclick="event.stopPropagation(); openCloseTask(6,'Wraith_Lord')">✓</button></td></tr>
-            <tr><td><strong>SilverStorm_K</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="ttype ttype-risk">риск</span></td><td class="muted small">🤖 auto</td><td>WoW Retail patch, тишина 24 дн</td><td>сегодня</td><td><button class="btn">✓</button></td></tr>
-            <tr><td><strong>VexMachina</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="ttype ttype-contact">touch-base</span></td><td class="muted small">🙋 я</td><td>«перезвонить про новый патч»</td><td>завтра</td><td><button class="btn">✓</button></td></tr>
+            <tr onclick="openTask(7)"><td><strong>SilverStorm_K</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="ttype ttype-risk">риск</span></td><td class="muted small">🤖 auto</td><td>WoW Retail patch, тишина 24 дн</td><td>сегодня</td><td><button class="btn" onclick="event.stopPropagation(); openCloseTask(7,'SilverStorm_K')">✓</button></td></tr>
+            <tr onclick="openTask(8)"><td><strong>VexMachina</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="ttype ttype-contact">touch-base</span></td><td class="muted small">🙋 я</td><td>«перезвонить про новый патч»</td><td>завтра</td><td><button class="btn" onclick="event.stopPropagation(); openCloseTask(8,'VexMachina')">✓</button></td></tr>
           </tbody>
         </table>
         <div class="muted small" style="text-align: center; padding-top: 0.8rem;">+ ещё 4 открытых</div>
@@ -921,10 +924,10 @@
       </div>
 
       <div class="featured-row">
-        <div class="featured"><div class="featured-label">Ruby active</div><div class="featured-value">218 / 250</div><div class="featured-delta up">87% · +2 за неделю</div></div>
-        <div class="featured"><div class="featured-label">GMV команды май</div><div class="featured-value">$169K</div><div class="featured-delta up">+8% к апрелю</div></div>
-        <div class="featured"><div class="featured-label">Возвращено / неделя</div><div class="featured-value">12</div><div class="featured-delta up">$34,200 GMV</div></div>
-        <div class="featured"><div class="featured-label">Ruby в риске</div><div class="featured-value">18</div><div class="featured-delta down">+3 за неделю</div></div>
+        <div class="featured" style="cursor: pointer;" onclick="navTo('whales','lw-all')" title="→ Все 250 Ruby"><div class="featured-label">Ruby active <small style="color: var(--accent);">→</small></div><div class="featured-value">218 / 250</div><div class="featured-delta up">87% · +2 за неделю</div></div>
+        <div class="featured" style="cursor: pointer;" onclick="navTo('analytics')" title="→ Аналитика команды"><div class="featured-label">GMV команды май <small style="color: var(--accent);">→</small></div><div class="featured-value">$169K</div><div class="featured-delta up">+8% к апрелю</div></div>
+        <div class="featured" style="cursor: pointer;" onclick="navTo('analytics')" title="→ Reactivation tracker"><div class="featured-label">Возвращено / неделя <small style="color: var(--accent);">→</small></div><div class="featured-value">12</div><div class="featured-delta up">$34,200 GMV</div></div>
+        <div class="featured" style="cursor: pointer;" onclick="navTo('whales','lw-risk')" title="→ Киты в зоне риска"><div class="featured-label">Ruby в риске <small style="color: var(--accent);">→</small></div><div class="featured-value">18</div><div class="featured-delta down">+3 за неделю</div></div>
       </div>
 
       <!-- TEAM CARDS -->
@@ -935,7 +938,7 @@
         </div>
         <div class="manager-grid">
 
-          <div class="manager-card">
+          <div class="manager-card" onclick="navTo('clients',null,'Сергей')" title="→ Клиенты Сергея">
             <div class="manager-card-head">
               <div class="manager-card-name"><div class="avatar">С</div>Сергей <span style="color: var(--crown);">⭐</span></div>
               <span class="status-pill status-online">online</span>
@@ -949,7 +952,7 @@
             <div class="progress-row"><div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div><div class="progress-text">80%</div></div>
           </div>
 
-          <div class="manager-card">
+          <div class="manager-card" onclick="navTo('clients',null,'Анна')" title="→ Клиенты Анны">
             <div class="manager-card-head">
               <div class="manager-card-name"><div class="avatar crown-bg">А</div>Анна <span style="color: var(--crown);">⭐⭐</span></div>
               <span class="status-pill status-online">online</span>
@@ -963,7 +966,7 @@
             <div class="progress-row"><div class="progress-bar"><div class="progress-fill over" style="width: 95%;"></div></div><div class="progress-text">95%</div></div>
           </div>
 
-          <div class="manager-card">
+          <div class="manager-card" onclick="navTo('clients',null,'Михаил')" title="→ Клиенты Михаила">
             <div class="manager-card-head">
               <div class="manager-card-name"><div class="avatar dia-bg">M</div>Михаил</div>
               <span class="status-pill status-offline">offline</span>
@@ -977,7 +980,7 @@
             <div class="progress-row"><div class="progress-bar"><div class="progress-fill under" style="width: 47%;"></div></div><div class="progress-text">47% ⚠️</div></div>
           </div>
 
-          <div class="manager-card">
+          <div class="manager-card" onclick="navTo('clients',null,'Елена')" title="→ Клиенты Елены">
             <div class="manager-card-head">
               <div class="manager-card-name"><div class="avatar ruby-bg">Е</div>Елена</div>
               <span class="status-pill status-online">online</span>
@@ -1002,15 +1005,15 @@
             <div><div class="section-title">🆕 Авто-назначение · 24 часа</div><div class="section-sub">Pre-Ruby по match working hours + загруженности</div></div>
           </div>
           <div class="activity-list">
-            <div class="activity-item">
+            <div class="activity-item" style="cursor: pointer;" onclick="openWhale('dragon')" title="Карточка DragonSlayer_99">
               <div style="display: flex; justify-content: space-between;"><strong>DragonSlayer_99</strong> · WoW Classic<span class="muted small">5 мин</span></div>
               <div class="muted small">Первый заказ $840 · score 75 · → <strong>Сергей</strong> (US-match)</div>
             </div>
-            <div class="activity-item">
+            <div class="activity-item" style="cursor: pointer;" onclick="openWhale('vex')" title="Карточка VoidStrider">
               <div style="display: flex; justify-content: space-between;"><strong>VoidStrider</strong> · Destiny 2<span class="muted small">2ч</span></div>
               <div class="muted small">2-й заказ $1,200 · score 82 · → <strong>Анна</strong> (EU-match)</div>
             </div>
-            <div class="activity-item">
+            <div class="activity-item" style="cursor: pointer;" onclick="openWhale('iron')" title="Карточка FrostBorn_X">
               <div style="display: flex; justify-content: space-between;"><strong>FrostBorn_X</strong> · WoW Retail<span class="muted small">вчера</span></div>
               <div class="muted small">Первый заказ $640 · → <strong>Елена</strong></div>
             </div>
@@ -1019,15 +1022,16 @@
 
         <div class="section">
           <div class="section-header">
-            <div><div class="section-title">⚠️ Ruby в риске — по менеджерам</div><div class="section-sub">На планёрке обсудить перегруженных</div></div>
+            <div><div class="section-title">⚠️ Ruby в риске — по менеджерам</div><div class="section-sub">Клик на менеджера — его клиенты · клик на at-risk — киты в зоне риска</div></div>
+            <div class="section-action" onclick="navTo('whales','lw-risk')">Все 18 at-risk →</div>
           </div>
           <table class="table">
             <thead><tr><th>Менеджер</th><th>At-risk</th><th>Без касания 30+</th><th>Lost</th></tr></thead>
             <tbody>
-              <tr><td>Сергей</td><td><strong>5</strong></td><td>3</td><td>1</td></tr>
-              <tr><td>Анна <span style="color: var(--crown);">⭐</span></td><td>3</td><td>1</td><td>0</td></tr>
-              <tr><td style="color: var(--orange);"><strong>Михаил ⚠️</strong></td><td><strong style="color: var(--red);">7</strong></td><td><strong style="color: var(--red);">5</strong></td><td>2</td></tr>
-              <tr><td>Елена</td><td>3</td><td>2</td><td>1</td></tr>
+              <tr onclick="navTo('clients',null,'Сергей')"><td>Сергей</td><td onclick="event.stopPropagation(); navTo('whales','lw-risk')" style="cursor: pointer; color: var(--accent);"><strong>5</strong></td><td>3</td><td>1</td></tr>
+              <tr onclick="navTo('clients',null,'Анна')"><td>Анна <span style="color: var(--crown);">⭐</span></td><td onclick="event.stopPropagation(); navTo('whales','lw-risk')" style="cursor: pointer; color: var(--accent);">3</td><td>1</td><td>0</td></tr>
+              <tr onclick="navTo('clients',null,'Михаил')"><td style="color: var(--orange);"><strong>Михаил ⚠️</strong></td><td onclick="event.stopPropagation(); navTo('whales','lw-risk')" style="cursor: pointer;"><strong style="color: var(--red);">7</strong></td><td><strong style="color: var(--red);">5</strong></td><td>2</td></tr>
+              <tr onclick="navTo('clients',null,'Елена')"><td>Елена</td><td onclick="event.stopPropagation(); navTo('whales','lw-risk')" style="cursor: pointer; color: var(--accent);">3</td><td>2</td><td>1</td></tr>
             </tbody>
           </table>
         </div>
@@ -1043,8 +1047,8 @@
         <table class="table">
           <thead><tr><th>Время</th><th>Кит</th><th>Order ID</th><th>Сумма</th><th>Причина</th><th>Менеджер</th></tr></thead>
           <tbody>
-            <tr><td>10:24</td><td><strong>NightCrystal</strong> <span class="tier-badge tier-ruby">R</span></td><td>#ORD-89412</td><td><strong style="color: var(--red);">$340</strong></td><td>Не оформили в срок</td><td>Михаил</td></tr>
-            <tr><td>14:02</td><td><strong>VioletMage</strong> <span class="tier-badge tier-diamond">D</span></td><td>#ORD-89427</td><td><strong style="color: var(--red);">$220</strong></td><td>Передумал</td><td>Анна</td></tr>
+            <tr onclick="openWhale('phoenix')" title="Карточка кита"><td>10:24</td><td><strong>NightCrystal</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="disc-link" onclick="event.stopPropagation(); alert('Открыть #ORD-89412 в админке SkyCoach')">#ORD-89412</span></td><td><strong style="color: var(--red);">$340</strong></td><td>Не оформили в срок</td><td onclick="event.stopPropagation(); navTo('clients',null,'Михаил')" style="cursor: pointer; color: var(--accent);">Михаил</td></tr>
+            <tr onclick="openWhale('vex')" title="Карточка кита"><td>14:02</td><td><strong>VioletMage</strong> <span class="tier-badge tier-diamond">D</span></td><td><span class="disc-link" onclick="event.stopPropagation(); alert('Открыть #ORD-89427 в админке SkyCoach')">#ORD-89427</span></td><td><strong style="color: var(--red);">$220</strong></td><td>Передумал</td><td onclick="event.stopPropagation(); navTo('clients',null,'Анна')" style="cursor: pointer; color: var(--accent);">Анна</td></tr>
           </tbody>
         </table>
       </div>
@@ -1098,36 +1102,36 @@
       </div>
 
       <div class="section">
-        <div class="section-header"><div><div class="section-title">🏆 Performance команды</div></div></div>
+        <div class="section-header"><div><div class="section-title">🏆 Performance команды</div><div class="section-sub">Клик на менеджера — его клиенты</div></div></div>
         <table class="table">
           <thead><tr><th>Менеджер</th><th>GMV</th><th>Возвраты</th><th>Откр/закр задач</th><th>Загруж.</th><th>KPD</th><th>План</th></tr></thead>
           <tbody>
-            <tr><td>Сергей ⭐</td><td>$48K</td><td>2</td><td>12 / 4</td><td>80%</td><td>0.25</td><td>80%</td></tr>
-            <tr><td>Анна ⭐⭐</td><td><strong>$52K</strong></td><td><strong>3</strong></td><td>9 / 6</td><td>92%</td><td>0.18</td><td style="color: var(--green);">95%</td></tr>
-            <tr><td style="color: var(--orange);">Михаил ⚠️</td><td>$28K</td><td>0</td><td style="color: var(--red);">18 / 1</td><td>60%</td><td>0.42</td><td style="color: var(--red);">47%</td></tr>
-            <tr><td>Елена</td><td>$41K</td><td>1</td><td>11 / 3</td><td>75%</td><td>0.27</td><td>70%</td></tr>
+            <tr onclick="navTo('clients',null,'Сергей')"><td>Сергей ⭐</td><td>$48K</td><td>2</td><td onclick="event.stopPropagation(); navTo('tasks',null,'Сергей')" style="cursor: pointer; color: var(--accent);">12 / 4</td><td>80%</td><td>0.25</td><td>80%</td></tr>
+            <tr onclick="navTo('clients',null,'Анна')"><td>Анна ⭐⭐</td><td>$52K</td><td>3</td><td onclick="event.stopPropagation(); navTo('tasks',null,'Анна')" style="cursor: pointer; color: var(--accent);">9 / 6</td><td>92%</td><td>0.18</td><td style="color: var(--green);">95%</td></tr>
+            <tr onclick="navTo('clients',null,'Михаил')"><td style="color: var(--orange);">Михаил ⚠️</td><td>$28K</td><td>0</td><td onclick="event.stopPropagation(); navTo('tasks',null,'Михаил')" style="cursor: pointer; color: var(--red);">18 / 1</td><td>60%</td><td>0.42</td><td style="color: var(--red);">47%</td></tr>
+            <tr onclick="navTo('clients',null,'Елена')"><td>Елена</td><td>$41K</td><td>1</td><td onclick="event.stopPropagation(); navTo('tasks',null,'Елена')" style="cursor: pointer; color: var(--accent);">11 / 3</td><td>75%</td><td>0.27</td><td>70%</td></tr>
           </tbody>
         </table>
       </div>
 
       <div class="two-col-eq">
         <div class="section">
-          <div class="section-header"><div><div class="section-title">📈 Tier movements (упрощённо)</div></div></div>
+          <div class="section-header"><div><div class="section-title">📈 Tier movements (упрощённо)</div><div class="section-sub">Клик на «lost» → когорта потерянных</div></div></div>
           <table class="table">
             <thead><tr><th>Движение</th><th>Кол-во</th><th>GMV impact</th></tr></thead>
             <tbody>
-              <tr><td>Crown → Diamond</td><td>+8</td><td style="color: var(--green);">+$24K/мес</td></tr>
-              <tr><td>Diamond → Ruby</td><td>+2</td><td style="color: var(--green);">+$8K/мес</td></tr>
-              <tr><td>Ruby → lost</td><td style="color: var(--red);">-3</td><td style="color: var(--red);">-$12K/мес</td></tr>
-              <tr><td>Diamond → Crown</td><td>-5</td><td style="color: var(--orange);">-$10K/мес</td></tr>
+              <tr onclick="navTo('whales','lw-all')"><td>Crown → Diamond</td><td>+8</td><td style="color: var(--green);">+$24K/мес</td></tr>
+              <tr onclick="navTo('whales','lw-all')"><td>Diamond → Ruby</td><td>+2</td><td style="color: var(--green);">+$8K/мес</td></tr>
+              <tr onclick="navTo('whales','lw-lost')"><td>Ruby → lost</td><td style="color: var(--red);">-3</td><td style="color: var(--red);">-$12K/мес</td></tr>
+              <tr onclick="navTo('whales','lw-all')"><td>Diamond → Crown</td><td>-5</td><td style="color: var(--orange);">-$10K/мес</td></tr>
             </tbody>
           </table>
         </div>
 
         <div class="section">
-          <div class="section-header"><div><div class="section-title">🔄 Reactivation Tracker</div></div></div>
+          <div class="section-header"><div><div class="section-title">🔄 Reactivation Tracker</div><div class="section-sub">Клик на «в кампании» → когорта</div></div></div>
           <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem;">
-            <div><div class="muted small">В кампании</div><div style="font-size: 1.4rem; font-weight: 700;">47 китов</div></div>
+            <div style="cursor: pointer;" onclick="navTo('whales','lw-lost')"><div class="muted small">В кампании →</div><div style="font-size: 1.4rem; font-weight: 700;">47 китов</div></div>
             <div><div class="muted small">Recovered MTD</div><div style="font-size: 1.4rem; font-weight: 700; color: var(--green);">+19</div></div>
             <div><div class="muted small">Open / Click</div><div style="font-size: 1.4rem; font-weight: 700;">62% / 24%</div></div>
             <div><div class="muted small">Best cohort</div><div style="font-size: 1rem; font-weight: 700; color: var(--accent);">WoW Classic S4 (28%)</div></div>
@@ -1158,9 +1162,9 @@
           <tbody>
             <tr onclick="openWhale('grimm')"><td><strong>GrimmRaider</strong> <span class="tier-badge tier-ruby">R</span></td><td class="muted small">marcus.k@email.de</td><td>WoW Classic</td><td>$24,300</td><td>Сергей</td><td><span class="status-pill status-risk">at-risk</span></td><td><span class="disc-link">🟢</span></td></tr>
             <tr onclick="openWhale('phoenix')"><td><strong>Phoenix_Hunter</strong> <span class="tier-badge tier-ruby">R</span></td><td class="muted small">daniel.r@email.uk</td><td>Destiny 2</td><td>$18,650</td><td>Сергей</td><td><span class="status-pill status-risk">at-risk</span></td><td><span class="disc-link">🟢</span></td></tr>
-            <tr><td><strong>VipFreaky_DE</strong> <span class="tier-badge tier-ruby">R</span></td><td class="muted small">vip.de@email.de</td><td>WoW Classic</td><td>$31,200</td><td>Анна</td><td><span class="status-pill status-active">active</span></td><td><span class="disc-link">🟢</span></td></tr>
-            <tr><td><strong>Wraith_Lord</strong> <span class="tier-badge tier-ruby">R</span></td><td class="muted small">wraith@email.au</td><td>WoW Classic</td><td>$22,400</td><td>Сергей</td><td><span class="status-pill status-active">active</span></td><td><span class="disc-link">🟢</span></td></tr>
-            <tr><td><strong>SkyHunter_RU</strong> <span class="tier-badge tier-ruby">R</span></td><td class="muted small">sky@email.ru</td><td>WoW Classic</td><td>$20,050</td><td>Сергей</td><td><span class="status-pill status-risk">at-risk</span></td><td><span class="disc-link">🟢</span></td></tr>
+            <tr onclick="openWhale('vex')"><td><strong>VipFreaky_DE</strong> <span class="tier-badge tier-ruby">R</span></td><td class="muted small">vip.de@email.de</td><td>WoW Classic</td><td>$31,200</td><td onclick="event.stopPropagation(); navTo('clients',null,'Анна')" style="color: var(--accent); cursor: pointer;">Анна</td><td><span class="status-pill status-active">active</span></td><td><span class="disc-link">🟢</span></td></tr>
+            <tr onclick="openWhale('iron')"><td><strong>Wraith_Lord</strong> <span class="tier-badge tier-ruby">R</span></td><td class="muted small">wraith@email.au</td><td>WoW Classic</td><td>$22,400</td><td onclick="event.stopPropagation(); navTo('clients',null,'Сергей')" style="color: var(--accent); cursor: pointer;">Сергей</td><td><span class="status-pill status-active">active</span></td><td><span class="disc-link">🟢</span></td></tr>
+            <tr onclick="openWhale('thorin')"><td><strong>SkyHunter_RU</strong> <span class="tier-badge tier-ruby">R</span></td><td class="muted small">sky@email.ru</td><td>WoW Classic</td><td>$20,050</td><td onclick="event.stopPropagation(); navTo('clients',null,'Сергей')" style="color: var(--accent); cursor: pointer;">Сергей</td><td><span class="status-pill status-risk">at-risk</span></td><td><span class="disc-link">🟢</span></td></tr>
             <tr><td colspan="7" class="muted small" style="text-align: center;">+ ещё 245 Ruby + 1,420 Diamond + 16,280 Crown + ...</td></tr>
           </tbody>
         </table>
@@ -1195,9 +1199,9 @@
           <table class="table">
             <thead><tr><th>Кит</th><th>Игра</th><th>LTV</th><th>Last order</th><th>Менеджер</th><th>Действия</th></tr></thead>
             <tbody>
-              <tr onclick="openWhale('grimm')"><td><strong>GrimmRaider</strong></td><td>WoW Classic</td><td>$24,300</td><td>48 дн</td><td>Сергей</td><td><button class="btn" onclick="event.stopPropagation();">🔁 Переназначить</button></td></tr>
-              <tr><td><strong>VipFreaky_DE</strong></td><td>WoW Classic</td><td>$31,200</td><td>3 дн</td><td>Анна</td><td><button class="btn">🔁</button></td></tr>
-              <tr><td><strong>NightOwl_DK</strong></td><td>WoW Retail</td><td>$15,400</td><td>52 дн</td><td>Михаил</td><td><button class="btn">🔁</button></td></tr>
+              <tr onclick="openWhale('grimm')"><td><strong>GrimmRaider</strong></td><td>WoW Classic</td><td>$24,300</td><td>48 дн</td><td onclick="event.stopPropagation(); navTo('clients',null,'Сергей')" style="color: var(--accent); cursor: pointer;">Сергей</td><td><button class="btn" onclick="event.stopPropagation(); alert('Переназначить кита')">🔁 Переназначить</button></td></tr>
+              <tr onclick="openWhale('vex')"><td><strong>VipFreaky_DE</strong></td><td>WoW Classic</td><td>$31,200</td><td>3 дн</td><td onclick="event.stopPropagation(); navTo('clients',null,'Анна')" style="color: var(--accent); cursor: pointer;">Анна</td><td><button class="btn" onclick="event.stopPropagation(); alert('Переназначить')">🔁</button></td></tr>
+              <tr onclick="openWhale('thorin')"><td><strong>NightOwl_DK</strong></td><td>WoW Retail</td><td>$15,400</td><td>52 дн</td><td onclick="event.stopPropagation(); navTo('clients',null,'Михаил')" style="color: var(--red); cursor: pointer;">Михаил</td><td><button class="btn" onclick="event.stopPropagation(); alert('Переназначить')">🔁</button></td></tr>
               <tr><td colspan="6" class="muted small" style="text-align: center;">+ ещё 247 Ruby</td></tr>
             </tbody>
           </table>
@@ -1205,38 +1209,38 @@
       </div>
       <div class="tab-content" data-tab="lw-risk">
         <div class="section">
-          <div class="muted small" style="padding: 0.5rem 0;">18 Ruby сейчас в зоне риска по всей команде · $312K LTV под угрозой</div>
+          <div class="muted small" style="padding: 0.5rem 0;">18 Ruby сейчас в зоне риска по всей команде · $312K LTV под угрозой · клик — карточка</div>
           <table class="table">
             <thead><tr><th>Кит</th><th>Игра</th><th>LTV</th><th>Менеджер</th><th>Без касания</th></tr></thead>
             <tbody>
-              <tr><td><strong>Phoenix_Hunter</strong></td><td>Destiny 2</td><td>$18,650</td><td>Сергей</td><td style="color: var(--orange);">32 дн</td></tr>
-              <tr><td><strong>ThunderBoy_GR</strong></td><td>WoW Classic</td><td>$15,400</td><td style="color: var(--red);">Михаил</td><td style="color: var(--red);">38 дн</td></tr>
-              <tr><td><strong>NightCrystal</strong></td><td>Diablo IV</td><td>$13,800</td><td style="color: var(--red);">Михаил</td><td style="color: var(--red);">28 дн</td></tr>
+              <tr onclick="openWhale('phoenix')"><td><strong>Phoenix_Hunter</strong></td><td>Destiny 2</td><td>$18,650</td><td onclick="event.stopPropagation(); navTo('clients',null,'Сергей')" style="color: var(--accent); cursor: pointer;">Сергей</td><td style="color: var(--orange);">32 дн</td></tr>
+              <tr onclick="openWhale('grimm')"><td><strong>ThunderBoy_GR</strong></td><td>WoW Classic</td><td>$15,400</td><td onclick="event.stopPropagation(); navTo('clients',null,'Михаил')" style="color: var(--red); cursor: pointer;">Михаил</td><td style="color: var(--red);">38 дн</td></tr>
+              <tr onclick="openWhale('phoenix')"><td><strong>NightCrystal</strong></td><td>Diablo IV</td><td>$13,800</td><td onclick="event.stopPropagation(); navTo('clients',null,'Михаил')" style="color: var(--red); cursor: pointer;">Михаил</td><td style="color: var(--red);">28 дн</td></tr>
             </tbody>
           </table>
         </div>
       </div>
       <div class="tab-content" data-tab="lw-sandbox">
         <div class="section">
-          <div class="muted small" style="padding: 0.5rem 0;">~50 кандидатов в Ruby по всей базе · можно вручную закрепить за менеджером</div>
+          <div class="muted small" style="padding: 0.5rem 0;">~50 кандидатов в Ruby · клик — карточка</div>
           <table class="table">
             <thead><tr><th>Клиент</th><th>Игра</th><th>LTV</th><th>Score</th><th>Менеджер</th></tr></thead>
             <tbody>
-              <tr><td><strong>DragonSlayer_99</strong></td><td>WoW Classic</td><td>$840</td><td style="color: var(--purple);">75</td><td>Сергей <small class="muted">auto</small></td></tr>
-              <tr><td><strong>Vulkan_Reborn</strong></td><td>WoW Classic</td><td>$1,580</td><td style="color: var(--purple);">88</td><td>Сергей</td></tr>
-              <tr><td><strong>StormCaller42</strong></td><td>WoW Retail</td><td>$780</td><td>62</td><td><span class="muted">unassigned</span></td></tr>
+              <tr onclick="openWhale('dragon')"><td><strong>DragonSlayer_99</strong></td><td>WoW Classic</td><td>$840</td><td style="color: var(--purple);">75</td><td onclick="event.stopPropagation(); navTo('clients',null,'Сергей')" style="color: var(--accent); cursor: pointer;">Сергей <small class="muted">auto</small></td></tr>
+              <tr onclick="openWhale('iron')"><td><strong>Vulkan_Reborn</strong></td><td>WoW Classic</td><td>$1,580</td><td style="color: var(--purple);">88</td><td onclick="event.stopPropagation(); navTo('clients',null,'Сергей')" style="color: var(--accent); cursor: pointer;">Сергей</td></tr>
+              <tr onclick="openWhale('nyx')"><td><strong>StormCaller42</strong></td><td>WoW Retail</td><td>$780</td><td>62</td><td><span class="muted">unassigned</span></td></tr>
             </tbody>
           </table>
         </div>
       </div>
       <div class="tab-content" data-tab="lw-lost">
         <div class="section">
-          <div class="muted small" style="padding: 0.5rem 0;">12 Ruby ушли (>180 дней без заказа) · кандидаты на reactivation cohort</div>
+          <div class="muted small" style="padding: 0.5rem 0;">12 Ruby ушли (>180 дней без заказа) · кандидаты на reactivation · клик — карточка</div>
           <table class="table">
             <thead><tr><th>Кит</th><th>Игра</th><th>LTV</th><th>Last order</th></tr></thead>
             <tbody>
-              <tr><td><strong>FallenStar_X</strong></td><td>Destiny 2</td><td>$11,200</td><td style="color: var(--red);">214 дн</td></tr>
-              <tr><td><strong>OldVeteran_KR</strong></td><td>WoW Classic</td><td>$18,400</td><td style="color: var(--red);">235 дн</td></tr>
+              <tr onclick="openWhale('thorin')"><td><strong>FallenStar_X</strong></td><td>Destiny 2</td><td>$11,200</td><td style="color: var(--red);">214 дн</td></tr>
+              <tr onclick="openWhale('grimm')"><td><strong>OldVeteran_KR</strong></td><td>WoW Classic</td><td>$18,400</td><td style="color: var(--red);">235 дн</td></tr>
             </tbody>
           </table>
         </div>
@@ -1286,10 +1290,10 @@
         <table class="table">
           <thead><tr><th>Кит</th><th>Тип</th><th>Менеджер</th><th>Источник</th><th>Триггер</th><th>Дедлайн</th></tr></thead>
           <tbody>
-            <tr onclick="openTask(1)"><td><strong>GrimmRaider</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="ttype ttype-mass">mass</span></td><td>Сергей</td><td class="muted small">👤 Семён</td><td>S4 outreach</td><td style="color: var(--orange);">сегодня</td></tr>
-            <tr onclick="openTask(2)"><td><strong>Phoenix_Hunter</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="ttype ttype-critical">критич.</span></td><td>Сергей</td><td class="muted small">🤖 auto</td><td>32 дн без касания</td><td style="color: var(--red);">просрочено 1 дн</td></tr>
-            <tr><td><strong>ThunderBoy_GR</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="ttype ttype-critical">критич.</span></td><td style="color: var(--red);">Михаил</td><td class="muted small">🤖 auto</td><td>$15K кит, тишина 38 дн</td><td style="color: var(--red);">просрочено 3 дн</td></tr>
-            <tr><td><strong>NightCrystal</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="ttype ttype-risk">риск</span></td><td style="color: var(--red);">Михаил</td><td class="muted small">🤖 auto</td><td>D4 S5, не зашёл</td><td style="color: var(--red);">просрочено 2 дн</td></tr>
+            <tr onclick="openTask(1)"><td><strong>GrimmRaider</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="ttype ttype-mass">mass</span></td><td onclick="event.stopPropagation(); navTo('clients',null,'Сергей')" style="color: var(--accent); cursor: pointer;">Сергей</td><td class="muted small">👤 Семён</td><td>S4 outreach</td><td style="color: var(--orange);">сегодня</td></tr>
+            <tr onclick="openTask(2)"><td><strong>Phoenix_Hunter</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="ttype ttype-critical">критич.</span></td><td onclick="event.stopPropagation(); navTo('clients',null,'Сергей')" style="color: var(--accent); cursor: pointer;">Сергей</td><td class="muted small">🤖 auto</td><td>32 дн без касания</td><td style="color: var(--red);">просрочено 1 дн</td></tr>
+            <tr onclick="openTask(9)"><td><strong>ThunderBoy_GR</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="ttype ttype-critical">критич.</span></td><td onclick="event.stopPropagation(); navTo('clients',null,'Михаил')" style="color: var(--red); cursor: pointer;">Михаил</td><td class="muted small">🤖 auto</td><td>$15K кит, тишина 38 дн</td><td style="color: var(--red);">просрочено 3 дн</td></tr>
+            <tr onclick="openTask(10)"><td><strong>NightCrystal</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="ttype ttype-risk">риск</span></td><td onclick="event.stopPropagation(); navTo('clients',null,'Михаил')" style="color: var(--red); cursor: pointer;">Михаил</td><td class="muted small">🤖 auto</td><td>D4 S5, не зашёл</td><td style="color: var(--red);">просрочено 2 дн</td></tr>
             <tr><td colspan="6" class="muted small" style="text-align: center;">+ ещё 34 задачи</td></tr>
           </tbody>
         </table>
@@ -1300,9 +1304,9 @@
         <table class="table">
           <thead><tr><th>Кит</th><th>Тип</th><th>Менеджер</th><th>Время</th><th>Исход</th></tr></thead>
           <tbody>
-            <tr><td><strong>Crimson_Tide</strong></td><td><span class="ttype ttype-sell">продать</span></td><td>Сергей</td><td>09:24</td><td><span class="status-pill status-active">купил $280</span></td></tr>
-            <tr><td><strong>VioletMage</strong></td><td><span class="ttype ttype-contact">связаться</span></td><td>Анна</td><td>13:20</td><td><span class="status-pill status-active">купил $1,200 · Crown→Diamond</span></td></tr>
-            <tr><td><strong>StonePillar</strong></td><td><span class="ttype ttype-risk">риск</span></td><td>Сергей</td><td>13:45</td><td><span class="status-pill status-lost">отказался</span></td></tr>
+            <tr onclick="openWhale('grimm')"><td><strong>Crimson_Tide</strong></td><td><span class="ttype ttype-sell">продать</span></td><td onclick="event.stopPropagation(); navTo('clients',null,'Сергей')" style="color: var(--accent); cursor: pointer;">Сергей</td><td>09:24</td><td><span class="status-pill status-active">купил $280</span></td></tr>
+            <tr onclick="openWhale('vex')"><td><strong>VioletMage</strong></td><td><span class="ttype ttype-contact">связаться</span></td><td onclick="event.stopPropagation(); navTo('clients',null,'Анна')" style="color: var(--accent); cursor: pointer;">Анна</td><td>13:20</td><td><span class="status-pill status-active">купил $1,200 · Crown→Diamond</span></td></tr>
+            <tr onclick="openWhale('phoenix')"><td><strong>StonePillar</strong></td><td><span class="ttype ttype-risk">риск</span></td><td onclick="event.stopPropagation(); navTo('clients',null,'Сергей')" style="color: var(--accent); cursor: pointer;">Сергей</td><td>13:45</td><td><span class="status-pill status-lost">отказался</span></td></tr>
           </tbody>
         </table>
       </div>
@@ -1768,6 +1772,36 @@ function switchView(navEl, viewName) {
   if (t) t.classList.add('active');
   app.querySelector('.main').scrollTop = 0;
 }
+
+// Navigate to a view (optionally activate tab + filter chip) from anywhere inside the current app
+function navTo(viewName, tabName, filterText) {
+  const app = document.querySelector('.app.active');
+  if (!app) return;
+  const navItem = app.querySelector(`.nav-item[onclick*="'${viewName}'"]`);
+  if (navItem) switchView(navItem, viewName);
+  if (tabName) {
+    const view = app.querySelector(`.view[data-view="${viewName}"]`);
+    if (view) {
+      const tabBtn = view.querySelector(`.tab-btn[onclick*="'${tabName}'"]`);
+      if (tabBtn) switchTab(tabBtn, tabName);
+    }
+  }
+  if (filterText) {
+    setTimeout(() => {
+      const view = app.querySelector(`.view[data-view="${viewName}"]`);
+      if (!view) return;
+      view.querySelectorAll('.filter-chip').forEach(c => {
+        if (c.textContent.trim().toLowerCase() === filterText.toLowerCase()) {
+          c.parentElement.querySelectorAll('.filter-chip').forEach(cc => cc.classList.remove('active'));
+          c.classList.add('active');
+        }
+      });
+    }, 50);
+  }
+}
+
+// Make any element clickable with cursor pointer auto
+function clickable(el) { el.style.cursor = 'pointer'; }
 
 function switchTab(tabEl, tabName) {
   const container = tabEl.closest('.view') || tabEl.parentElement.parentElement;
