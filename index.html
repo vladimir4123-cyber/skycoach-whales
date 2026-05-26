@@ -275,12 +275,40 @@
   .toast-text strong { display: block; margin-bottom: 0.13rem; font-size: 0.86rem; }
   .toast-text small { color: var(--text-2); font-size: 0.76rem; }
 
-  /* Working hours table */
+  /* Working hours table (compact) */
   .wh-table { display: grid; grid-template-columns: 130px repeat(7, 1fr); gap: 2px; font-size: 0.74rem; }
   .wh-cell { padding: 0.4rem 0.5rem; background: var(--bg-3); text-align: center; }
   .wh-cell.header { font-weight: 600; color: var(--text-2); background: var(--bg-2); text-transform: uppercase; font-size: 0.66rem; }
   .wh-cell.name { text-align: left; font-weight: 600; }
   .wh-cell.on { background: rgba(74, 222, 128, 0.15); color: var(--green); }
+
+  /* HEATMAP — coverage by hour */
+  .heatmap { display: grid; grid-template-columns: 160px repeat(24, 1fr); gap: 1px; background: var(--bg); padding: 1px; border-radius: 6px; font-size: 0.7rem; }
+  .hm-cell { padding: 0.5rem 0.2rem; background: var(--bg-3); text-align: center; min-height: 30px; display: flex; align-items: center; justify-content: center; }
+  .hm-cell.header { font-weight: 600; color: var(--text-2); background: var(--bg-2); font-size: 0.66rem; }
+  .hm-cell.name { text-align: left; font-weight: 600; padding: 0.5rem 0.6rem; justify-content: flex-start; gap: 0.4rem; }
+  .hm-cell.work { background: rgba(74, 222, 128, 0.22); }
+  .hm-cell.work.peak { background: rgba(74, 222, 128, 0.5); }
+  .hm-cell.overlap { background: rgba(0, 212, 255, 0.4); color: white; font-weight: 700; }
+  .hm-cell.gap { background: rgba(239, 68, 68, 0.15); color: var(--red); }
+  .hm-cell.now { box-shadow: inset 0 0 0 2px var(--accent); }
+  .hm-cell.whale-low { background: rgba(244, 197, 66, 0.1); }
+  .hm-cell.whale-med { background: rgba(244, 197, 66, 0.25); }
+  .hm-cell.whale-high { background: rgba(244, 197, 66, 0.5); color: var(--bg); font-weight: 700; }
+  .hm-legend { display: flex; gap: 0.85rem; align-items: center; flex-wrap: wrap; margin-top: 0.6rem; font-size: 0.78rem; }
+  .hm-legend-item { display: flex; align-items: center; gap: 0.35rem; color: var(--text-2); }
+  .hm-swatch { width: 14px; height: 14px; border-radius: 3px; }
+
+  /* Manager detailed card */
+  .mgr-card-big { background: var(--bg-3); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.25rem; }
+  .mgr-card-big:hover { border-color: var(--accent); }
+  .mgr-header-big { display: flex; align-items: flex-start; gap: 0.8rem; margin-bottom: 0.9rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--border); }
+  .mgr-meta-big { color: var(--text-2); font-size: 0.78rem; margin-top: 0.2rem; line-height: 1.5; }
+  .mgr-stats-big { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-bottom: 0.7rem; }
+  .mgr-stat-big { background: var(--bg); padding: 0.5rem 0.65rem; border-radius: 5px; }
+  .mgr-stat-big-l { color: var(--text-2); font-size: 0.7rem; }
+  .mgr-stat-big-v { font-weight: 700; font-size: 1rem; margin-top: 0.15rem; }
+  .mgr-card-big .mgr-actions { display: flex; gap: 0.35rem; flex-wrap: wrap; padding-top: 0.6rem; border-top: 1px solid var(--border); }
 
   @media (max-width: 1100px) {
     .featured-row, .manager-grid { grid-template-columns: repeat(2, 1fr); }
@@ -896,6 +924,7 @@
     <div class="sidebar-logo">SkyCoach <span>Whales</span></div>
     <div class="sidebar-role"><span class="role-dot"></span>Руководитель · Семён</div>
     <div class="nav-item active" onclick="switchView(this,'dashboard')">📊 <span>Дашборд</span></div>
+    <div class="nav-item" onclick="switchView(this,'managers')">👨‍💼 <span>Менеджеры</span><span class="count">4</span></div>
     <div class="nav-item" onclick="switchView(this,'analytics')">📈 <span>Аналитика</span></div>
     <div class="nav-item" onclick="switchView(this,'clients')">👥 <span>Клиенты</span><span class="count">356K</span></div>
     <div class="nav-item" onclick="switchView(this,'whales')">🐋 <span>Киты</span><span class="count">250</span></div>
@@ -933,8 +962,8 @@
       <!-- TEAM CARDS -->
       <div class="section">
         <div class="section-header">
-          <div><div class="section-title">👥 Команда · загруженность и KPD</div><div class="section-sub">Клик → разбор по менеджеру</div></div>
-          <div class="section-action" onclick="switchView(document.querySelector('#app-leader [onclick*=\\'analytics\\']'),'analytics')">Подробная аналитика →</div>
+          <div><div class="section-title">👥 Команда · загруженность и KPD</div><div class="section-sub">Клик → клиенты менеджера · детальное управление в разделе «Менеджеры»</div></div>
+          <div class="section-action" onclick="navTo('managers')">Все менеджеры + расписание →</div>
         </div>
         <div class="manager-grid">
 
@@ -1049,6 +1078,281 @@
           <tbody>
             <tr onclick="openWhale('phoenix')" title="Карточка кита"><td>10:24</td><td><strong>NightCrystal</strong> <span class="tier-badge tier-ruby">R</span></td><td><span class="disc-link" onclick="event.stopPropagation(); alert('Открыть #ORD-89412 в админке SkyCoach')">#ORD-89412</span></td><td><strong style="color: var(--red);">$340</strong></td><td>Не оформили в срок</td><td onclick="event.stopPropagation(); navTo('clients',null,'Михаил')" style="cursor: pointer; color: var(--accent);">Михаил</td></tr>
             <tr onclick="openWhale('vex')" title="Карточка кита"><td>14:02</td><td><strong>VioletMage</strong> <span class="tier-badge tier-diamond">D</span></td><td><span class="disc-link" onclick="event.stopPropagation(); alert('Открыть #ORD-89427 в админке SkyCoach')">#ORD-89427</span></td><td><strong style="color: var(--red);">$220</strong></td><td>Передумал</td><td onclick="event.stopPropagation(); navTo('clients',null,'Анна')" style="cursor: pointer; color: var(--accent);">Анна</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- ====== VIEW: MANAGERS (LEADER · отдельный раздел) ====== -->
+    <div class="view" data-view="managers">
+      <div class="page-header">
+        <div>
+          <div class="page-title">👨‍💼 Менеджеры команды</div>
+          <div class="page-sub">График покрытия по часам · загруженность · auto-assignment routing</div>
+        </div>
+        <button class="btn btn-primary btn-lg" onclick="alert('Открывается модал «Добавить менеджера»: имя, email, Discord, часовой пояс, специализация, working hours')">➕ Добавить менеджера</button>
+      </div>
+
+      <!-- Summary metrics -->
+      <div class="featured-row">
+        <div class="featured"><div class="featured-label">Всего менеджеров</div><div class="featured-value">4</div><div class="featured-delta up">+2 хайр в июне</div></div>
+        <div class="featured"><div class="featured-label">Сейчас online</div><div class="featured-value" style="color: var(--green);">3 / 4</div><div class="featured-delta">Михаил оффлайн 6 ч</div></div>
+        <div class="featured"><div class="featured-label">Avg загруженность</div><div class="featured-value">77%</div><div class="featured-delta down">Анна перегружена (92%)</div></div>
+        <div class="featured"><div class="featured-label">В отпуске сейчас</div><div class="featured-value">0</div><div class="featured-delta muted">след. — Елена 5 июня</div></div>
+      </div>
+
+      <!-- COVERAGE HEATMAP — главная фишка -->
+      <div class="section">
+        <div class="section-header">
+          <div>
+            <div class="section-title">🗓️ График покрытия команды · UTC по часам</div>
+            <div class="section-sub">Auto-assignment подбирает менеджера у которого working hours совпадают с peak-часами кита</div>
+          </div>
+          <div class="filters">
+            <div class="filter-chip active">Сегодня</div>
+            <div class="filter-chip">Эта неделя</div>
+            <div class="filter-chip">Среднее</div>
+          </div>
+        </div>
+
+        <!-- Whales activity row (heatmap-style by hour) -->
+        <div class="muted small" style="margin-bottom: 0.4rem;">📊 Активность китов по часам (когда они покупают / приходят в Intercom)</div>
+        <div class="heatmap">
+          <div class="hm-cell name muted small">🐋 Пик активности китов</div>
+          <!-- 24 hours -->
+          <div class="hm-cell whale-low">0</div><div class="hm-cell whale-low">1</div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div>
+          <div class="hm-cell whale-low">6</div><div class="hm-cell whale-med">7</div><div class="hm-cell whale-med">8</div><div class="hm-cell whale-high">9</div><div class="hm-cell whale-high">10</div><div class="hm-cell whale-high">11</div>
+          <div class="hm-cell whale-med">12</div><div class="hm-cell whale-low">13</div><div class="hm-cell whale-low">14</div><div class="hm-cell whale-med">15</div><div class="hm-cell whale-med">16</div><div class="hm-cell whale-high">17</div>
+          <div class="hm-cell whale-high">18</div><div class="hm-cell whale-high">19</div><div class="hm-cell whale-med">20</div><div class="hm-cell whale-med">21</div><div class="hm-cell whale-low">22</div><div class="hm-cell whale-low">23</div>
+        </div>
+
+        <div style="height: 0.45rem;"></div>
+
+        <!-- Hours header for managers -->
+        <div class="heatmap">
+          <div class="hm-cell header">Менеджер · TZ</div>
+          <div class="hm-cell header">0</div><div class="hm-cell header">1</div><div class="hm-cell header">2</div><div class="hm-cell header">3</div><div class="hm-cell header">4</div><div class="hm-cell header">5</div>
+          <div class="hm-cell header">6</div><div class="hm-cell header">7</div><div class="hm-cell header">8</div><div class="hm-cell header">9</div><div class="hm-cell header">10</div><div class="hm-cell header">11</div>
+          <div class="hm-cell header">12</div><div class="hm-cell header">13</div><div class="hm-cell header">14</div><div class="hm-cell header">15</div><div class="hm-cell header">16</div><div class="hm-cell header">17</div>
+          <div class="hm-cell header">18</div><div class="hm-cell header">19</div><div class="hm-cell header">20</div><div class="hm-cell header">21</div><div class="hm-cell header">22</div><div class="hm-cell header">23</div>
+
+          <!-- Сергей: UTC+3 (Moscow), работает 09-18 локально = 06-15 UTC -->
+          <div class="hm-cell name"><div class="avatar" style="width: 22px; height: 22px; font-size: 0.7rem;">С</div>Сергей · UTC+3</div>
+          <div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div>
+          <div class="hm-cell work">·</div><div class="hm-cell work">·</div><div class="hm-cell work peak">·</div><div class="hm-cell overlap">⚡</div><div class="hm-cell overlap">⚡</div><div class="hm-cell overlap">⚡</div>
+          <div class="hm-cell work peak">·</div><div class="hm-cell work">·</div><div class="hm-cell work">·</div><div class="hm-cell work">·</div><div class="hm-cell"></div><div class="hm-cell"></div>
+          <div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div>
+
+          <!-- Анна: UTC+1 (Berlin), работает 10-19 локально = 09-18 UTC -->
+          <div class="hm-cell name"><div class="avatar crown-bg" style="width: 22px; height: 22px; font-size: 0.7rem;">А</div>Анна · UTC+1</div>
+          <div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div>
+          <div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell overlap now">⚡</div><div class="hm-cell overlap">⚡</div><div class="hm-cell overlap">⚡</div>
+          <div class="hm-cell work peak">·</div><div class="hm-cell work">·</div><div class="hm-cell work">·</div><div class="hm-cell work peak">·</div><div class="hm-cell work peak">·</div><div class="hm-cell overlap">⚡</div>
+          <div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div>
+
+          <!-- Михаил: UTC+0 (London), работает 16-01 локально = 16-01 UTC (ночной для US) -->
+          <div class="hm-cell name"><div class="avatar dia-bg" style="width: 22px; height: 22px; font-size: 0.7rem;">M</div>Михаил · UTC+0</div>
+          <div class="hm-cell work">·</div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div>
+          <div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div>
+          <div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell work">·</div><div class="hm-cell overlap">⚡</div>
+          <div class="hm-cell overlap">⚡</div><div class="hm-cell overlap">⚡</div><div class="hm-cell work peak">·</div><div class="hm-cell work peak">·</div><div class="hm-cell work">·</div><div class="hm-cell work">·</div>
+
+          <!-- Елена: UTC+2 (Kyiv), 09-18 локально = 07-16 UTC -->
+          <div class="hm-cell name"><div class="avatar ruby-bg" style="width: 22px; height: 22px; font-size: 0.7rem;">Е</div>Елена · UTC+2</div>
+          <div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div>
+          <div class="hm-cell"></div><div class="hm-cell work">·</div><div class="hm-cell work">·</div><div class="hm-cell overlap">⚡</div><div class="hm-cell overlap">⚡</div><div class="hm-cell overlap">⚡</div>
+          <div class="hm-cell work peak">·</div><div class="hm-cell work">·</div><div class="hm-cell work">·</div><div class="hm-cell work peak">·</div><div class="hm-cell work peak">·</div><div class="hm-cell"></div>
+          <div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div><div class="hm-cell"></div>
+
+          <!-- COVERAGE row — всего онлайн менеджеров в каждый час -->
+          <div class="hm-cell name muted small">👥 Всего онлайн</div>
+          <div class="hm-cell">1</div><div class="hm-cell gap">0</div><div class="hm-cell gap">0</div><div class="hm-cell gap">0</div><div class="hm-cell gap">0</div><div class="hm-cell gap">0</div>
+          <div class="hm-cell">1</div><div class="hm-cell">2</div><div class="hm-cell">2</div><div class="hm-cell">3</div><div class="hm-cell">3</div><div class="hm-cell">3</div>
+          <div class="hm-cell">3</div><div class="hm-cell">3</div><div class="hm-cell">3</div><div class="hm-cell">3</div><div class="hm-cell">3</div><div class="hm-cell">3</div>
+          <div class="hm-cell">2</div><div class="hm-cell">2</div><div class="hm-cell">1</div><div class="hm-cell">1</div><div class="hm-cell">1</div><div class="hm-cell">1</div>
+        </div>
+
+        <div class="hm-legend">
+          <div class="hm-legend-item"><span class="hm-swatch" style="background: rgba(74,222,128,0.22);"></span> Работает</div>
+          <div class="hm-legend-item"><span class="hm-swatch" style="background: rgba(0,212,255,0.4);"></span> ⚡ Работает + пик китов (оптимально для auto-assignment)</div>
+          <div class="hm-legend-item"><span class="hm-swatch" style="background: rgba(244,197,66,0.5);"></span> Высокая активность китов</div>
+          <div class="hm-legend-item"><span class="hm-swatch" style="background: rgba(239,68,68,0.15);"></span> Gap — никто не онлайн</div>
+          <div class="hm-legend-item"><span class="hm-swatch" style="border: 2px solid var(--accent);"></span> Сейчас (live)</div>
+        </div>
+      </div>
+
+      <!-- Coverage insights -->
+      <div class="alert-banner warn">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-text">
+          <div class="alert-title">Выявленные проблемы покрытия</div>
+          <div class="alert-sub">
+            🌙 <strong>01:00-06:00 UTC</strong> — никто не онлайн, но есть 6 китов из US/Asia.<br>
+            ⚡ <strong>09:00-11:00 UTC (пик EU)</strong> — Анна перегружена (92%), Сергей и Елена тоже заняты — узкое место для новых pre-Ruby.<br>
+            ✅ <strong>16:00-20:00 UTC</strong> — лучшее покрытие, в эти часы планируй mass-tasks.
+          </div>
+        </div>
+        <button class="btn btn-primary btn-lg">💡 Рекомендации по найму</button>
+      </div>
+
+      <!-- Detailed manager cards -->
+      <div class="section">
+        <div class="section-header">
+          <div><div class="section-title">👨‍💼 Команда · детально</div><div class="section-sub">Расписание, специализация, загруженность, buddy</div></div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem;">
+
+          <div class="mgr-card-big">
+            <div class="mgr-header-big">
+              <div class="avatar avatar-lg">С</div>
+              <div style="flex: 1;">
+                <div style="font-weight: 700; font-size: 1.1rem;">Сергей Иванов <span style="color: var(--crown);">⭐ Менеджер недели</span></div>
+                <div class="mgr-meta-big">
+                  📧 s.ivanov@skycoach.gg · 💬 Skycoach | Sergey<br>
+                  🌍 UTC+3 (Moscow) · 🎮 WoW Universal · 🤝 Buddy: <strong>Анна</strong>
+                </div>
+              </div>
+              <span class="status-pill status-online">online</span>
+            </div>
+            <div class="mgr-meta-big" style="margin-bottom: 0.7rem;">
+              <strong style="color: var(--text);">Working hours:</strong> Пн–Пт · 09:00-18:00 локально (06:00-15:00 UTC)
+            </div>
+            <div class="mgr-stats-big">
+              <div class="mgr-stat-big"><div class="mgr-stat-big-l">Закр. Ruby</div><div class="mgr-stat-big-v">24</div></div>
+              <div class="mgr-stat-big"><div class="mgr-stat-big-l">GMV май</div><div class="mgr-stat-big-v">$48K</div></div>
+              <div class="mgr-stat-big"><div class="mgr-stat-big-l">Загруж.</div><div class="mgr-stat-big-v">80%</div></div>
+              <div class="mgr-stat-big"><div class="mgr-stat-big-l">KPD</div><div class="mgr-stat-big-v">0.25</div></div>
+            </div>
+            <div class="progress-row" style="margin-bottom: 0.7rem;">
+              <div class="progress-bar"><div class="progress-fill" style="width: 80%;"></div></div>
+              <div class="progress-text">24 / 30 задач</div>
+            </div>
+            <div class="mgr-actions">
+              <button class="btn" onclick="navTo('clients',null,'Сергей')">👥 Клиенты</button>
+              <button class="btn" onclick="navTo('tasks',null,'Сергей')">📋 Задачи</button>
+              <button class="btn">✏️ Расписание</button>
+              <button class="btn">⚙️ Профиль</button>
+            </div>
+          </div>
+
+          <div class="mgr-card-big">
+            <div class="mgr-header-big">
+              <div class="avatar avatar-lg crown-bg">А</div>
+              <div style="flex: 1;">
+                <div style="font-weight: 700; font-size: 1.1rem;">Анна Петрова <span style="color: var(--crown);">⭐⭐ Топ-перфомер</span></div>
+                <div class="mgr-meta-big">
+                  📧 a.petrova@skycoach.gg · 💬 Skycoach | Anna<br>
+                  🌍 UTC+1 (Berlin) · 🎮 Universal · 🤝 Buddy: <strong>Сергей</strong>
+                </div>
+              </div>
+              <span class="status-pill status-online">online</span>
+            </div>
+            <div class="mgr-meta-big" style="margin-bottom: 0.7rem;">
+              <strong style="color: var(--text);">Working hours:</strong> Пн–Сб · 10:00-19:00 локально (09:00-18:00 UTC)
+            </div>
+            <div class="mgr-stats-big">
+              <div class="mgr-stat-big"><div class="mgr-stat-big-l">Закр. Ruby</div><div class="mgr-stat-big-v">22</div></div>
+              <div class="mgr-stat-big"><div class="mgr-stat-big-l">GMV май</div><div class="mgr-stat-big-v">$52K</div></div>
+              <div class="mgr-stat-big"><div class="mgr-stat-big-l">Загруж.</div><div class="mgr-stat-big-v" style="color: var(--orange);">92%</div></div>
+              <div class="mgr-stat-big"><div class="mgr-stat-big-l">KPD</div><div class="mgr-stat-big-v">0.18</div></div>
+            </div>
+            <div class="progress-row" style="margin-bottom: 0.7rem;">
+              <div class="progress-bar"><div class="progress-fill over" style="width: 92%;"></div></div>
+              <div class="progress-text" style="color: var(--orange);">28 / 30 задач ⚠️</div>
+            </div>
+            <div class="mgr-actions">
+              <button class="btn" onclick="navTo('clients',null,'Анна')">👥 Клиенты</button>
+              <button class="btn" onclick="navTo('tasks',null,'Анна')">📋 Задачи</button>
+              <button class="btn">✏️ Расписание</button>
+              <button class="btn">⚙️ Профиль</button>
+            </div>
+          </div>
+
+          <div class="mgr-card-big" style="border-color: rgba(239,68,68,0.3);">
+            <div class="mgr-header-big">
+              <div class="avatar avatar-lg dia-bg">M</div>
+              <div style="flex: 1;">
+                <div style="font-weight: 700; font-size: 1.1rem;">Михаил Соколов <span style="color: var(--red);">⚠️ Нужна помощь</span></div>
+                <div class="mgr-meta-big">
+                  📧 m.sokolov@skycoach.gg · 💬 Skycoach | Mikhail<br>
+                  🌍 UTC+0 (London) · 🎮 Destiny 2 · 🤝 Buddy: <strong>Елена</strong>
+                </div>
+              </div>
+              <span class="status-pill status-offline">offline 6 ч</span>
+            </div>
+            <div class="mgr-meta-big" style="margin-bottom: 0.7rem;">
+              <strong style="color: var(--text);">Working hours:</strong> Вт–Сб · 16:00-01:00 локально (ночной для US, 16-01 UTC)
+            </div>
+            <div class="mgr-stats-big">
+              <div class="mgr-stat-big"><div class="mgr-stat-big-l">Закр. Ruby</div><div class="mgr-stat-big-v">19</div></div>
+              <div class="mgr-stat-big"><div class="mgr-stat-big-l">GMV май</div><div class="mgr-stat-big-v" style="color: var(--red);">$28K</div></div>
+              <div class="mgr-stat-big"><div class="mgr-stat-big-l">Загруж.</div><div class="mgr-stat-big-v">60%</div></div>
+              <div class="mgr-stat-big"><div class="mgr-stat-big-l">KPD</div><div class="mgr-stat-big-v">0.42</div></div>
+            </div>
+            <div class="progress-row" style="margin-bottom: 0.7rem;">
+              <div class="progress-bar"><div class="progress-fill under" style="width: 47%;"></div></div>
+              <div class="progress-text" style="color: var(--red);">47% плана · 18/1 закр.</div>
+            </div>
+            <div class="mgr-actions">
+              <button class="btn btn-primary" onclick="alert('1-on-1 с Михаилом · обсудить нагрузку и просроченные задачи')">🚨 1-on-1</button>
+              <button class="btn" onclick="navTo('clients',null,'Михаил')">👥 Клиенты</button>
+              <button class="btn" onclick="navTo('tasks',null,'Михаил')">📋 Задачи</button>
+              <button class="btn">✏️ Расписание</button>
+            </div>
+          </div>
+
+          <div class="mgr-card-big">
+            <div class="mgr-header-big">
+              <div class="avatar avatar-lg ruby-bg">Е</div>
+              <div style="flex: 1;">
+                <div style="font-weight: 700; font-size: 1.1rem;">Елена Кузнецова</div>
+                <div class="mgr-meta-big">
+                  📧 e.kuznetsova@skycoach.gg · 💬 Skycoach | Elena<br>
+                  🌍 UTC+2 (Kyiv) · 🎮 WoW Retail · 🤝 Buddy: <strong>Михаил</strong>
+                </div>
+              </div>
+              <span class="status-pill status-online">online</span>
+            </div>
+            <div class="mgr-meta-big" style="margin-bottom: 0.7rem;">
+              <strong style="color: var(--text);">Working hours:</strong> Пн–Пт · 09:00-18:00 локально (07:00-16:00 UTC)<br>
+              <span style="color: var(--orange);">🌴 Отпуск с 5 по 12 июня</span>
+            </div>
+            <div class="mgr-stats-big">
+              <div class="mgr-stat-big"><div class="mgr-stat-big-l">Закр. Ruby</div><div class="mgr-stat-big-v">21</div></div>
+              <div class="mgr-stat-big"><div class="mgr-stat-big-l">GMV май</div><div class="mgr-stat-big-v">$41K</div></div>
+              <div class="mgr-stat-big"><div class="mgr-stat-big-l">Загруж.</div><div class="mgr-stat-big-v">75%</div></div>
+              <div class="mgr-stat-big"><div class="mgr-stat-big-l">KPD</div><div class="mgr-stat-big-v">0.27</div></div>
+            </div>
+            <div class="progress-row" style="margin-bottom: 0.7rem;">
+              <div class="progress-bar"><div class="progress-fill" style="width: 70%;"></div></div>
+              <div class="progress-text">22 / 28 задач</div>
+            </div>
+            <div class="mgr-actions">
+              <button class="btn" onclick="navTo('clients',null,'Елена')">👥 Клиенты</button>
+              <button class="btn" onclick="navTo('tasks',null,'Елена')">📋 Задачи</button>
+              <button class="btn">✏️ Расписание</button>
+              <button class="btn">⚙️ Профиль</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Specialization matrix -->
+      <div class="section">
+        <div class="section-header">
+          <div><div class="section-title">🎮 Специализация × Покрытие игр</div><div class="section-sub">Чтобы auto-assignment мог найти специалиста по игре кита</div></div>
+        </div>
+        <table class="table">
+          <thead><tr><th>Игра</th><th>Активных Ruby</th><th>Специалисты</th><th>Покрытие 24ч</th></tr></thead>
+          <tbody>
+            <tr><td><strong>WoW Classic</strong></td><td>112</td><td>Сергей · Анна</td><td><span style="color: var(--green);">✓ хорошее (06:00-18:00 UTC)</span></td></tr>
+            <tr><td><strong>WoW Retail</strong></td><td>78</td><td>Елена · Анна</td><td><span style="color: var(--green);">✓ хорошее (07:00-18:00 UTC)</span></td></tr>
+            <tr><td><strong>Destiny 2</strong></td><td>34</td><td>Михаил · Сергей</td><td><span style="color: var(--orange);">⚠️ только вечер (16:00-01:00 UTC)</span></td></tr>
+            <tr><td><strong>Diablo IV</strong></td><td>18</td><td>Universal (Анна, Сергей)</td><td><span style="color: var(--green);">✓ хорошее</span></td></tr>
+            <tr><td><strong>Other</strong></td><td>8</td><td>Universal</td><td><span class="muted small">по запросу</span></td></tr>
           </tbody>
         </table>
       </div>
