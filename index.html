@@ -5,19 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SkyCoach Whales Console — v2 (per detailed TZ 26 May)</title>
 <style>
-#pw-overlay { position: fixed; inset: 0; background: #0f1419; z-index: 99999; display: none; align-items: center; justify-content: center; font-family: -apple-system, system-ui, sans-serif; }
-#pw-overlay.show { display: flex; }
-#pw-overlay .box { background: #1a2028; border: 1px solid #2a3340; border-radius: 14px; padding: 2rem 2.5rem; text-align: center; max-width: 380px; width: 90%; }
-#pw-overlay h2 { color: #e5e9f0; margin: 0 0 0.4rem; font-size: 1.2rem; }
-#pw-overlay p.sub { color: #8b97a8; font-size: 0.86rem; margin: 0 0 1.3rem; }
-#pw-overlay input { width: 100%; padding: 0.7rem 0.9rem; background: #0f1419; border: 1px solid #2a3340; border-radius: 8px; color: #e5e9f0; font-size: 0.95rem; font-family: inherit; outline: none; margin-bottom: 0.8rem; box-sizing: border-box; }
-#pw-overlay input:focus { border-color: #00d4ff; }
-#pw-overlay button { width: 100%; padding: 0.7rem; background: #00d4ff; color: #0f1419; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.92rem; font-family: inherit; }
-#pw-overlay button:hover { background: #0099cc; }
-#pw-overlay .err { color: #ef4444; font-size: 0.8rem; margin-top: 0.6rem; min-height: 1.2rem; }
-#pw-overlay .foot { color: #5d6b7e; font-size: 0.74rem; margin-top: 0.8rem; line-height: 1.5; }
-</style>
-<style>
   :root {
     --bg: #0f1419; --bg-2: #1a2028; --bg-3: #232b35; --bg-4: #2a3340;
     --border: #2a3340; --text: #e5e9f0; --text-2: #8b97a8; --text-3: #5d6b7e;
@@ -363,46 +350,6 @@
 </style>
 </head>
 <body>
-
-<!-- ========== PASSWORD GATE ========== -->
-<div id="pw-overlay">
-  <div class="box">
-    <div style="font-size: 2rem; margin-bottom: 0.6rem;">🔒</div>
-    <h2>SkyCoach Whales Console</h2>
-    <p class="sub">Введите пароль для доступа к мокапу</p>
-    <input id="pwInput" type="password" autofocus placeholder="Пароль">
-    <button id="pwBtn">Открыть дашборд</button>
-    <div id="pwErr" class="err"></div>
-    <div class="foot">Доступ выдаёт Володя Бакутеев · мокап для команды SkyCoach</div>
-  </div>
-</div>
-<script>
-(function() {
-  const PASS = 'whales2026sky';
-  const KEY = 'sc-wc-auth';
-  const overlay = document.getElementById('pw-overlay');
-  if (sessionStorage.getItem(KEY) === 'ok' || location.hash === '#bypass-dev') {
-    return; // already authenticated
-  }
-  overlay.classList.add('show');
-  const input = document.getElementById('pwInput');
-  const btn = document.getElementById('pwBtn');
-  const err = document.getElementById('pwErr');
-  function tryAuth() {
-    if (input.value === PASS) {
-      sessionStorage.setItem(KEY, 'ok');
-      overlay.classList.remove('show');
-    } else {
-      err.textContent = '❌ Неверный пароль';
-      input.value = '';
-      input.focus();
-    }
-  }
-  btn.addEventListener('click', tryAuth);
-  input.addEventListener('keypress', e => { if (e.key === 'Enter') tryAuth(); });
-  setTimeout(() => input.focus(), 50);
-})();
-</script>
 
 <!-- ========== LANDING ========== -->
 <div class="landing" id="landing">
